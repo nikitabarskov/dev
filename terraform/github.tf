@@ -5,6 +5,7 @@ resource "github_repository" "dev" {
   allow_rebase_merge     = false
   allow_squash_merge     = true
   delete_branch_on_merge = true
+  vulnerability_alerts   = true
   topics = [
     "infrastructure",
     "terraform",
@@ -20,15 +21,35 @@ resource "github_repository" "degree" {
 }
 
 resource "github_repository" "dotfiles" {
-  name        = "dotfiles"
-  description = "My dev machine configuration via ansible."
-  visibility  = "public"
+  name                   = "dotfiles"
+  description            = "My dev machine configuration via ansible."
+  visibility             = "public"
+  allow_merge_commit     = false
+  allow_rebase_merge     = false
+  allow_squash_merge     = true
+  delete_branch_on_merge = true
+  vulnerability_alerts   = true
   topics = [
     "ansible",
     "automation",
     "dotfiles",
     "dotfiles-ubuntu",
     "dotfiles-macos",
+  ]
+}
+
+resource "github_repository" "cv" {
+  name                   = "cv"
+  description            = "Curriculum Vitae."
+  visibility             = "public"
+  allow_merge_commit     = false
+  allow_rebase_merge     = false
+  allow_squash_merge     = true
+  delete_branch_on_merge = true
+  vulnerability_alerts   = true
+  topics = [
+    "cv",
+    "curriculum-vitae",
   ]
 }
 
