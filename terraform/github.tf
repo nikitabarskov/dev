@@ -13,16 +13,16 @@ resource "github_repository" "dev" {
 }
 
 resource "github_repository" "degree" {
-  name = "degree"
+  name        = "degree"
   description = "Materials, reports, bureaucratic documents relating to my scientific work (master's thesis)."
-  visibility = "public"
-  archived = true
+  visibility  = "public"
+  archived    = true
 }
 
 resource "github_repository" "dotfiles" {
-  name = "dotfiles"
+  name        = "dotfiles"
   description = "My dev machine configuration via ansible."
-  visibility = "public"
+  visibility  = "public"
   topics = [
     "ansible",
     "automation",
@@ -33,6 +33,6 @@ resource "github_repository" "dotfiles" {
 }
 
 resource "github_repository" "sandbox_coopnorge" {
-  name = "sandbox-coopnorge"
+  name       = "sandbox-coopnorge"
   visibility = "private"
 }
