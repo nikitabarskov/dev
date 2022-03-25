@@ -3,3 +3,7 @@ provider "github" {
   token = var.github_oauth_token
 }
 
+provider "tfe" {
+  token = var.tfe_token
+}
+
