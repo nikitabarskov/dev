@@ -1,6 +1,6 @@
 resource "github_repository" "dev" {
   name                   = "dev"
-  visibility             = "public"
+  visibility             = "public" #tfsec:ignore:github-repositories-private
   allow_merge_commit     = false
   allow_rebase_merge     = false
   allow_squash_merge     = true
@@ -16,14 +16,14 @@ resource "github_repository" "dev" {
 resource "github_repository" "degree" {
   name        = "degree"
   description = "Materials, reports, bureaucratic documents relating to my scientific work (master's thesis)."
-  visibility  = "public"
+  visibility  = "public" #tfsec:ignore:github-repositories-private
   archived    = true
 }
 
 resource "github_repository" "dotfiles" {
   name                   = "dotfiles"
   description            = "My dev machine configuration via ansible."
-  visibility             = "public"
+  visibility             = "public" #tfsec:ignore:github-repositories-private
   allow_merge_commit     = false
   allow_rebase_merge     = false
   allow_squash_merge     = true
@@ -41,7 +41,7 @@ resource "github_repository" "dotfiles" {
 resource "github_repository" "cv" {
   name                   = "cv"
   description            = "Curriculum Vitae."
-  visibility             = "public"
+  visibility             = "public" #tfsec:ignore:github-repositories-private
   allow_merge_commit     = false
   allow_rebase_merge     = false
   allow_squash_merge     = true
@@ -54,6 +54,7 @@ resource "github_repository" "cv" {
 }
 
 resource "github_repository" "sandbox_coopnorge" {
-  name       = "sandbox-coopnorge"
-  visibility = "private"
+  name                 = "sandbox-coopnorge"
+  visibility           = "private"
+  vulnerability_alerts = false #tfsec:ignore:github-repositories-enable_vulnerability_alerts
 }

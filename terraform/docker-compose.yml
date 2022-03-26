@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  tflint:
+    image: ghcr.io/terraform-linters/tflint:latest
+    volumes:
+      - .:/srv/src
+    working_dir: /srv/src
+  tfsec:
+    image: docker.io/aquasec/tfsec:latest
+    volumes:
+      - .:/srv/src
+    working_dir: /srv/src
