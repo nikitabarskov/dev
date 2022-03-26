@@ -1,0 +1,26 @@
+{
+	"composefiles": {
+		"docker-compose.yml": [
+			{
+				"name": "docker.io/safewaters/docker-lock",
+				"tag": "latest",
+				"digest": "432d90ddc2891f4845241adc63e5eef2dd1486fa14ea7882433cbd3f8ed64622",
+				"service": "docker-lock"
+			},
+			{
+				"name": "docker.io/aquasec/trivy",
+				"tag": "latest",
+				"digest": "ea27f41698ceefeabdb5d7c9c5b720b4908c0120741e931d7bcd95ecb4f3e8bf",
+				"service": "trivy"
+			}
+		],
+		"terraform/docker-compose.yml": [
+			{
+				"name": "ghcr.io/terraform-linters/tflint",
+				"tag": "latest",
+				"digest": "1ec926db4a400fdc620b55e5ff9c8ed15b7a4cc8b8fb70bd3cd0e0ab894d88e1",
+				"service": "tflint"
+			}
+		]
+	}
+}
