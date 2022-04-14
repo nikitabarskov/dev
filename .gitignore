@@ -26,3 +26,5 @@ override.tf.json
 
 .idea
 *.sarif
+
+.node_modules
