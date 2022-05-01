@@ -1,0 +1,94 @@
+---
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      terraform: ${{ steps.changes.outputs.terraform }}
+      docker: ${{ steps.changes.outputs.docker }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            terraform:
+              - 'terraform/**'
+              - 'docker-lock.json'
+              - '.github/**'
+            docker:
+              - added|modified: '**/*.Dockerfile'
+              - added|modified: '**/Dockerfile'
+              - added|modified: '**/docker-compose.yml'
+
+  terraform:
+    runs-on: ubuntu-latest
+    needs:
+      - changes
+    if: ${{ needs.changes.outputs.terraform == 'true' }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          task terraform:validate TERRAFORM_INIT_ARGS="-backend=false"
+
+  docker:
+    runs-on: ubuntu-latest
+    needs:
+      - changes
+    if: ${{ needs.changes.outputs.docker == 'true' }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          task validate-images-digests
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          task validate-security
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: 'trivy-config.sarif'
+
+  build:
+    runs-on: ubuntu-latest
+    needs:
+      - terraform
+      - docker
+      - security
+    steps:
+      - run: exit 1
+        if: needs.terraform.result == 'failure' || needs.docker.result == 'failure' || needs.security.result == 'failure'

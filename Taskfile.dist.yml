@@ -1,0 +1,31 @@
+version: '3'
+
+includes:
+  terraform:
+    taskfile: ./terraform
+    dir: ./terraform
+
+vars:
+  DOCKER_COMPOSE_RUN: docker compose run --rm
+
+tasks:
+  validate-security:
+    desc: Validate security issues with trivy inside the repository
+    cmds:
+      - "{{ .DOCKER_COMPOSE_RUN }} trivy filesystem --security-checks=vuln,config --format=sarif --exit-code=1 --no-progress --output=trivy-config.sarif ."
+
+  validate-images-digests:
+    desc: Validate images digests with docker-lock inside the repository
+    cmds:
+      - "{{ .DOCKER_COMPOSE_RUN }} docker-lock lock verify"
+
+  lock-images-digests:
+    desc: Lock and rewrite images digests inside the repository
+    sources:
+      - "*/**/*Dockerfile"
+      - "*/**/*docker-compose.yml"
+    cmds:
+      - "{{ .DOCKER_COMPOSE_RUN }} docker-lock lock generate"
+      - "{{ .DOCKER_COMPOSE_RUN }} docker-lock lock rewrite"
+    generates:
+      - "docker-lock.json"

@@ -1,0 +1,34 @@
+version: 3
+
+vars:
+  DOCKER_COMPOSE_RUN: docker compose run --rm
+
+tasks:
+  install:
+    desc: Install terraform and init terraform workspace
+    sources:
+      - ".terraform.lock.hcl"
+      - "backend.tf"
+      - "versions.tf"
+    cmds:
+      - "{{ .DOCKER_COMPOSE_RUN }} terraform bash -c 'tfswitch && terraform init {{ .TERRAFORM_INIT_ARGS }}'"
+    generates:
+      - ".terraform.lock.hcl"
+      - ".terraform/*"
+  validate:
+    desc: Run terraform validation
+    sources:
+      - "*.tf"
+      - ".terraform.lock.hcl"
+      - "docker-compose.yml"
+      - "devtools.Dockerfile"
+    cmds:
+      - "{{ .DOCKER_COMPOSE_RUN }} terraform bash -c 'tfswitch && terraform fmt -check -diff -recursive .'"
+      - "{{ .DOCKER_COMPOSE_RUN }} terraform bash -c 'tfswitch && terraform validate'"
+      - "{{ .DOCKER_COMPOSE_RUN }} tflint ."
+    deps:
+      - task: install
+  format-fix:
+    desc: Fix formatting issues
+    cmds:
+      - "{{ .DOCKER_COMPOSE_RUN }} terraform bash -c 'tfswitch && terraform fmt -diff -recursive .'"
