@@ -5,6 +5,9 @@ services:
     image: docker.io/aquasec/trivy:latest@sha256:ea27f41698ceefeabdb5d7c9c5b720b4908c0120741e931d7bcd95ecb4f3e8bf
     volumes:
       - .:/srv/src
+      - ./.cache/trivy:/root/cache/.trivy
+    environment:
+      TRIVY_CACHE_DIR: /root/cache/.trivy
     working_dir: /srv/src
   docker-lock:
     image: docker.io/safewaters/docker-lock:latest@sha256:432d90ddc2891f4845241adc63e5eef2dd1486fa14ea7882433cbd3f8ed64622

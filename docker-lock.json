@@ -16,6 +16,13 @@
 		],
 		"terraform/docker-compose.yml": [
 			{
+				"name": "docker.io/library/ubuntu",
+				"tag": "focal",
+				"digest": "47f14534bda344d9fe6ffd6effb95eefe579f4be0d508b7445cf77f61a0e5724",
+				"dockerfile": "terraform/devtools.Dockerfile",
+				"service": "terraform"
+			},
+			{
 				"name": "ghcr.io/terraform-linters/tflint",
 				"tag": "latest",
 				"digest": "1ec926db4a400fdc620b55e5ff9c8ed15b7a4cc8b8fb70bd3cd0e0ab894d88e1",
