@@ -22,4 +22,5 @@ resource "tfe_workspace" "dev" {
     oauth_token_id     = tfe_oauth_client.github.oauth_token_id
     ingress_submodules = false
   }
+  terraform_version = "~> 1.1"
 }
