@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  terraform:
+    build:
+      target: tfswitch
+    volumes:
+      - .:/srv/src:z
+      - ${XDG_CACHE_HOME:-xdg-cache-home}:/root/.cache
+      - dot-terraform:/srv/src/.terraform
+      - ${TERRRAFORM_VERSIONS:-terraform-versions}:/root/.terraform.versions
+      - ${HOME}/.terraform.d:/root/.terraform.d:r
+    working_dir: /srv/src
+  tflint:
+    build:
+      target: tflint
+    volumes:
+      - .:/srv/src
+    working_dir: /srv/src
+
+volumes:
+  dot-terraform: { }
+  terraform-versions: { }
+  xdg-cache-home: { }

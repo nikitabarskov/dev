@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  syft:
+    build:
+      target: "syft"
+    volumes:
+      - .:/srv/src:z
+    working_dir: /srv/src
+  grype:
+    build:
+      target: "grype"
+    environment:
+      XDG_CACHE_HOME: /root/.cache
+    volumes:
+      - .:/srv/src:z
+      - ${XDG_CACHE_HOME:-xdg-cache-home}:/root/.cache
+    working_dir: /srv/src
+  trivy:
+    build:
+      target: "trivy"
+    environment:
+      XDG_CACHE_HOME: /root/.cache
+    volumes:
+      - .:/srv/src:z
+      - ${XDG_CACHE_HOME:-xdg-cache-home}:/root/.cache
+    working_dir: /srv/src
+  docker-lock:
+    build:
+      context: .
+      target: "docker-lock"
+    volumes:
+      - .:/srv/src:z
+    working_dir: /srv/src
+
+volumes:
+  xdg-cache-home: { }
