@@ -3,10 +3,10 @@ updates:
 
   - package-ecosystem: "github-actions"
     directory: "/"
-      schedule:
-        interval: "daily"
-      commit-message:
-        prefix: "github-actions"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "github-actions"
 
   - package-ecosystem: "terraform"
     directory: "/terraform"
