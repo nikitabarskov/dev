@@ -3,7 +3,7 @@
 generate:
   base-dir: .
   composefile-globs:
-    - '**/*docker-compose.yml'
+    - '**/*docker-compose.yaml'
   composefile-recursive: true
   ignore-missing-digests: false
   update-missing-digests: true

@@ -29,3 +29,8 @@ override.tf.json
 
 
 Taskfile.yml
+.task
+
+*.syft.json
+*.grype.sarif
+*.trivy.sarif

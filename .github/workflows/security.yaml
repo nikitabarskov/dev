@@ -1,0 +1,37 @@
+---
+on:
+  push: { }
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+env:
+  XDG_CACHE_HOME: ${{ github.workspace }}/.cache/xdg
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Cache xdg
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.XDG_CACHE_HOME }}
+          key: xdg-${{ hashFiles('**/Dockerfile') }}
+          restore-keys: |
+            xdg-v1-
+      - uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          task validate-security
+      - uses: github/codeql-action/upload-sarif@v1
+        with:
+          category: grype-vulnerabilities
+          sarif_file: 'vulnerabilities.grype.sarif'
+      - uses: github/codeql-action/upload-sarif@v1
+        with:
+          category: trivy-misconfiguration-and-vulnerabilities
+          sarif_file: 'misconfiguration-and-vulnerabilities.trivy.sarif'

@@ -10,6 +10,7 @@ tasks:
       - ".terraform.lock.hcl"
       - "backend.tf"
       - "versions.tf"
+      - "Dockerfile"
     cmds:
       - "{{ .DOCKER_COMPOSE_RUN }} terraform bash -c 'tfswitch && terraform init {{ .TERRAFORM_INIT_ARGS }}'"
     generates:
@@ -20,8 +21,8 @@ tasks:
     sources:
       - "*.tf"
       - ".terraform.lock.hcl"
-      - "docker-compose.yml"
-      - "devtools.Dockerfile"
+      - "docker-compose.yaml"
+      - "Dockerfile"
     cmds:
       - "{{ .DOCKER_COMPOSE_RUN }} terraform bash -c 'tfswitch && terraform fmt -check -diff -recursive .'"
       - "{{ .DOCKER_COMPOSE_RUN }} terraform bash -c 'tfswitch && terraform validate'"

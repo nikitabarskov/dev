@@ -12,7 +12,9 @@ tasks:
   validate-security:
     desc: Validate security issues with trivy inside the repository
     cmds:
-      - "{{ .DOCKER_COMPOSE_RUN }} trivy filesystem --security-checks=vuln,config --format=sarif --exit-code=1 --no-progress --output=trivy-config.sarif ."
+      - "{{ .DOCKER_COMPOSE_RUN }} syft dir:."
+      - "{{ .DOCKER_COMPOSE_RUN }} grype sbom:dependencies.syft.json"
+      - "{{ .DOCKER_COMPOSE_RUN }} trivy filesystem --security-checks=vuln,config,secret --format=sarif --no-progress --output=misconfiguration-and-vulnerabilities.trivy.sarif ."
 
   validate-images-digests:
     desc: Validate images digests with docker-lock inside the repository
@@ -23,7 +25,7 @@ tasks:
     desc: Lock and rewrite images digests inside the repository
     sources:
       - "*/**/*Dockerfile"
-      - "*/**/*docker-compose.yml"
+      - "*/**/*docker-compose.yaml"
     cmds:
       - "{{ .DOCKER_COMPOSE_RUN }} docker-lock lock generate"
       - "{{ .DOCKER_COMPOSE_RUN }} docker-lock lock rewrite"
