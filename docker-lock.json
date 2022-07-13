@@ -17,8 +17,8 @@
 			},
 			{
 				"name": "docker.io/anchore/grype",
-				"tag": "v0.41.0",
-				"digest": "b10141434e4b0490efb9b840d292ace03b2d86f84cebdd89e4c237f0e530d2bc",
+				"tag": "v0.42.0",
+				"digest": "ceb824abc494dde2fbf5efeb7acc8f73f5d00bc5a6c1edc62f26892366e59920",
 				"dockerfile": "Dockerfile",
 				"service": "docker-lock"
 			},
@@ -45,8 +45,8 @@
 			},
 			{
 				"name": "docker.io/anchore/grype",
-				"tag": "v0.41.0",
-				"digest": "b10141434e4b0490efb9b840d292ace03b2d86f84cebdd89e4c237f0e530d2bc",
+				"tag": "v0.42.0",
+				"digest": "ceb824abc494dde2fbf5efeb7acc8f73f5d00bc5a6c1edc62f26892366e59920",
 				"dockerfile": "Dockerfile",
 				"service": "grype"
 			},
@@ -73,8 +73,8 @@
 			},
 			{
 				"name": "docker.io/anchore/grype",
-				"tag": "v0.41.0",
-				"digest": "b10141434e4b0490efb9b840d292ace03b2d86f84cebdd89e4c237f0e530d2bc",
+				"tag": "v0.42.0",
+				"digest": "ceb824abc494dde2fbf5efeb7acc8f73f5d00bc5a6c1edc62f26892366e59920",
 				"dockerfile": "Dockerfile",
 				"service": "syft"
 			},
@@ -101,8 +101,8 @@
 			},
 			{
 				"name": "docker.io/anchore/grype",
-				"tag": "v0.41.0",
-				"digest": "b10141434e4b0490efb9b840d292ace03b2d86f84cebdd89e4c237f0e530d2bc",
+				"tag": "v0.42.0",
+				"digest": "ceb824abc494dde2fbf5efeb7acc8f73f5d00bc5a6c1edc62f26892366e59920",
 				"dockerfile": "Dockerfile",
 				"service": "trivy"
 			},
@@ -159,8 +159,8 @@
 			},
 			{
 				"name": "docker.io/anchore/grype",
-				"tag": "v0.41.0",
-				"digest": "b10141434e4b0490efb9b840d292ace03b2d86f84cebdd89e4c237f0e530d2bc"
+				"tag": "v0.42.0",
+				"digest": "ceb824abc494dde2fbf5efeb7acc8f73f5d00bc5a6c1edc62f26892366e59920"
 			},
 			{
 				"name": "docker.io/anchore/syft",
