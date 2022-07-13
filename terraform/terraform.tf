@@ -1,6 +1,6 @@
 resource "tfe_organization" "nikita_barskov" {
   name  = "nikita-barskov"
-  email = "nbarskov@protonmail.com"
+  email = "nbarskov@gmail.com"
 }
 
 resource "tfe_oauth_client" "github" {
