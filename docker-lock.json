@@ -3,8 +3,8 @@
 		"docker-compose.yaml": [
 			{
 				"name": "docker.io/aquasec/trivy",
-				"tag": "0.29.2",
-				"digest": "8c2e83606e7687708f4c9638c6ea7f8578b169ca79bb74012ce3da856dda09db",
+				"tag": "0.30.0",
+				"digest": "754edb50cdad04c2b60f105b7266c5fe0c360f682cb2b135d68a3434dce52783",
 				"dockerfile": "Dockerfile",
 				"service": "docker-lock"
 			},
@@ -31,8 +31,8 @@
 			},
 			{
 				"name": "docker.io/aquasec/trivy",
-				"tag": "0.29.2",
-				"digest": "8c2e83606e7687708f4c9638c6ea7f8578b169ca79bb74012ce3da856dda09db",
+				"tag": "0.30.0",
+				"digest": "754edb50cdad04c2b60f105b7266c5fe0c360f682cb2b135d68a3434dce52783",
 				"dockerfile": "Dockerfile",
 				"service": "grype"
 			},
@@ -59,8 +59,8 @@
 			},
 			{
 				"name": "docker.io/aquasec/trivy",
-				"tag": "0.29.2",
-				"digest": "8c2e83606e7687708f4c9638c6ea7f8578b169ca79bb74012ce3da856dda09db",
+				"tag": "0.30.0",
+				"digest": "754edb50cdad04c2b60f105b7266c5fe0c360f682cb2b135d68a3434dce52783",
 				"dockerfile": "Dockerfile",
 				"service": "syft"
 			},
@@ -87,8 +87,8 @@
 			},
 			{
 				"name": "docker.io/aquasec/trivy",
-				"tag": "0.29.2",
-				"digest": "8c2e83606e7687708f4c9638c6ea7f8578b169ca79bb74012ce3da856dda09db",
+				"tag": "0.30.0",
+				"digest": "754edb50cdad04c2b60f105b7266c5fe0c360f682cb2b135d68a3434dce52783",
 				"dockerfile": "Dockerfile",
 				"service": "trivy"
 			},
@@ -149,8 +149,8 @@
 		"Dockerfile": [
 			{
 				"name": "docker.io/aquasec/trivy",
-				"tag": "0.29.2",
-				"digest": "8c2e83606e7687708f4c9638c6ea7f8578b169ca79bb74012ce3da856dda09db"
+				"tag": "0.30.0",
+				"digest": "754edb50cdad04c2b60f105b7266c5fe0c360f682cb2b135d68a3434dce52783"
 			},
 			{
 				"name": "docker.io/safewaters/docker-lock",
