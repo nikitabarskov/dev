@@ -5,12 +5,17 @@ on:
       - "main"
   workflow_dispatch:
 
+env:
+  XDG_CACHE_HOME: ${{ github.workspace }}/xdg
+  NODE_MODULES: ${{ github.workspace }}/node_modules
+
 jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
       terraform: ${{ steps.changes.outputs.terraform }}
       docker: ${{ steps.changes.outputs.docker }}
+      prettier: ${{ steps.changes.outputs.prettier }}
     steps:
       - uses: actions/checkout@v3
       - uses: dorny/paths-filter@v2
@@ -25,6 +30,14 @@ jobs:
               - added|modified: '**/*.Dockerfile'
               - added|modified: '**/Dockerfile'
               - added|modified: '**/docker-compose.yml'
+            prettier:
+              - added|modified: '**/*.md'
+              - added|modified: '**/*.mdx'
+              - added|modified: '**/*.yaml'
+              - added|modified: '**/*.js'
+              - added|modified: '**/*.css'
+              - added|modified: '**/*.tsx'
+              - added|modified: '**/*.json'
 
   terraform:
     runs-on: ubuntu-latest
@@ -62,13 +75,36 @@ jobs:
       - run: |
           task validate-images-digests
 
+  prettier:
+    runs-on: ubuntu-latest
+    needs:
+      - changes
+    if: ${{ needs.changes.outputs.prettier == 'true' }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/cache@v3
+        with:
+          path: ${{ env.NODE_MODULES }}
+          key: ${{ runner.os }}-prettier-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-prettier-
+      - uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          task format-check
+
   build:
     runs-on: ubuntu-latest
     needs:
       - terraform
       - docker
+      - prettier
     steps:
       - run: exit 1
         if: |
           needs.terraform.result == 'failure' || 
-          needs.docker.result == 'failure'
+          needs.docker.result == 'failure' ||
+          needs.prettier.result == 'failure'

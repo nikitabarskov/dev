@@ -32,6 +32,15 @@ services:
     volumes:
       - .:/srv/src:z
     working_dir: /srv/src
+  node:
+    build:
+      context: .
+      target: "node"
+    volumes:
+      - .:/srv/src:z
+      - ${NODE_MODULES:-node-modules}:/srv/src/node_modules
+    working_dir: /srv/src
 
 volumes:
-  xdg-cache-home: { }
+  xdg-cache-home: {}
+  node-modules: {}

@@ -19,6 +19,6 @@ services:
     working_dir: /srv/src
 
 volumes:
-  dot-terraform: { }
-  terraform-versions: { }
-  xdg-cache-home: { }
+  dot-terraform: {}
+  terraform-versions: {}
+  xdg-cache-home: {}
