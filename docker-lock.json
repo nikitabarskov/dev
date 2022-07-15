@@ -180,8 +180,8 @@
 		"terraform/docker-compose.yaml": [
 			{
 				"name": "docker.io/library/ubuntu",
-				"tag": "focal",
-				"digest": "fd92c36d3cb9b1d027c4d2a72c6bf0125da82425fc2ca37c414d4f010180dc19",
+				"tag": "22.04",
+				"digest": "b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac",
 				"dockerfile": "terraform/Dockerfile",
 				"service": "terraform"
 			},
@@ -194,8 +194,8 @@
 			},
 			{
 				"name": "docker.io/library/ubuntu",
-				"tag": "focal",
-				"digest": "fd92c36d3cb9b1d027c4d2a72c6bf0125da82425fc2ca37c414d4f010180dc19",
+				"tag": "22.04",
+				"digest": "b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac",
 				"dockerfile": "terraform/Dockerfile",
 				"service": "tflint"
 			},
