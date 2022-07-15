@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
 
 env:
-  XDG_CACHE_HOME: ${{ github.workspace }}/.cache/xdg
-  NODE_MODULES: ${{ github.workspace }}/.cache/node_modules
+  XDG_CACHE_HOME: ${{ github.workspace }}/xdg
+  NODE_MODULES: ${{ github.workspace }}/node_modules
 
 jobs:
   changes:

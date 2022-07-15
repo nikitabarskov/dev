@@ -38,7 +38,6 @@ services:
       target: "node"
     volumes:
       - .:/srv/src:z
-      - ${XDG_CACHE_HOME:-xdg-cache-home}:/root/.cache
       - ${NODE_MODULES:-node-modules}:/srv/src/node_modules
     working_dir: /srv/src
 
