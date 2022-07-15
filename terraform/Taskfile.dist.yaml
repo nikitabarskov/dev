@@ -2,8 +2,6 @@ version: 3
 
 vars:
   DOCKER_COMPOSE_RUN: "docker compose run --rm"
-
-env:
   BUILD_CACHE_ARGS: ""
 
 tasks:
@@ -15,8 +13,8 @@ tasks:
       - "Taskfile.dist.yaml"
     cmds:
       - "echo $BUILD_CACHE_ARGS"
-      - "docker buildx build --target tfswitch $BUILD_CACHE_ARGS ."
-      - "docker buildx build --target tflint $BUILD_CACHE_ARGS ."
+      - "docker buildx build --target tfswitch {{ .BUILD_CACHE_ARGS }} ."
+      - "docker buildx build --target tflint {{ .BUILD_CACHE_ARGS }} ."
   install:
     desc: Install terraform and init terraform workspace
     sources:
