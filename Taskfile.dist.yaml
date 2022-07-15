@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 includes:
   terraform:
@@ -31,3 +31,25 @@ tasks:
       - "{{ .DOCKER_COMPOSE_RUN }} docker-lock lock rewrite"
     generates:
       - "docker-lock.json"
+
+  install-prettier:
+    desc: Install prettier
+    sources:
+      - "package.json"
+      - "yarn.lock"
+      - "Dockerfile"
+      - "prettierrc.json"
+    cmds:
+      - "{{ .DOCKER_COMPOSE_RUN }} node yarn install --frozen-lockfile"
+    generates:
+      - "node_modules"
+
+  format-fix:
+    desc: Fix formatting issues with prettier for the whole repo
+    cmds:
+      - "{{ .DOCKER_COMPOSE_RUN }} node yarn prettier --write ."
+
+  format-check:
+    desc: Check formatting issues with prettier for the whole repo
+    cmds:
+      - "{{ .DOCKER_COMPOSE_RUN }} node yarn prettier --check --with-node-modules ."
