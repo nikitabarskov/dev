@@ -1,21 +1,35 @@
 version: 3
 
 vars:
-  DOCKER_COMPOSE_RUN: docker compose run --rm
+  DOCKER_COMPOSE_RUN: "docker compose run --rm"
+
+env:
+  BUILD_CACHE_ARGS: ""
 
 tasks:
+  build-devtools:
+    desc: "Build devtools images: tfswitch and tflint"
+    sources:
+      - "Dockerfile"
+      - "*_checksums.txt"
+      - "Taskfile.dist.yaml"
+    cmds:
+      - "docker buildx build --target tfswitch $BUILD_CACHE_ARGS ."
+      - "docker buildx build --target tflint $BUILD_CACHE_ARGS ."
   install:
     desc: Install terraform and init terraform workspace
     sources:
       - ".terraform.lock.hcl"
       - "backend.tf"
       - "versions.tf"
-      - "Dockerfile"
+      - "Taskfile.dist.yaml"
     cmds:
       - "{{ .DOCKER_COMPOSE_RUN }} terraform bash -c 'tfswitch && terraform init {{ .TERRAFORM_INIT_ARGS }}'"
     generates:
       - ".terraform.lock.hcl"
       - ".terraform/*"
+    deps:
+      - task: build-devtools
   validate:
     desc: Run terraform validation
     sources:
@@ -23,6 +37,7 @@ tasks:
       - ".terraform.lock.hcl"
       - "docker-compose.yaml"
       - "Dockerfile"
+      - "Taskfile.dist.yaml"
     cmds:
       - "{{ .DOCKER_COMPOSE_RUN }} terraform bash -c 'tfswitch && terraform fmt -check -diff -recursive .'"
       - "{{ .DOCKER_COMPOSE_RUN }} terraform bash -c 'tfswitch && terraform validate'"
