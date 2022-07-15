@@ -16,9 +16,9 @@ tasks:
       - "docker-lock.json"
       - "Taskfile.dist.yaml"
     cmds:
-      - "docker buildx build --target syft {{ .BUILD_CACHE_ARGS }} ."
-      - "docker buildx build --target grype {{ .BUILD_CACHE_ARGS }} ."
-      - "docker buildx build --target trivy {{ .BUILD_CACHE_ARGS }} ."
+      - "docker buildx build --target syft --tag ocreg.invalid/syft:latest {{ .BUILD_CACHE_ARGS }} ."
+      - "docker buildx build --target grype --tag ocreg.invalid/syft:latest {{ .BUILD_CACHE_ARGS }} ."
+      - "docker buildx build --target trivy --tag ocreg.invalid/trivy:latest {{ .BUILD_CACHE_ARGS }} ."
 
   validate-security:
     desc: Validate security issues with trivy inside the repository
@@ -36,7 +36,7 @@ tasks:
       - "docker-lock.json"
       - "Taskfile.dist.yaml"
     cmds:
-      - "docker buildx build --target docker-lock {{ .BUILD_CACHE_ARGS }} ."
+      - "docker buildx build --target docker-lock --tag ocreg.invalid/docker-lock:latest {{ .BUILD_CACHE_ARGS }} ."
 
   validate-images-digests:
     desc: Validate images digests with docker-lock inside the repository
@@ -65,7 +65,7 @@ tasks:
       - "docker-lock.json"
       - "Taskfile.dist.yaml"
     cmds:
-      - "docker buildx build --target node {{ .BUILD_CACHE_ARGS }} ."
+      - "docker buildx build --target node --tag ocreg.invalid/node:latest {{ .BUILD_CACHE_ARGS }} ."
 
   install-prettier:
     desc: Install prettier

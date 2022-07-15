@@ -11,8 +11,8 @@ tasks:
       - "*_checksums.txt"
       - "Taskfile.dist.yaml"
     cmds:
-      - "docker buildx build --target tfswitch {{ .BUILD_CACHE_ARGS }} ."
-      - "docker buildx build --target tflint {{ .BUILD_CACHE_ARGS }} ."
+      - "docker buildx build --target tfswitch --tag ocreg.invalid/tfswitch:latest {{ .BUILD_CACHE_ARGS }} ."
+      - "docker buildx build --target tflint --tag ocreg.invalid/tflint:latest {{ .BUILD_CACHE_ARGS }} ."
   install:
     desc: Install terraform and init terraform workspace
     sources:
