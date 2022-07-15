@@ -27,7 +27,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
-          task validate-security
+          task validate-security BUILD_CACHE_ARGS="--cache-from type=gha --cache-to type=gha,mode=max"
       - uses: github/codeql-action/upload-sarif@v2
         with:
           category: grype-vulnerabilities
