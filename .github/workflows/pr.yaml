@@ -10,6 +10,7 @@ env:
   NODE_MODULES: ${{ github.workspace }}/node_modules
   DOT_TERRAFORM: ${{ github.workspace }}/.terraform
   TERRAFORM_VERSIONS: ${{ github.workspace }}/.terraform.versions
+  BUILD_CACHE_ARGS: "--cache-from type=gha --cache-to type=gha,mode=max"
 
 jobs:
   changes:
