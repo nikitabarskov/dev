@@ -1,38 +1,38 @@
-const { promises: fs } = require('fs')
-const path = require('path')
-const RSS = require('rss')
-const matter = require('gray-matter')
+const { promises: fs } = require("fs");
+const path = require("path");
+const RSS = require("rss");
+const matter = require("gray-matter");
 
 async function generate() {
   const feed = new RSS({
-    title: 'Nikita Barskov.',
-    site_url: 'https://barskov.me',
-    feed_url: 'https://barskov.me/feed.xml',
-  })
+    title: "Nikita Barskov.",
+    site_url: "https://barskov.me",
+    feed_url: "https://barskov.me/feed.xml",
+  });
 
-  const posts = await fs.readdir(path.join(__dirname, '..', 'pages', 'posts'))
+  const posts = await fs.readdir(path.join(__dirname, "..", "pages", "posts"));
 
   await Promise.all(
     posts.map(async (name) => {
-      if (name.startsWith('index.')) return
+      if (name.startsWith("index.")) return;
 
       const content = await fs.readFile(
-        path.join(__dirname, '..', 'pages', 'posts', name)
-      )
-      const frontmatter = matter(content)
+        path.join(__dirname, "..", "pages", "posts", name)
+      );
+      const frontmatter = matter(content);
 
       feed.item({
         title: frontmatter.data.title,
-        url: '/posts/' + name.replace(/\.mdx?/, ''),
+        url: "/posts/" + name.replace(/\.mdx?/, ""),
         date: frontmatter.data.date,
         description: frontmatter.data.description,
-        categories: frontmatter.data.tag.split(', '),
+        categories: frontmatter.data.tag.split(", "),
         author: frontmatter.data.author,
-      })
+      });
     })
-  )
+  );
 
-  await fs.writeFile('./public/feed.xml', feed.xml({ indent: true }))
+  await fs.writeFile("./public/feed.xml", feed.xml({ indent: true }));
 }
 
-generate().then(() => {})
+generate().then(() => {});

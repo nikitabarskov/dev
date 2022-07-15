@@ -34,7 +34,6 @@ jobs:
               - added|modified: '**/*.css'
               - added|modified: '**/*.tsx'
               - added|modified: '**/*.json'
-            
 
   terraform:
     runs-on: ubuntu-latest
