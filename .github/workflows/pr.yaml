@@ -73,6 +73,8 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
+          echo $BUILD_CACHE_ARGS
+      - run: |
           task terraform:validate TERRAFORM_INIT_ARGS="-backend=false"
 
   docker:

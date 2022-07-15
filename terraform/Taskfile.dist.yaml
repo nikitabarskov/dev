@@ -14,6 +14,7 @@ tasks:
       - "*_checksums.txt"
       - "Taskfile.dist.yaml"
     cmds:
+      - "echo $BUILD_CACHE_ARGS"
       - "docker buildx build --target tfswitch $BUILD_CACHE_ARGS ."
       - "docker buildx build --target tflint $BUILD_CACHE_ARGS ."
   install:
