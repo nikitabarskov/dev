@@ -13,6 +13,30 @@ resource "github_repository" "dev" {
   ]
 }
 
+resource "github_branch" "development" {
+  repository = github_repository.dev.name
+  branch     = "main"
+}
+
+resource "github_branch_protection" "dev_main" {
+  repository_id                   = github_repository.dev.node_id
+  pattern                         = "main"
+  require_signed_commits          = true
+  required_linear_history         = true
+  require_conversation_resolution = true
+  required_status_checks {
+    strict = true
+    contexts = [
+      "build",
+    ]
+  }
+  required_pull_request_reviews {
+    dismiss_stale_reviews           = true
+    require_code_owner_reviews      = true
+    required_approving_review_count = 1
+  }
+}
+
 resource "github_repository" "degree" {
   name        = "degree"
   description = "Materials, reports, bureaucratic documents relating to my scientific work (master's thesis)."
