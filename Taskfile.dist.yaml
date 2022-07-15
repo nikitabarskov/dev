@@ -54,6 +54,6 @@ tasks:
   format-check:
     desc: Check formatting issues with prettier for the whole repo
     cmds:
-      - "{{ .DOCKER_COMPOSE_RUN }} node yarn prettier --check --with-node-modules ."
+      - "{{ .DOCKER_COMPOSE_RUN }} node yarn prettier --check ."
     deps:
       - task: install-prettier

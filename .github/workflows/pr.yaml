@@ -101,6 +101,7 @@ jobs:
     needs:
       - terraform
       - docker
+      - prettier
     steps:
       - run: exit 1
         if: |
