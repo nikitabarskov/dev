@@ -7,8 +7,8 @@ services:
     volumes:
       - .:/srv/src:z
       - ${XDG_CACHE_HOME:-xdg-cache-home}:/root/.cache
-      - dot-terraform:/srv/src/.terraform
-      - ${TERRRAFORM_VERSIONS:-terraform-versions}:/root/.terraform.versions
+      - ${DOT_TERRAFORM:-dot-terraform}:/srv/src/.terraform
+      - ${TERRAFORM_VERSIONS:-terraform-versions}:/root/.terraform.versions
       - ${HOME}/.terraform.d:/root/.terraform.d:r
     working_dir: /srv/src
   tflint:

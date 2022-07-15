@@ -28,13 +28,6 @@ updates:
     commit-message:
       prefix: "docker"
 
-  - package-ecosystem: "docker"
-    directory: "/blog"
-    schedule:
-      interval: "daily"
-    commit-message:
-      prefix: "docker"
-
   - package-ecosystem: "npm"
     directory: "/blog"
     schedule:
