@@ -24,6 +24,7 @@ resource "github_branch_protection" "dev_main" {
   require_signed_commits          = true
   required_linear_history         = true
   require_conversation_resolution = true
+  enforce_admins                  = true
   required_status_checks {
     strict = true
     contexts = [
@@ -33,7 +34,10 @@ resource "github_branch_protection" "dev_main" {
   required_pull_request_reviews {
     dismiss_stale_reviews           = true
     require_code_owner_reviews      = true
-    required_approving_review_count = 1
+    required_approving_review_count = 0
+    pull_request_bypassers = [
+      data.github_user.nikita_barskov.node_id,
+    ]
   }
 }
 
@@ -81,4 +85,8 @@ resource "github_repository" "sandbox_coopnorge" {
   name                 = "sandbox-coopnorge"
   visibility           = "private"
   vulnerability_alerts = false #tfsec:ignore:github-repositories-enable_vulnerability_alerts
+}
+
+data "github_user" "nikita_barskov" {
+  username = "nikitabarskov"
 }
