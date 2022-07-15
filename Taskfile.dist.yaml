@@ -48,8 +48,12 @@ tasks:
     desc: Fix formatting issues with prettier for the whole repo
     cmds:
       - "{{ .DOCKER_COMPOSE_RUN }} node yarn prettier --write ."
+    deps:
+      - task: install-prettier
 
   format-check:
     desc: Check formatting issues with prettier for the whole repo
     cmds:
       - "{{ .DOCKER_COMPOSE_RUN }} node yarn prettier --check --with-node-modules ."
+    deps:
+      - task: install-prettier

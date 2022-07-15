@@ -6,9 +6,7 @@ FROM ubuntu as tfswitch
 
 RUN apt update && \
     apt install --yes --no-install-recommends \
-    curl \
-    jq \
-    ca-certificates
+    curl
 
 WORKDIR /srv/src
 
@@ -25,4 +23,3 @@ RUN OS=$(uname -s) && \
     sha256sum -c "terraform-switcher_${terraform_switcher_version}_checksums.txt" && \
     tar -xvf "terraform-switcher_${terraform_switcher_version}_linux_amd64.tar.gz" -C /usr/local/bin tfswitch && \
     rm -rf "terraform-switcher_${terraform_switcher_version}_linux_amd64.tar.gz"
-
