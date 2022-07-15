@@ -10,7 +10,6 @@ env:
   NODE_MODULES: ${{ github.workspace }}/node_modules
   DOT_TERRAFORM: ${{ github.workspace }}/.terraform
   TERRAFORM_VERSIONS: ${{ github.workspace }}/.terraform.versions
-  BUILD_CACHE_ARGS: "--cache-from type=gha --cache-to type=gha,mode=max"
 
 jobs:
   changes:
@@ -73,8 +72,6 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
-          echo $BUILD_CACHE_ARGS
-      - run: |
           task terraform:validate TERRAFORM_INIT_ARGS="-backend=false" BUILD_CACHE_ARGS="--cache-from type=gha --cache-to type=gha,mode=max"
 
   docker:
@@ -93,7 +90,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
-          task validate-images-digests
+          task validate-images-digests BUILD_CACHE_ARGS="--cache-from type=gha --cache-to type=gha,mode=max"
 
   prettier:
     runs-on: ubuntu-latest
@@ -114,7 +111,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
-          task format-check
+          task format-check BUILD_CACHE_ARGS="--cache-from type=gha --cache-to type=gha,mode=max"
 
   build:
     runs-on: ubuntu-latest

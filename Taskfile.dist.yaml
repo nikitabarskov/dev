@@ -8,9 +8,6 @@ includes:
 vars:
   DOCKER_COMPOSE_RUN: docker compose run --rm
 
-env:
-  BUILD_CACHE_ARGS: ""
-
 tasks:
   build-security-devtools:
     desc: "Build security devtools images: syft, grype and trivy"
@@ -19,9 +16,9 @@ tasks:
       - "docker-lock.json"
       - "Taskfile.dist.yaml"
     cmds:
-      - "docker buildx build --target syft $BUILD_CACHE_ARGS ."
-      - "docker buildx build --target grype $BUILD_CACHE_ARGS ."
-      - "docker buildx build --target trivy $BUILD_CACHE_ARGS ."
+      - "docker buildx build --target syft {{ .BUILD_CACHE_ARGS }} ."
+      - "docker buildx build --target grype {{ .BUILD_CACHE_ARGS }} ."
+      - "docker buildx build --target trivy {{ .BUILD_CACHE_ARGS }} ."
 
   validate-security:
     desc: Validate security issues with trivy inside the repository
@@ -39,7 +36,7 @@ tasks:
       - "docker-lock.json"
       - "Taskfile.dist.yaml"
     cmds:
-      - "docker buildx build --target docker-lock $BUILD_CACHE_ARGS ."
+      - "docker buildx build --target docker-lock {{ .BUILD_CACHE_ARGS }} ."
 
   validate-images-digests:
     desc: Validate images digests with docker-lock inside the repository
@@ -68,7 +65,7 @@ tasks:
       - "docker-lock.json"
       - "Taskfile.dist.yaml"
     cmds:
-      - "docker buildx build --target node $BUILD_CACHE_ARGS ."
+      - "docker buildx build --target node {{ .BUILD_CACHE_ARGS }} ."
 
   install-prettier:
     desc: Install prettier
