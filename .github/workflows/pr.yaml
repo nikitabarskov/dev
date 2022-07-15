@@ -75,7 +75,7 @@ jobs:
       - run: |
           echo $BUILD_CACHE_ARGS
       - run: |
-          task terraform:validate TERRAFORM_INIT_ARGS="-backend=false"
+          task terraform:validate TERRAFORM_INIT_ARGS="-backend=false" BUILD_CACHE_ARGS="--cache-from type=gha --cache-to type=gha,mode=max"
 
   docker:
     runs-on: ubuntu-latest
