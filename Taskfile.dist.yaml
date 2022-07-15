@@ -8,18 +8,45 @@ includes:
 vars:
   DOCKER_COMPOSE_RUN: docker compose run --rm
 
+env:
+  BUILD_CACHE_ARGS: ""
+
 tasks:
+  build-security-devtools:
+    desc: "Build security devtools images: syft, grype and trivy"
+    sources:
+      - "Dockerfile"
+      - "docker-lock.json"
+      - "Taskfile.dist.yaml"
+    cmds:
+      - "docker buildx build --target syft $BUILD_CACHE_ARGS ."
+      - "docker buildx build --target grype $BUILD_CACHE_ARGS ."
+      - "docker buildx build --target trivy $BUILD_CACHE_ARGS ."
+
   validate-security:
     desc: Validate security issues with trivy inside the repository
     cmds:
       - "{{ .DOCKER_COMPOSE_RUN }} syft dir:."
       - "{{ .DOCKER_COMPOSE_RUN }} grype sbom:dependencies.syft.json || true"
       - "{{ .DOCKER_COMPOSE_RUN }} trivy filesystem --security-checks=vuln,config,secret --format=sarif --no-progress --output=misconfiguration-and-vulnerabilities.trivy.sarif . || true"
+    deps:
+      - task: build-security-devtools
+
+  build-docker-lock-devtools:
+    desc: "Build docker-lock devtools image"
+    sources:
+      - "Dockerfile"
+      - "docker-lock.json"
+      - "Taskfile.dist.yaml"
+    cmds:
+      - "docker buildx build --target docker-lock $BUILD_CACHE_ARGS ."
 
   validate-images-digests:
     desc: Validate images digests with docker-lock inside the repository
     cmds:
       - "{{ .DOCKER_COMPOSE_RUN }} docker-lock lock verify"
+    deps:
+      - task: build-docker-lock-devtools
 
   lock-images-digests:
     desc: Lock and rewrite images digests inside the repository
@@ -31,6 +58,17 @@ tasks:
       - "{{ .DOCKER_COMPOSE_RUN }} docker-lock lock rewrite"
     generates:
       - "docker-lock.json"
+    deps:
+      - task: build-docker-lock-devtools
+
+  build-node-devtools:
+    desc: "Build node devtools image"
+    sources:
+      - "Dockerfile"
+      - "docker-lock.json"
+      - "Taskfile.dist.yaml"
+    cmds:
+      - "docker buildx build --target node $BUILD_CACHE_ARGS ."
 
   install-prettier:
     desc: Install prettier
@@ -40,20 +78,22 @@ tasks:
       - "Dockerfile"
       - "prettierrc.json"
     cmds:
-      - "{{ .DOCKER_COMPOSE_RUN }} node yarn install --frozen-lockfile"
+      - "{{ .DOCKER_COMPOSE_RUN }} node yarn install --frozen-lockfile --verbose"
     generates:
       - "node_modules"
+    deps:
+      - task: build-node-devtools
 
   format-fix:
     desc: Fix formatting issues with prettier for the whole repo
     cmds:
-      - "{{ .DOCKER_COMPOSE_RUN }} node yarn prettier --write ."
+      - "{{ .DOCKER_COMPOSE_RUN }} node yarn prettier --write --loglevel debug ."
     deps:
       - task: install-prettier
 
   format-check:
     desc: Check formatting issues with prettier for the whole repo
     cmds:
-      - "{{ .DOCKER_COMPOSE_RUN }} node yarn prettier --check ."
+      - "{{ .DOCKER_COMPOSE_RUN }} node yarn prettier --check --loglevel debug ."
     deps:
       - task: install-prettier

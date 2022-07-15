@@ -29,11 +29,13 @@ jobs:
               - 'terraform/**'
               - 'docker-lock.json'
               - '.github/**'
+              - modified: 'Taskfile.dist.yaml'
             docker:
               - added|modified: '**/*.Dockerfile'
               - added|modified: '**/Dockerfile'
               - added|modified: '**/docker-compose.yaml'
               - added|modified: 'docker-lock.json'
+              - modified: 'Taskfile.dist.yaml'
             prettier:
               - added|modified: '**/*.md'
               - added|modified: '**/*.mdx'
