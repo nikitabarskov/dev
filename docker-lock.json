@@ -17,8 +17,8 @@
       },
       {
         "name": "docker.io/anchore/grype",
-        "tag": "v0.42.0",
-        "digest": "ceb824abc494dde2fbf5efeb7acc8f73f5d00bc5a6c1edc62f26892366e59920",
+        "tag": "v0.43.0",
+        "digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61",
         "dockerfile": "Dockerfile",
         "service": "docker-lock"
       },
@@ -52,8 +52,8 @@
       },
       {
         "name": "docker.io/anchore/grype",
-        "tag": "v0.42.0",
-        "digest": "ceb824abc494dde2fbf5efeb7acc8f73f5d00bc5a6c1edc62f26892366e59920",
+        "tag": "v0.43.0",
+        "digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61",
         "dockerfile": "Dockerfile",
         "service": "grype"
       },
@@ -87,8 +87,8 @@
       },
       {
         "name": "docker.io/anchore/grype",
-        "tag": "v0.42.0",
-        "digest": "ceb824abc494dde2fbf5efeb7acc8f73f5d00bc5a6c1edc62f26892366e59920",
+        "tag": "v0.43.0",
+        "digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61",
         "dockerfile": "Dockerfile",
         "service": "node"
       },
@@ -122,8 +122,8 @@
       },
       {
         "name": "docker.io/anchore/grype",
-        "tag": "v0.42.0",
-        "digest": "ceb824abc494dde2fbf5efeb7acc8f73f5d00bc5a6c1edc62f26892366e59920",
+        "tag": "v0.43.0",
+        "digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61",
         "dockerfile": "Dockerfile",
         "service": "syft"
       },
@@ -157,8 +157,8 @@
       },
       {
         "name": "docker.io/anchore/grype",
-        "tag": "v0.42.0",
-        "digest": "ceb824abc494dde2fbf5efeb7acc8f73f5d00bc5a6c1edc62f26892366e59920",
+        "tag": "v0.43.0",
+        "digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61",
         "dockerfile": "Dockerfile",
         "service": "trivy"
       },
@@ -222,8 +222,8 @@
       },
       {
         "name": "docker.io/anchore/grype",
-        "tag": "v0.42.0",
-        "digest": "ceb824abc494dde2fbf5efeb7acc8f73f5d00bc5a6c1edc62f26892366e59920"
+        "tag": "v0.43.0",
+        "digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61"
       },
       {
         "name": "docker.io/anchore/syft",
