@@ -1,240 +1,240 @@
 {
-  "composefiles": {
-    "docker-compose.yaml": [
-      {
-        "name": "docker.io/aquasec/trivy",
-        "tag": "0.30.3",
-        "digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1",
-        "dockerfile": "Dockerfile",
-        "service": "docker-lock"
-      },
-      {
-        "name": "docker.io/safewaters/docker-lock",
-        "tag": "0.8.10-alpine",
-        "digest": "e4563cc6ecb6b6f290d9ebfe3745a49b300d2d3edd495b61a85bc7e079175e4e",
-        "dockerfile": "Dockerfile",
-        "service": "docker-lock"
-      },
-      {
-        "name": "docker.io/anchore/grype",
-        "tag": "v0.43.0",
-        "digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61",
-        "dockerfile": "Dockerfile",
-        "service": "docker-lock"
-      },
-      {
-        "name": "docker.io/anchore/syft",
-        "tag": "v0.52.0",
-        "digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109",
-        "dockerfile": "Dockerfile",
-        "service": "docker-lock"
-      },
-      {
-        "name": "docker.io/library/node",
-        "tag": "18.6.0-buster-slim",
-        "digest": "45d62ee60e3547014ba7902b210f1e2a4025d455c53958cb7a715702e3e56afd",
-        "dockerfile": "Dockerfile",
-        "service": "docker-lock"
-      },
-      {
-        "name": "docker.io/aquasec/trivy",
-        "tag": "0.30.3",
-        "digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1",
-        "dockerfile": "Dockerfile",
-        "service": "grype"
-      },
-      {
-        "name": "docker.io/safewaters/docker-lock",
-        "tag": "0.8.10-alpine",
-        "digest": "e4563cc6ecb6b6f290d9ebfe3745a49b300d2d3edd495b61a85bc7e079175e4e",
-        "dockerfile": "Dockerfile",
-        "service": "grype"
-      },
-      {
-        "name": "docker.io/anchore/grype",
-        "tag": "v0.43.0",
-        "digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61",
-        "dockerfile": "Dockerfile",
-        "service": "grype"
-      },
-      {
-        "name": "docker.io/anchore/syft",
-        "tag": "v0.52.0",
-        "digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109",
-        "dockerfile": "Dockerfile",
-        "service": "grype"
-      },
-      {
-        "name": "docker.io/library/node",
-        "tag": "18.6.0-buster-slim",
-        "digest": "45d62ee60e3547014ba7902b210f1e2a4025d455c53958cb7a715702e3e56afd",
-        "dockerfile": "Dockerfile",
-        "service": "grype"
-      },
-      {
-        "name": "docker.io/aquasec/trivy",
-        "tag": "0.30.3",
-        "digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1",
-        "dockerfile": "Dockerfile",
-        "service": "node"
-      },
-      {
-        "name": "docker.io/safewaters/docker-lock",
-        "tag": "0.8.10-alpine",
-        "digest": "e4563cc6ecb6b6f290d9ebfe3745a49b300d2d3edd495b61a85bc7e079175e4e",
-        "dockerfile": "Dockerfile",
-        "service": "node"
-      },
-      {
-        "name": "docker.io/anchore/grype",
-        "tag": "v0.43.0",
-        "digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61",
-        "dockerfile": "Dockerfile",
-        "service": "node"
-      },
-      {
-        "name": "docker.io/anchore/syft",
-        "tag": "v0.52.0",
-        "digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109",
-        "dockerfile": "Dockerfile",
-        "service": "node"
-      },
-      {
-        "name": "docker.io/library/node",
-        "tag": "18.6.0-buster-slim",
-        "digest": "45d62ee60e3547014ba7902b210f1e2a4025d455c53958cb7a715702e3e56afd",
-        "dockerfile": "Dockerfile",
-        "service": "node"
-      },
-      {
-        "name": "docker.io/aquasec/trivy",
-        "tag": "0.30.3",
-        "digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1",
-        "dockerfile": "Dockerfile",
-        "service": "syft"
-      },
-      {
-        "name": "docker.io/safewaters/docker-lock",
-        "tag": "0.8.10-alpine",
-        "digest": "e4563cc6ecb6b6f290d9ebfe3745a49b300d2d3edd495b61a85bc7e079175e4e",
-        "dockerfile": "Dockerfile",
-        "service": "syft"
-      },
-      {
-        "name": "docker.io/anchore/grype",
-        "tag": "v0.43.0",
-        "digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61",
-        "dockerfile": "Dockerfile",
-        "service": "syft"
-      },
-      {
-        "name": "docker.io/anchore/syft",
-        "tag": "v0.52.0",
-        "digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109",
-        "dockerfile": "Dockerfile",
-        "service": "syft"
-      },
-      {
-        "name": "docker.io/library/node",
-        "tag": "18.6.0-buster-slim",
-        "digest": "45d62ee60e3547014ba7902b210f1e2a4025d455c53958cb7a715702e3e56afd",
-        "dockerfile": "Dockerfile",
-        "service": "syft"
-      },
-      {
-        "name": "docker.io/aquasec/trivy",
-        "tag": "0.30.3",
-        "digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1",
-        "dockerfile": "Dockerfile",
-        "service": "trivy"
-      },
-      {
-        "name": "docker.io/safewaters/docker-lock",
-        "tag": "0.8.10-alpine",
-        "digest": "e4563cc6ecb6b6f290d9ebfe3745a49b300d2d3edd495b61a85bc7e079175e4e",
-        "dockerfile": "Dockerfile",
-        "service": "trivy"
-      },
-      {
-        "name": "docker.io/anchore/grype",
-        "tag": "v0.43.0",
-        "digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61",
-        "dockerfile": "Dockerfile",
-        "service": "trivy"
-      },
-      {
-        "name": "docker.io/anchore/syft",
-        "tag": "v0.52.0",
-        "digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109",
-        "dockerfile": "Dockerfile",
-        "service": "trivy"
-      },
-      {
-        "name": "docker.io/library/node",
-        "tag": "18.6.0-buster-slim",
-        "digest": "45d62ee60e3547014ba7902b210f1e2a4025d455c53958cb7a715702e3e56afd",
-        "dockerfile": "Dockerfile",
-        "service": "trivy"
-      }
-    ],
-    "terraform/docker-compose.yaml": [
-      {
-        "name": "docker.io/library/ubuntu",
-        "tag": "22.04",
-        "digest": "b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac",
-        "dockerfile": "terraform/Dockerfile",
-        "service": "terraform"
-      },
-      {
-        "name": "ghcr.io/terraform-linters/tflint",
-        "tag": "v0.38.1",
-        "digest": "56672d76a007c0250cf9f29805d3c8914a9c228bc77352f7af314a3e6fd5aa02",
-        "dockerfile": "terraform/Dockerfile",
-        "service": "terraform"
-      },
-      {
-        "name": "docker.io/library/ubuntu",
-        "tag": "22.04",
-        "digest": "b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac",
-        "dockerfile": "terraform/Dockerfile",
-        "service": "tflint"
-      },
-      {
-        "name": "ghcr.io/terraform-linters/tflint",
-        "tag": "v0.38.1",
-        "digest": "56672d76a007c0250cf9f29805d3c8914a9c228bc77352f7af314a3e6fd5aa02",
-        "dockerfile": "terraform/Dockerfile",
-        "service": "tflint"
-      }
-    ]
-  },
-  "dockerfiles": {
-    "Dockerfile": [
-      {
-        "name": "docker.io/aquasec/trivy",
-        "tag": "0.30.3",
-        "digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1"
-      },
-      {
-        "name": "docker.io/safewaters/docker-lock",
-        "tag": "0.8.10-alpine",
-        "digest": "e4563cc6ecb6b6f290d9ebfe3745a49b300d2d3edd495b61a85bc7e079175e4e"
-      },
-      {
-        "name": "docker.io/anchore/grype",
-        "tag": "v0.43.0",
-        "digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61"
-      },
-      {
-        "name": "docker.io/anchore/syft",
-        "tag": "v0.52.0",
-        "digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109"
-      },
-      {
-        "name": "docker.io/library/node",
-        "tag": "18.6.0-buster-slim",
-        "digest": "45d62ee60e3547014ba7902b210f1e2a4025d455c53958cb7a715702e3e56afd"
-      }
-    ]
-  }
+	"composefiles": {
+		"docker-compose.yaml": [
+			{
+				"name": "docker.io/aquasec/trivy",
+				"tag": "0.30.3",
+				"digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1",
+				"dockerfile": "Dockerfile",
+				"service": "docker-lock"
+			},
+			{
+				"name": "docker.io/safewaters/docker-lock",
+				"tag": "0.8.10-alpine",
+				"digest": "e4563cc6ecb6b6f290d9ebfe3745a49b300d2d3edd495b61a85bc7e079175e4e",
+				"dockerfile": "Dockerfile",
+				"service": "docker-lock"
+			},
+			{
+				"name": "docker.io/anchore/grype",
+				"tag": "v0.43.0",
+				"digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61",
+				"dockerfile": "Dockerfile",
+				"service": "docker-lock"
+			},
+			{
+				"name": "docker.io/anchore/syft",
+				"tag": "v0.52.0",
+				"digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109",
+				"dockerfile": "Dockerfile",
+				"service": "docker-lock"
+			},
+			{
+				"name": "docker.io/library/node",
+				"tag": "18.6.0-buster-slim",
+				"digest": "45d62ee60e3547014ba7902b210f1e2a4025d455c53958cb7a715702e3e56afd",
+				"dockerfile": "Dockerfile",
+				"service": "docker-lock"
+			},
+			{
+				"name": "docker.io/aquasec/trivy",
+				"tag": "0.30.3",
+				"digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1",
+				"dockerfile": "Dockerfile",
+				"service": "grype"
+			},
+			{
+				"name": "docker.io/safewaters/docker-lock",
+				"tag": "0.8.10-alpine",
+				"digest": "e4563cc6ecb6b6f290d9ebfe3745a49b300d2d3edd495b61a85bc7e079175e4e",
+				"dockerfile": "Dockerfile",
+				"service": "grype"
+			},
+			{
+				"name": "docker.io/anchore/grype",
+				"tag": "v0.43.0",
+				"digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61",
+				"dockerfile": "Dockerfile",
+				"service": "grype"
+			},
+			{
+				"name": "docker.io/anchore/syft",
+				"tag": "v0.52.0",
+				"digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109",
+				"dockerfile": "Dockerfile",
+				"service": "grype"
+			},
+			{
+				"name": "docker.io/library/node",
+				"tag": "18.6.0-buster-slim",
+				"digest": "45d62ee60e3547014ba7902b210f1e2a4025d455c53958cb7a715702e3e56afd",
+				"dockerfile": "Dockerfile",
+				"service": "grype"
+			},
+			{
+				"name": "docker.io/aquasec/trivy",
+				"tag": "0.30.3",
+				"digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1",
+				"dockerfile": "Dockerfile",
+				"service": "node"
+			},
+			{
+				"name": "docker.io/safewaters/docker-lock",
+				"tag": "0.8.10-alpine",
+				"digest": "e4563cc6ecb6b6f290d9ebfe3745a49b300d2d3edd495b61a85bc7e079175e4e",
+				"dockerfile": "Dockerfile",
+				"service": "node"
+			},
+			{
+				"name": "docker.io/anchore/grype",
+				"tag": "v0.43.0",
+				"digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61",
+				"dockerfile": "Dockerfile",
+				"service": "node"
+			},
+			{
+				"name": "docker.io/anchore/syft",
+				"tag": "v0.52.0",
+				"digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109",
+				"dockerfile": "Dockerfile",
+				"service": "node"
+			},
+			{
+				"name": "docker.io/library/node",
+				"tag": "18.6.0-buster-slim",
+				"digest": "45d62ee60e3547014ba7902b210f1e2a4025d455c53958cb7a715702e3e56afd",
+				"dockerfile": "Dockerfile",
+				"service": "node"
+			},
+			{
+				"name": "docker.io/aquasec/trivy",
+				"tag": "0.30.3",
+				"digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1",
+				"dockerfile": "Dockerfile",
+				"service": "syft"
+			},
+			{
+				"name": "docker.io/safewaters/docker-lock",
+				"tag": "0.8.10-alpine",
+				"digest": "e4563cc6ecb6b6f290d9ebfe3745a49b300d2d3edd495b61a85bc7e079175e4e",
+				"dockerfile": "Dockerfile",
+				"service": "syft"
+			},
+			{
+				"name": "docker.io/anchore/grype",
+				"tag": "v0.43.0",
+				"digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61",
+				"dockerfile": "Dockerfile",
+				"service": "syft"
+			},
+			{
+				"name": "docker.io/anchore/syft",
+				"tag": "v0.52.0",
+				"digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109",
+				"dockerfile": "Dockerfile",
+				"service": "syft"
+			},
+			{
+				"name": "docker.io/library/node",
+				"tag": "18.6.0-buster-slim",
+				"digest": "45d62ee60e3547014ba7902b210f1e2a4025d455c53958cb7a715702e3e56afd",
+				"dockerfile": "Dockerfile",
+				"service": "syft"
+			},
+			{
+				"name": "docker.io/aquasec/trivy",
+				"tag": "0.30.3",
+				"digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1",
+				"dockerfile": "Dockerfile",
+				"service": "trivy"
+			},
+			{
+				"name": "docker.io/safewaters/docker-lock",
+				"tag": "0.8.10-alpine",
+				"digest": "e4563cc6ecb6b6f290d9ebfe3745a49b300d2d3edd495b61a85bc7e079175e4e",
+				"dockerfile": "Dockerfile",
+				"service": "trivy"
+			},
+			{
+				"name": "docker.io/anchore/grype",
+				"tag": "v0.43.0",
+				"digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61",
+				"dockerfile": "Dockerfile",
+				"service": "trivy"
+			},
+			{
+				"name": "docker.io/anchore/syft",
+				"tag": "v0.52.0",
+				"digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109",
+				"dockerfile": "Dockerfile",
+				"service": "trivy"
+			},
+			{
+				"name": "docker.io/library/node",
+				"tag": "18.6.0-buster-slim",
+				"digest": "45d62ee60e3547014ba7902b210f1e2a4025d455c53958cb7a715702e3e56afd",
+				"dockerfile": "Dockerfile",
+				"service": "trivy"
+			}
+		],
+		"terraform/docker-compose.yaml": [
+			{
+				"name": "docker.io/library/ubuntu",
+				"tag": "22.04",
+				"digest": "b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac",
+				"dockerfile": "terraform/Dockerfile",
+				"service": "terraform"
+			},
+			{
+				"name": "ghcr.io/terraform-linters/tflint",
+				"tag": "v0.38.1",
+				"digest": "56672d76a007c0250cf9f29805d3c8914a9c228bc77352f7af314a3e6fd5aa02",
+				"dockerfile": "terraform/Dockerfile",
+				"service": "terraform"
+			},
+			{
+				"name": "docker.io/library/ubuntu",
+				"tag": "22.04",
+				"digest": "b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac",
+				"dockerfile": "terraform/Dockerfile",
+				"service": "tflint"
+			},
+			{
+				"name": "ghcr.io/terraform-linters/tflint",
+				"tag": "v0.38.1",
+				"digest": "56672d76a007c0250cf9f29805d3c8914a9c228bc77352f7af314a3e6fd5aa02",
+				"dockerfile": "terraform/Dockerfile",
+				"service": "tflint"
+			}
+		]
+	},
+	"dockerfiles": {
+		"Dockerfile": [
+			{
+				"name": "docker.io/aquasec/trivy",
+				"tag": "0.30.3",
+				"digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1"
+			},
+			{
+				"name": "docker.io/safewaters/docker-lock",
+				"tag": "0.8.10-alpine",
+				"digest": "e4563cc6ecb6b6f290d9ebfe3745a49b300d2d3edd495b61a85bc7e079175e4e"
+			},
+			{
+				"name": "docker.io/anchore/grype",
+				"tag": "v0.43.0",
+				"digest": "1f0ba3ad5098743723ff6a2877cb880d0b3ec0511dbef0a6f30158a617f56e61"
+			},
+			{
+				"name": "docker.io/anchore/syft",
+				"tag": "v0.52.0",
+				"digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109"
+			},
+			{
+				"name": "docker.io/library/node",
+				"tag": "18.6.0-buster-slim",
+				"digest": "45d62ee60e3547014ba7902b210f1e2a4025d455c53958cb7a715702e3e56afd"
+			}
+		]
+	}
 }
