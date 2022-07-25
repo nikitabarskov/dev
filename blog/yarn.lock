@@ -25,7 +25,7 @@
     unist-util-visit "^4.0.0"
     vfile "^5.0.0"
 
-"@mdx-js/react@^2.1.0":
+"@mdx-js/react@^2.1.2":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-2.1.2.tgz#02972f170cd3ad9113ce448245c5f636bb3e750d"
   integrity sha512-52e3DTJBrjsw3U51ZCdZ3N1IBaqnbzLIngCSXpKtiYiGr7PIqp3/P/+kym0MPTwBL/y9ZBmCieD8FyrXuEDrRw==
@@ -519,7 +519,7 @@ github-from-package@0.0.0:
   resolved "https://registry.yarnpkg.com/github-from-package/-/github-from-package-0.0.0.tgz#97fb5d96bfde8973313f20e8288ef9a167fa64ce"
   integrity sha512-SyHy3T1v2NUXn29OsWdxmK6RwHD+vkj3v8en8AOBZ1wBQ/hCAQ5bAQTD02kW4W9tUp/3Qh6J8r9EvntiyCmOOw==
 
-github-slugger@^1.3.0, github-slugger@^1.4.0:
+github-slugger@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/github-slugger/-/github-slugger-1.4.0.tgz#206eb96cdb22ee56fdc53a28d5a302338463444e"
   integrity sha512-w0dzqw/nt51xMVmlaV1+JRzN+oCa1KfcgGEWhxUG16wbdA+Xnt/yoFO8Z8x/V82ZcZ0wy6ln9QDup5avbhiDhQ==
@@ -1314,13 +1314,12 @@ next@^12.2.3:
     "@next/swc-win32-ia32-msvc" "12.2.3"
     "@next/swc-win32-x64-msvc" "12.2.3"
 
-nextra-theme-blog@^2.0.0-beta.8:
-  version "2.0.0-beta.8"
-  resolved "https://registry.yarnpkg.com/nextra-theme-blog/-/nextra-theme-blog-2.0.0-beta.8.tgz#286812e011af6b0294ec5d30f9f7fd9013502103"
-  integrity sha512-PEdenQs2RNh9nBa6VkG1rFY2groRrnEXIWnWiIYHnU7klwqsr4sdV9Mcn0LToeCCwmmCzSqg5r2OsOB1OhYQ/A==
+nextra-theme-blog@^2.0.0-beta.10:
+  version "2.0.0-beta.10"
+  resolved "https://registry.yarnpkg.com/nextra-theme-blog/-/nextra-theme-blog-2.0.0-beta.10.tgz#18df61bf9047c0b9d5cf8eff165f234dce803cf9"
+  integrity sha512-cBrdKMHuxhx06LID01pIPg09W6dXjFSdbHRiG6sxbVRf600A2TNJ+F3kYauXm21HV6VGPtVGOqW48a1tdHy+VA==
   dependencies:
-    "@mdx-js/react" "^2.1.0"
-    github-slugger "^1.3.0"
+    "@mdx-js/react" "^2.1.2"
     next-themes "^0.2.0"
     react-cusdis "^2.1.3"
 
