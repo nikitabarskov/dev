@@ -3,8 +3,8 @@
     "docker-compose.yaml": [
       {
         "name": "docker.io/aquasec/trivy",
-        "tag": "0.30.0",
-        "digest": "754edb50cdad04c2b60f105b7266c5fe0c360f682cb2b135d68a3434dce52783",
+        "tag": "0.30.3",
+        "digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1",
         "dockerfile": "Dockerfile",
         "service": "docker-lock"
       },
@@ -38,8 +38,8 @@
       },
       {
         "name": "docker.io/aquasec/trivy",
-        "tag": "0.30.0",
-        "digest": "754edb50cdad04c2b60f105b7266c5fe0c360f682cb2b135d68a3434dce52783",
+        "tag": "0.30.3",
+        "digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1",
         "dockerfile": "Dockerfile",
         "service": "grype"
       },
@@ -73,8 +73,8 @@
       },
       {
         "name": "docker.io/aquasec/trivy",
-        "tag": "0.30.0",
-        "digest": "754edb50cdad04c2b60f105b7266c5fe0c360f682cb2b135d68a3434dce52783",
+        "tag": "0.30.3",
+        "digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1",
         "dockerfile": "Dockerfile",
         "service": "node"
       },
@@ -108,8 +108,8 @@
       },
       {
         "name": "docker.io/aquasec/trivy",
-        "tag": "0.30.0",
-        "digest": "754edb50cdad04c2b60f105b7266c5fe0c360f682cb2b135d68a3434dce52783",
+        "tag": "0.30.3",
+        "digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1",
         "dockerfile": "Dockerfile",
         "service": "syft"
       },
@@ -143,8 +143,8 @@
       },
       {
         "name": "docker.io/aquasec/trivy",
-        "tag": "0.30.0",
-        "digest": "754edb50cdad04c2b60f105b7266c5fe0c360f682cb2b135d68a3434dce52783",
+        "tag": "0.30.3",
+        "digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1",
         "dockerfile": "Dockerfile",
         "service": "trivy"
       },
@@ -212,8 +212,8 @@
     "Dockerfile": [
       {
         "name": "docker.io/aquasec/trivy",
-        "tag": "0.30.0",
-        "digest": "754edb50cdad04c2b60f105b7266c5fe0c360f682cb2b135d68a3434dce52783"
+        "tag": "0.30.3",
+        "digest": "28aa2d7633fd0754fc82cc8a353928043d6eebdea451d4401f51b7cb3e9f34c1"
       },
       {
         "name": "docker.io/safewaters/docker-lock",
