@@ -23,9 +23,6 @@ tasks:
 
   lock-images-digests:
     desc: Lock and rewrite images digests inside the repository
-    sources:
-      - "*/**/*Dockerfile"
-      - "*/**/*docker-compose.yaml"
     cmds:
       - "{{ .DOCKER_COMPOSE_RUN }} docker-lock lock generate"
       - "{{ .DOCKER_COMPOSE_RUN }} docker-lock lock rewrite"
