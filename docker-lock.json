@@ -24,8 +24,8 @@
       },
       {
         "name": "docker.io/anchore/syft",
-        "tag": "v0.51.0",
-        "digest": "833a9a25934898999419d5535e55ece68c148fca9bb8ab7d695a44d688618a24",
+        "tag": "v0.52.0",
+        "digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109",
         "dockerfile": "Dockerfile",
         "service": "docker-lock"
       },
@@ -59,8 +59,8 @@
       },
       {
         "name": "docker.io/anchore/syft",
-        "tag": "v0.51.0",
-        "digest": "833a9a25934898999419d5535e55ece68c148fca9bb8ab7d695a44d688618a24",
+        "tag": "v0.52.0",
+        "digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109",
         "dockerfile": "Dockerfile",
         "service": "grype"
       },
@@ -94,8 +94,8 @@
       },
       {
         "name": "docker.io/anchore/syft",
-        "tag": "v0.51.0",
-        "digest": "833a9a25934898999419d5535e55ece68c148fca9bb8ab7d695a44d688618a24",
+        "tag": "v0.52.0",
+        "digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109",
         "dockerfile": "Dockerfile",
         "service": "node"
       },
@@ -129,8 +129,8 @@
       },
       {
         "name": "docker.io/anchore/syft",
-        "tag": "v0.51.0",
-        "digest": "833a9a25934898999419d5535e55ece68c148fca9bb8ab7d695a44d688618a24",
+        "tag": "v0.52.0",
+        "digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109",
         "dockerfile": "Dockerfile",
         "service": "syft"
       },
@@ -164,8 +164,8 @@
       },
       {
         "name": "docker.io/anchore/syft",
-        "tag": "v0.51.0",
-        "digest": "833a9a25934898999419d5535e55ece68c148fca9bb8ab7d695a44d688618a24",
+        "tag": "v0.52.0",
+        "digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109",
         "dockerfile": "Dockerfile",
         "service": "trivy"
       },
@@ -227,8 +227,8 @@
       },
       {
         "name": "docker.io/anchore/syft",
-        "tag": "v0.51.0",
-        "digest": "833a9a25934898999419d5535e55ece68c148fca9bb8ab7d695a44d688618a24"
+        "tag": "v0.52.0",
+        "digest": "3f8085b0bbd5768cecbbda359a6f4353c658082a820e394f9983ed764ec98109"
       },
       {
         "name": "docker.io/library/node",
