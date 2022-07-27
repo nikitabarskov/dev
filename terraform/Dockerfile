@@ -1,5 +1,5 @@
 FROM docker.io/library/ubuntu:22.04@sha256:b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac as ubuntu
-FROM ghcr.io/terraform-linters/tflint:v0.38.1@sha256:56672d76a007c0250cf9f29805d3c8914a9c228bc77352f7af314a3e6fd5aa02 as tflint
+FROM ghcr.io/terraform-linters/tflint:v0.39.0@sha256:4a5710cd28daa84fe93bd6b845b5b108f42133dd138628c41fd5b301aa8b7721 as tflint
 
 
 FROM ubuntu as tfswitch
