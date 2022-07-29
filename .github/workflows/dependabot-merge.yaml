@@ -26,4 +26,4 @@ jobs:
       ${{ contains(needs.dependabot-fetch-metadata.outputs.package-ecosystem, 'docker') }}
     steps:
       - run: |
-          gh pr review --approve --body "@dependabot squash and merge" --repo ${{ github.event.repo.name }} ${{ github.event.number }}
+          gh pr review --approve --body "@dependabot squash and merge" --repo ${{ github.repository }} ${{ github.event.number }}
