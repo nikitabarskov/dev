@@ -1,5 +1,5 @@
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - ready_for_review
@@ -24,7 +24,7 @@ jobs:
       - dependabot-fetch-metadata
     runs-on: "ubuntu-latest"
     env:
-      GITHUB_TOKEN: ${{ secrets.REVIEW_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     if: |
       ${{ contains(needs.dependabot-fetch-metadata.outputs.package-ecosystem, 'docker') }}
     steps:
