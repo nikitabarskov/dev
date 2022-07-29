@@ -1,0 +1,29 @@
+on:
+  pull_request_target:
+    types:
+      - opened
+      - ready_for_review
+      - reopened
+      - synchronize
+
+jobs:
+  dependabot-fetch-metadata:
+    runs-on: "ubuntu-latest"
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    outputs:
+      package-ecosystem: ${{ steps.dependabot-metadata.outputs.packages-ecosystem }}
+    steps:
+      - id: dependabot-metadata
+        uses: dependabot/fetch-metadata@v1.3.3
+
+  merge-dependabot:
+    needs:
+      - dependabot-fetch-metadata
+    runs-on: "ubuntu-latest"
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    if: |
+      ${{ contains(needs.dependabot-fetch-metadata.outputs.package-ecosystem, 'docker') }}
+    steps:
+      - run: |
+          gh pr review --approve --body "@dependabot squash and merge" --repo ${{ github.event.repo.name }} ${{ github.event.number }}
