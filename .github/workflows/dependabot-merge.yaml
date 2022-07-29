@@ -17,6 +17,8 @@ jobs:
         uses: dependabot/fetch-metadata@v1.3.3
 
   merge-dependabot:
+    permissions:
+      pull-requests: write
     needs:
       - dependabot-fetch-metadata
     runs-on: "ubuntu-latest"
