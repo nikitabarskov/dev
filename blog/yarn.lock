@@ -1324,10 +1324,10 @@ next@^12.2.3:
     "@next/swc-win32-ia32-msvc" "12.2.3"
     "@next/swc-win32-x64-msvc" "12.2.3"
 
-nextra-theme-blog@^2.0.0-beta.14:
-  version "2.0.0-beta.14"
-  resolved "https://registry.yarnpkg.com/nextra-theme-blog/-/nextra-theme-blog-2.0.0-beta.14.tgz#059a632771bac06b09f5f780134d190713bb7b9e"
-  integrity sha512-OkZi0+hs7TMEklmPyPhPMrdNVbSbNB4tkmjB8pWEHemB651mEJSmDuotY52ABrSrSYXxvuByrbX2UFUzQXq1qQ==
+nextra-theme-blog@^2.0.0-beta.24:
+  version "2.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/nextra-theme-blog/-/nextra-theme-blog-2.0.0-beta.24.tgz#dd047a77d41a061673fe1a777f57d77dc6c18c21"
+  integrity sha512-QZvuy68NPa4dfkHo+bCf+pkliKm25h/Q0moBtfHNTDXuv+Hws6bWXxH6V2LVyGHuQvmnIhXBjpuCnjIfdRmmuQ==
   dependencies:
     "@mdx-js/react" "^2.1.2"
     next-themes "^0.2.0-beta.2"
