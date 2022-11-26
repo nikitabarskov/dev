@@ -25,8 +25,9 @@ Data mesh is a strategy for a *data-driven* company
 to change the way the company operates on different levels.
 
 Data Mesh changes the culture of a company. It brings fresh
-air to a company's structure, redefines the architecture of
-the systems operating with data, and defines engineering standards.
+air to a company's structure. It redefines the architecture of
+the systems operating with data and defines
+new engineering standards.
 
 So far, I see the stakeholders' interpretation of these statements
 as something close to
@@ -42,3 +43,22 @@ an intellectual product.
 If you want to sell any product, you need to pitch it
 to the investors, develop it, promote it, and only
 then get the actual value. It is a long journey, isn't it?
+
+In this article I want to discuss every foundamental principle
+of the Data Mesh from the product side and pitching side.
+
+### Domain ownership of the data
+
+Data Mesh is saying: **decentralize the ownership of analytical**
+**data to business domains closest to the data**. And then
+the concept is saying **either source of the data or its main**
+**consumers**.
+
+For me, a person who works with data, perform analytics, and
+runs machine learning models on a daily basis, it is a great
+approach.
+
+But how can I convince the rest of the organisation that this
+approach is really feasible?
+
+
