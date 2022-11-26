@@ -7,14 +7,14 @@
     "export": "next export"
   },
   "dependencies": {
-    "gray-matter": "^4.0.3",
-    "next": "^13.0.5",
-    "nextra": "^2.0.0-beta.42",
-    "nextra-theme-blog": "^2.0.0-beta.42",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rss": "^1.2.2",
-    "sharp": "^0.31.2"
+    "canvas-confetti": "^1.5.1",
+    "gray-matter": "^4.0.2",
+    "next": "^12.1.6",
+    "nextra": "^2.0.0-alpha.56",
+    "nextra-theme-blog": "^2.0.0-alpha.55",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "rss": "^1.2.2"
   },
   "devDependencies": {
     "@types/node": "^18.7.17",
