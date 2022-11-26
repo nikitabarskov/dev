@@ -1,4 +1,4 @@
 variable "github_oauth_token" {
-    type = string
-    sensitive = true
+  type      = string
+  sensitive = true
 }
