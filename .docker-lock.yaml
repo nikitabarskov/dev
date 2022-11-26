@@ -2,6 +2,8 @@
 
 generate:
   base-dir: .
+  dockerfile-globs:
+    - "**/Dockerfile"
   composefile-globs:
     - "**/*docker-compose.yaml"
   composefile-recursive: true

@@ -235,6 +235,18 @@
 				"tag": "18.6.0-buster-slim",
 				"digest": "45d62ee60e3547014ba7902b210f1e2a4025d455c53958cb7a715702e3e56afd"
 			}
+		],
+		"terraform/Dockerfile": [
+			{
+				"name": "docker.io/library/ubuntu",
+				"tag": "22.04",
+				"digest": "b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac"
+			},
+			{
+				"name": "ghcr.io/terraform-linters/tflint",
+				"tag": "v0.38.1",
+				"digest": "56672d76a007c0250cf9f29805d3c8914a9c228bc77352f7af314a3e6fd5aa02"
+			}
 		]
 	}
 }
