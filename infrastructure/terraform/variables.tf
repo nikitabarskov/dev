@@ -4,6 +4,6 @@ variable "github_oauth_token" {
 }
 
 variable "gitlab_oauth_token" {
-  type = string
+  type      = string
   sensitive = true
 }

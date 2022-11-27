@@ -8,6 +8,6 @@ locals {
 
 resource "gitlab_group" "groups" {
   for_each = local.groups
-  name        = each.value
-  path = each.value
+  name     = each.value
+  path     = each.value
 }
