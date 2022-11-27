@@ -11,3 +11,16 @@ resource "gitlab_group" "groups" {
   name     = each.value
   path     = each.value
 }
+
+locals {
+  projects = toset([
+    "dev",
+    "infra",
+    "research",
+  ])
+}
+
+resource "gitlab_project" "projects" {
+  for_each = local.projects
+  name     = each.value
+}
