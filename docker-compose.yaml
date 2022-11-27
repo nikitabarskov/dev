@@ -40,7 +40,13 @@ services:
       - .:/srv/src:z
       - ${NODE_MODULES:-node-modules}:/srv/src/node_modules
     working_dir: /srv/src
-
+  devtools:
+    build:
+      context: docker-compose
+      target: devtools
+    volumes:
+      - .:/srv/workspace:z
+    working_dir: /srv/workspace
 volumes:
   xdg-cache-home: {}
   node-modules: {}
