@@ -24,9 +24,9 @@ managed in an IaaC manner is also a good outcome.
 
 Before you start, you need
 
-- GitHub account,
-- an empty GitHub repository,
-- Terraform CLI.
+-   GitHub account,
+-   an empty GitHub repository,
+-   Terraform CLI.
 
 ## Structure of the repository
 
@@ -65,8 +65,8 @@ mkdir -p infrastructure/terraform
 
 To configure Terraform to work with GitHub we need to:
 
-- configure Terraform backend,
-- configure GitHub Terraform provider.
+-   configure Terraform backend,
+-   configure GitHub Terraform provider.
 
 ### Configure Terraform backend and Terraform version
 
@@ -173,7 +173,6 @@ one: `admin:gpg_key`, `admin:org`, `admin:public_key`, `admin:repo_hook`,
 
 [github-docs-creating-personal-access-token]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 
-
 Once you created a PAT, run `terraform plan` again, and submit the PAT as an input.
 
 Great job!
@@ -194,111 +193,111 @@ So, to import the repository to Terraform I do this list of actions:
 
 1. I put these lines in `github_repositories.tf`
 
-   ```hcl title="github_repositories.tf"
-   resource "github_repository" "dev" {
-     name = "dev"
-   }
-   ```
+    ```hcl title="github_repositories.tf"
+    resource "github_repository" "dev" {
+      name = "dev"
+    }
+    ```
 
 2. I import `dev` repository to Terraform state
 
-   ```shell
-   terraform import github_repository.dev dev
-   ```
+    ```shell
+    terraform import github_repository.dev dev
+    ```
 
-   It will ask you to submit your GitHub PAT again.
-   The successfull output of `terraform import` command
-   should look like that
+    It will ask you to submit your GitHub PAT again.
+    The successfull output of `terraform import` command
+    should look like that
 
-   ```shell
-   github_repository.dev: Importing from ID "dev"...
-   github_repository.dev: Import prepared!
-   Prepared github_repository for import
-   github_repository.dev: Refreshing state... [id=dev]
+    ```shell
+    github_repository.dev: Importing from ID "dev"...
+    github_repository.dev: Import prepared!
+    Prepared github_repository for import
+    github_repository.dev: Refreshing state... [id=dev]
 
-   Import successful!
+    Import successful!
 
-   The resources that were imported are shown above. These resources are now in
-   your Terraform state and will henceforth be managed by Terraform.
-   ```
+    The resources that were imported are shown above. These resources are now in
+    your Terraform state and will henceforth be managed by Terraform.
+    ```
 
 3. I run `terraform plan` again to see the differences between
    the actual configuration and the configuration I described in my
    Terraform code.
 
-   ```shell
-   terraform plan
-   ```
+    ```shell
+    terraform plan
+    ```
 
-   And the output for me looks like
+    And the output for me looks like
 
-   ```shell
-   github_repository.dev: Refreshing state... [id=dev]
+    ```shell
+    github_repository.dev: Refreshing state... [id=dev]
 
-   Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
-     ~ update in-place
+    Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+      ~ update in-place
 
-   Terraform will perform the following actions:
+    Terraform will perform the following actions:
 
-     # github_repository.dev will be updated in-place
-     ~ resource "github_repository" "dev" {
-         ~ allow_auto_merge            = true -> false
-         ~ allow_merge_commit          = false -> true
-         ~ delete_branch_on_merge      = true -> false
-           id                          = "dev"
-           name                        = "dev"
-           ~ topics                      = [
-               - "github",
-               - "infrastructure",
-               - "terraform",
-           ]
-           - vulnerability_alerts        = true -> null
-           # (26 unchanged attributes hidden)
-       }
+      # github_repository.dev will be updated in-place
+      ~ resource "github_repository" "dev" {
+          ~ allow_auto_merge            = true -> false
+          ~ allow_merge_commit          = false -> true
+          ~ delete_branch_on_merge      = true -> false
+            id                          = "dev"
+            name                        = "dev"
+            ~ topics                      = [
+                - "github",
+                - "infrastructure",
+                - "terraform",
+            ]
+            - vulnerability_alerts        = true -> null
+            # (26 unchanged attributes hidden)
+        }
 
-    Plan: 0 to add, 1 to change, 0 to destroy.
+     Plan: 0 to add, 1 to change, 0 to destroy.
     ```
 
 4. I fix my Terraform code to aligh with the actual configuration
 
-   ```hcl title="github_repositories.tf"
-   resource "github_repository" "dev" {
-     name = "dev"
+    ```hcl title="github_repositories.tf"
+    resource "github_repository" "dev" {
+      name = "dev"
 
-     allow_auto_merge   = true
-     allow_merge_commit = false
-     allow_rebase_merge = true
+      allow_auto_merge   = true
+      allow_merge_commit = false
+      allow_rebase_merge = true
 
-     delete_branch_on_merge = true
+      delete_branch_on_merge = true
 
-     topics = [
-       "github",
-       "infrastructure",
-       "terraform",
-     ]
+      topics = [
+        "github",
+        "infrastructure",
+        "terraform",
+      ]
 
-     vulnerability_alerts = true
-   }
-   ```
+      vulnerability_alerts = true
+    }
+    ```
 
 5. Run `terraform plan` again and paste your PAT again.
    The output should be close to the example below.
 
-   ```shell
-   github_repository.dev: Refreshing state... [id=dev]
+    ```shell
+    github_repository.dev: Refreshing state... [id=dev]
 
-   No changes. Your infrastructure matches the configuration.
+    No changes. Your infrastructure matches the configuration.
 
-   Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are needed.
-   ```
+    Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are needed.
+    ```
 
 6. **Optionally:** run `terraform apply` and check the output.
 
-   ```shell
-   Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are needed.
+    ```shell
+    Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are needed.
 
-   Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
-   ```
+    Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+    ```
 
 7. Commit your changes and push them to GitHub!
 
