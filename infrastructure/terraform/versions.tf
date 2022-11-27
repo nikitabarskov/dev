@@ -10,5 +10,9 @@ terraform {
       source  = "gitlabhq/gitlab"
       version = "~> 3.20"
     }
+    vercel = {
+      source  = "vercel/vercel"
+      version = "~> 0.11"
+    }
   }
 }

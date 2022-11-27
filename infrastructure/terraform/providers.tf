@@ -5,3 +5,6 @@ provider "github" {
 provider "gitlab" {
   token = var.gitlab_oauth_token
 }
+provider "vercel" {
+  api_token = var.vercel_api_token
+}
