@@ -3,6 +3,7 @@ title: How can I use Terraform to manage my GitHub repositories?
 date: 2022-11-15
 description: A simple way to manage your personal GitHub repositories with IaaC
 author: Nikita Barskov
+ta
 ---
 
 # How can I use Terraform to manage my GitHub repositories
@@ -17,26 +18,31 @@ text.
 ## Motivation
 
 I want to learn and share my vision of working
-with IaaC tooling like Terraform. Having my repositories
-managed in an IaaC manner is also a good outcome.
+with Infrastructure as Code tooling like Terraform.
+Having my repositories managed in this manner
+is a good outcome.
 
 ## Prerequisites
 
 Before you start, you need
 
 -   GitHub account,
--   an empty GitHub repository,
+-   a GitHub repository,
 -   Terraform CLI.
 
 ## Structure of the repository
 
-To be fair, at the moment of writing, I already had
-a repository for all my personal development: this blog,
-previous attempts to configure my personal GitHub
-with Terraform, and etc.
+At the moment of writing, I already had a repository
+for all my personal development: this blog,
+my previous attempts to configure my private GitHub
+with Terraform, etc.
 
-After several iterations I realised, that the most convenient
-for me layout should look like this:
+I tried to structure and figure out the way
+I should structure my management repository.
+
+After several iterations, I realised that
+the most convenient for me layout should
+look like this:
 
 ```shell
 .
@@ -45,17 +51,19 @@ for me layout should look like this:
     └── terraform
 ```
 
-`infrastructure` folder has all required and essential code
-to manage my personal infrastructure: integration with Cloud Providers,
-management my version control, and etc.
+The `infrastructure` folder has all the required
+and necessary code to manage my personal
+infrastructure: integration with Cloud Providers,
+management of my version control, etc.
 
-`terraform` is a tool specific subfolder for infrastructure.
-I might want to test Pulumi or other IaaC tooling in the future
-and this project structure allows me test it in a quite flexible
-manner.
+`terraform` is a tool-specific subfolder for
+infrastructure. I might want to test Pulumi
+or other IaC tooling in the future.
+This project structure allows me to try
+it flexibly.
 
-If you want to follow the suggested structure then run in the root of
-you repository:
+If you want to follow the suggested structure,
+then run in the root of your repository:
 
 ```shell
 mkdir -p infrastructure/terraform
@@ -63,15 +71,18 @@ mkdir -p infrastructure/terraform
 
 ## Creating a boilerplate for our Terraform code
 
-To configure Terraform to work with GitHub we need to:
+To configure Terraform to work with GitHub,
+we need to:
 
 -   configure Terraform backend,
 -   configure GitHub Terraform provider.
 
 ### Configure Terraform backend and Terraform version
 
-For simplicity, I started with [`local`][terraform-local-backend] backend.
-It has its own downsides, but I can improve it later.
+For simplicity, I started with the
+[`local`][terraform-local-backend] backend.
+It has its own downsides, but I can improve
+it later.
 
 [terraform-local-backend]: https://developer.hashicorp.com/terraform/language/settings/backends/local
 
@@ -99,8 +110,8 @@ Terraform provider.
 
 [integrations-github-terraform-provider]: https://registry.terraform.io/providers/integrations/github/5.9.1
 
-First, let's add the provider. To do this, update the content of `versions.tf`
-to:
+First, let's add the provider. To do this,
+change the content of `versions.tf` to:
 
 ```hcl title="versions.tf"
 terraform {
@@ -127,13 +138,15 @@ provider "github" {
 }
 ```
 
-Instead of `<change-me-name-of-github-profile>` put your GitHub profile user name.
-In my case it is `nikitabarskov`.
+Instead of `<change-me-name-of-github-profile>`
+put your GitHub profile user name. In my case
+it is `nikitabarskov`.
 
 [integrations-github-terraform-provider-authentication]: https://registry.terraform.io/providers/integrations/github/latest/docs#authentication
 
-As you can see we use [Terraform variables][terraform-variables] to cofigure provider.
-I also used to configure them in a separate file `variables.tf`.
+As you can see, I use [Terraform variables][terraform-variables]
+to cofigure provider. Before I used to configure
+them in a separate file `variables.tf`.
 
 ```hcl title="variables.tf"
 variable "github_oauth_token" {
@@ -158,17 +171,18 @@ and then
 terraform plan
 ```
 
-and you should able to see the expected output:
+and you should be able to see the expected output:
 
 ```shell
 var.github_oauth_token
 Enter a value:
 ```
 
-You need to submit a PAT for GitHub. You can follow the instruction
-["Creating a personal access token"][github-docs-creating-personal-access-token]
-from GitHub. I will just list a set of permission I used, when I was creating
-one: `admin:gpg_key`, `admin:org`, `admin:public_key`, `admin:repo_hook`,
+You need to submit a PAT for GitHub. You can follow
+the instruction ["Creating a personal access token"][github-docs-creating-personal-access-token]
+from GitHub. I will just list a set of permission
+I used, when I was creating one: `admin:gpg_key`,
+`admin:org`, `admin:public_key`, `admin:repo_hook`,
 `admin:ssh_signing_key`, `delete_repo`, `repo`, `user`.
 
 [github-docs-creating-personal-access-token]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
@@ -179,17 +193,25 @@ Great job!
 
 ## Import the repository
 
-Let's bring your empty repository you are working in now to Terraform.
+Let's bring your empty repository
+you are working on now to Terraform.
 
-In my case I have a repository `dev` with some ClickOps chages made by me before.
+In my case, I have a repository `dev`
+with some ClickOps changes I made before.
 
-First of all, I am trying to structure the things I am doing, and there are several
-ways how you can structure your Terraform code. For me, the most suitable one is
-to keep all Cloud resources related to the actual resource I am using together.
+First, I am trying to structure the things
+I am doing. There are several ways how you
+can structure your Terraform code.
 
-In case of GitHub repositories I am using a file called `github_repositories.tf`.
+For me, the most suitable one is
+to keep all Cloud resources related
+to the actual resource I am using together.
 
-So, to import the repository to Terraform I do this list of actions:
+In the case of GitHub repositories, I use
+a file called `github_repositories.tf`.
+
+So, to import the repository to Terraform,
+I make this list of actions:
 
 1. I put these lines in `github_repositories.tf`
 
@@ -306,11 +328,12 @@ So, to import the repository to Terraform I do this list of actions:
 Managing infrastructure with Terraform is not hard at all,
 and even you can use it for your personal projects.
 
-I learned how to use Terraform with GitHub, and how to
+I learned how to use Terraform with GitHub and how to
 structure Terraform code.
 
-In next articles, I will try to describe the usage of Terraform Cloud,
-and how to configure CI for your Terraform code.
+In the following articles, I will describe the usage
+of Terraform Cloud and how to configure CI
+for your Terraform code.
 
 Happy Terraforming!
 
