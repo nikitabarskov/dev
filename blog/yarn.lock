@@ -25,7 +25,7 @@
     unist-util-visit "^4.0.0"
     vfile "^5.0.0"
 
-"@mdx-js/react@^2.1.2":
+"@mdx-js/react@^2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-2.1.5.tgz#8225a867dae6f845ae5b0ec15bb454c23be3f576"
   integrity sha512-3Az1I6SAWA9R38rYjz5rXBrGKeZhq96CSSyQtqY+maPj8stBsoUH5pNcmIixuGkufYsh8F5+ka2CVPo2fycWZw==
@@ -318,9 +318,9 @@ bail@^2.0.0:
   integrity sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==
 
 caniuse-lite@^1.0.30001406:
-  version "1.0.30001434"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001434.tgz#ec1ec1cfb0a93a34a0600d37903853030520a4e5"
-  integrity sha512-aOBHrLmTQw//WFa2rcF1If9fa3ypkC1wzqqiKHgfdrXTWcU8C4gKVZT77eQAPWN1APys3+uQ0Df07rKauXGEYA==
+  version "1.0.30001435"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001435.tgz#502c93dbd2f493bee73a408fe98e98fb1dad10b2"
+  integrity sha512-kdCkUTjR+v4YAJelyiDTqiu82BDr4W4CP5sgTA0ZBmqn30XfS2ZghPLMowik9TPhS+psWJiUNxsqLyurDbmutA==
 
 canvas-confetti@^1.5.1:
   version "1.6.0"
@@ -699,9 +699,9 @@ markdown-extensions@^1.0.0:
   integrity sha512-WWC0ZuMzCyDHYCasEGs4IPvLyTGftYwh6wIEOULOF0HXcqZlhwRzrK0w2VUlxWA98xnvb/jszw4ZSkJ6ADpM6Q==
 
 markdown-table@^3.0.0:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/markdown-table/-/markdown-table-3.0.2.tgz#9b59eb2c1b22fe71954a65ff512887065a7bb57c"
-  integrity sha512-y8j3a5/DkJCmS5x4dMCQL+OR0+2EAq3DOtio1COSHsmW2BGXnNCK3v12hJt1LrUz5iZH5g0LmuYOjDdI+czghA==
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/markdown-table/-/markdown-table-3.0.3.tgz#e6331d30e493127e031dd385488b5bd326e4a6bd"
+  integrity sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==
 
 mdast-util-definitions@^5.0.0:
   version "5.1.1"
@@ -1269,7 +1269,7 @@ nanoid@^3.3.4:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
 
-next-themes@^0.2.0-beta.2:
+next-themes@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/next-themes/-/next-themes-0.2.1.tgz#0c9f128e847979daf6c67f70b38e6b6567856e45"
   integrity sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==
@@ -1301,17 +1301,17 @@ next@^12.1.6:
     "@next/swc-win32-x64-msvc" "12.3.4"
 
 nextra-theme-blog@^2.0.0-alpha.55:
-  version "2.0.0-beta.42"
-  resolved "https://registry.yarnpkg.com/nextra-theme-blog/-/nextra-theme-blog-2.0.0-beta.42.tgz#c7a5d417b82b6bb4e5984f2bea363b2110b386f1"
-  integrity sha512-ny3K2McROk9de1inYfMaLlEwLLjlmnlyfA6220Z4kxidErWBEqHlvJt7tiBkGr6hsufs0QEbpNRkQ0rAk4vJOQ==
+  version "2.0.0-beta.43"
+  resolved "https://registry.yarnpkg.com/nextra-theme-blog/-/nextra-theme-blog-2.0.0-beta.43.tgz#a39b6ecff6a598636f68ce09b63e6bd9d44a1ee2"
+  integrity sha512-4jgNsBaM6161g7uSfMDw2R+aW+b1ZwhA+YNAxtGa6acR/aJ8WR0RA35rr9Z412ZbQKCyfPeJ+4YAAEYlkQfMQg==
   dependencies:
-    "@mdx-js/react" "^2.1.2"
-    next-themes "^0.2.0-beta.2"
+    "@mdx-js/react" "^2.1.5"
+    next-themes "^0.2.1"
 
 nextra@^2.0.0-alpha.56:
-  version "2.0.0-beta.42"
-  resolved "https://registry.yarnpkg.com/nextra/-/nextra-2.0.0-beta.42.tgz#d398f5bd572813d9c87bf9fee8635f338c181e9d"
-  integrity sha512-9YYL9hViKMt7gxzoqBODosqaJ8hutZo/Ahc9yfcGVXrf34gSqp44aKbJVEH/sWrkvRvR/+oz1n3u7OdvMae7DA==
+  version "2.0.0-beta.43"
+  resolved "https://registry.yarnpkg.com/nextra/-/nextra-2.0.0-beta.43.tgz#f6a580e99e0b5c20692ca6dad1dd2d4d160c98f9"
+  integrity sha512-wtc0fU4z/dacaW5MSf3ar1jY7Hlij4fqP0PLtoj4F7E0ANV/p+TCU2181S5kCh0TRqMRLCvCpj7lCHZaslPsLA==
   dependencies:
     "@mdx-js/mdx" "^2.1.3"
     "@napi-rs/simple-git" "^0.1.8"
