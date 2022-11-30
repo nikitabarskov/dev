@@ -3,7 +3,7 @@ title: How can I use Terraform to manage my GitHub repositories?
 date: 2022-11-15
 description: A simple way to manage your personal GitHub repositories with IaaC
 author: Nikita Barskov
-ta
+tags: infrastructure as code, iac, github, terraform
 ---
 
 # How can I use Terraform to manage my GitHub repositories
