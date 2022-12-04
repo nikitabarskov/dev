@@ -1,3 +1,9 @@
 terraform {
-  backend "local" {}
+  backend "remote" {
+    organization = "nikita-barskov"
+
+    workspaces {
+      name = "dev"
+    }
+  }
 }

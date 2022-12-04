@@ -8,3 +8,6 @@ provider "gitlab" {
 provider "vercel" {
   api_token = var.vercel_api_token
 }
+provider "tfe" {
+  token = var.tfe_token
+}
