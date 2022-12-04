@@ -14,5 +14,9 @@ terraform {
       source  = "vercel/vercel"
       version = "~> 0.11"
     }
+    tfe = {
+      source  = "hashicorp/tfe"
+      version = "~> 0.39"
+    }
   }
 }
