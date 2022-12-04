@@ -1,11 +1,17 @@
+locals {
+  tfe = {
+    organisation_name = "nikita-barskov"
+  }
+}
+
 resource "tfe_organization" "main" {
-  name  = "nikita-barskov"
+  name  = local.tfe.organisation_name
   email = "nbarskov@gmail.com"
 }
 
 resource "tfe_oauth_client" "github" {
   name             = "github"
-  organization     = "nikita-barskov"
+  organization     = local.tfe.organisation_name
   api_url          = "https://api.github.com"
   http_url         = "https://github.com"
   oauth_token      = var.github_oauth_token
