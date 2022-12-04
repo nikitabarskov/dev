@@ -1,10 +1,5 @@
 version: "3"
 
-includes:
-  terraform:
-    taskfile: ./terraform
-    dir: ./terraform
-
 vars:
   DOCKER_COMPOSE_RUN: docker compose run --rm
 
