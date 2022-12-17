@@ -17,3 +17,16 @@ resource "github_repository" "dev" {
   vulnerability_alerts = true
 
 }
+
+locals {
+  github_repositories = toset([
+    "data-engineer-challenge",
+  ])
+}
+
+resource "github_repository" "private" {
+  for_each = local.github_repositories
+  name     = each.value
+
+  vulnerability_alerts = true
+}
