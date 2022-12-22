@@ -1,0 +1,39 @@
+version: "3"
+
+tasks:
+  configure:
+    desc: "Configure the project fro development"
+    sources:
+      - package.json
+      - yarn.lock
+    cmds:
+      - "yarn install --pure-lockfile"
+    generates:
+      - node_modules
+    
+  build:
+    desc: "Build website"
+    sources:
+      - pages
+      - public
+      - styles
+      - next-env.d.ts
+      - next.config.js
+      - package.kson
+      - theme.config.js
+      - yarn.lock
+    cmds:
+      - "yarn build"
+    generates:
+      - .next
+
+  serve:
+    desc: "Serve website"
+    cmds:
+      - yarn start
+  
+  pdf-cv:
+    desc: "Generate a PDF version of CV"
+    cmds:
+      - "pandoc --pdf-engine=xelatex -H pages/cv/styles.tex -s -o pages/cv/barskov-nikita-cv-$(date +\"%Y-%m-%d\").pdf pages/cv/index.mdx"
+

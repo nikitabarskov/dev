@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  devtools:
+    build:
+      target: devtools
+      context: docker-compose
+    volumes:
+      - .:/srv/workspace:z
+      - .next:/srv/workspace/.next
+      - node_modules:/srv/workspace/node_modules
+    command: "yarn next dev"
+    working_dir: /srv/workspace
+    ports:
+      - "3000:3000"
+volumes:
+  node_modules:
+  .next:
