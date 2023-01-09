@@ -2,6 +2,11 @@
 	"dockerfiles": {
 		"Dockerfile": [
 			{
+				"name": "docker.io/library/ubuntu",
+				"tag": "22.04",
+				"digest": "27cb6e6ccef575a4698b66f5de06c7ecd61589132d5a91d098f7f3f9285415a9"
+			},
+			{
 				"name": "docker.io/library/node",
 				"tag": "18.12.1-slim",
 				"digest": "70bf84739156657c85440e6a55a3d77a7cac668f9c4c3c44005bc29bdc529db7"
