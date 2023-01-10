@@ -14,6 +14,18 @@ resource "github_repository" "dev" {
     "terraform",
   ]
 
+  security_and_analysis {
+    advanced_security {
+      status = "enabled"
+    }
+    secret_scanning {
+      status = "enabled"
+    }
+    secret_scanning_push_protection {
+      status = "enabled"
+    }
+  }
+
   vulnerability_alerts = true
 
 }
@@ -33,5 +45,18 @@ resource "github_repository" "private" {
 
   archived = each.value.archived
 
+  security_and_analysis {
+    advanced_security {
+      status = "enabled"
+    }
+    secret_scanning {
+      status = "enabled"
+    }
+    secret_scanning_push_protection {
+      status = "enabled"
+    }
+  }
+
   vulnerability_alerts = true
+
 }
