@@ -19,14 +19,19 @@ resource "github_repository" "dev" {
 }
 
 locals {
-  github_repositories = toset([
-    "data-engineer-challenge",
-  ])
+  github_repositories = {
+    "data-engineer-challenge" = {
+      name     = "data-engineer-challenge"
+      archived = true
+    },
+  }
 }
 
 resource "github_repository" "private" {
   for_each = local.github_repositories
-  name     = each.value
+  name     = each.value.name
+
+  archived = each.value.archived
 
   vulnerability_alerts = true
 }
