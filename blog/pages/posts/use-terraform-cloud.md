@@ -50,7 +50,7 @@ a Terraform Cloud account.
 Then [create a PAT][terraform-cloud-create-a-pat] and store it in
 `terraform.tfvars` file as `tfe_token` along with others secrets:
 
-```hcl title="terraform.tfvars"
+```hcl
 github_oauth_token = "change-me-github-oauth-token"
 tfe_token          = "change-me-tfe-token"
 ```
@@ -61,20 +61,20 @@ I need to add [Terraform Cloud Provider][terraform-cloud-provider] to
 `providers.tf` and `versions.tf`. Also, I should not forget about `tfe_token`
 variable in `variables.tf`.
 
-```hcl title="providers.tf"
+```hcl
 provider "tfe" {
   token = var.tfe_token
 }
 ```
 
-```hcl title="versions.tf"
+```hcl
 tfe = {
   source  = "hashicorp/tfe"
   version = "~> 0.39"
 }
 ```
 
-```hcl title="variables.tf"
+```hcl
 variable "tfe_token" {
   type      = string
   sensitive = true
@@ -100,7 +100,7 @@ Check [Terraform Cloud documentation][terraform-cloud-docs-organisation] for mor
 
 I need to create one with [`tfe_organization`][tfe-organisation-resource] resource:
 
-```hcl title="terraform_enterprise.tf"
+```hcl
 resource "tfe_organization" "main" {
   name  = "<change-me-name>"
   email = "<change-me-email>"
@@ -119,7 +119,7 @@ https://app.terraform.io/app/<change-me-name>/workspaces
 Then connect your GitHub account to Terraform Cloud. It is super easy to do with
 `tfe_oauth_client`.
 
-```hcl title="terraform_enterprise.tf"
+```hcl
 resource "tfe_oauth_client" "github" {
   name             = "github"
   organization     = "<change-me-organisation-name>"
@@ -146,7 +146,7 @@ We can use [`tfe_workspace`][tfe-workspace-resource] resource
 
 [tfe-workspace-resource]: https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/workspace
 
-```hcl title="terraform_enterprise.tf"
+```hcl
 resource "tfe_workspace" "dev" {
   name              = "dev"
   organization      = tfe_organization.main.name
@@ -164,7 +164,7 @@ And configure secrets with [`tfe_variable`][tfe-variable].
 
 [tfe-variable]: https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable
 
-```hcl title="terraform_enterprise.tf"
+```hcl
 locals {
   tfe_variables = {
     github_oauth_token = var.github_oauth_token
@@ -193,7 +193,7 @@ https://app.terraform.io/app/<change-me-organisation-name>/workspaces/dev
 
 Change the content of `backend.tf` to
 
-```hcl title="backend.tf"
+```hcl
 terraform {
   backend "remote" {
     organization = "<change-me-organisation-name>"
