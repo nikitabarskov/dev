@@ -33,12 +33,11 @@ resource "github_repository" "dev" {
 locals {
   github_repositories = {
     "data-engineer-challenge" = {
-      name       = "data-engineer-challenge"
       archived   = true
-      visibility = "public"
+      visibility = "private"
     },
     "data-engineer-assignment-kaggle-january-2023" = {
-      archived   = false
+      archived   = true
       visibility = "private"
     }
   }
