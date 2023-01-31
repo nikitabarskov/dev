@@ -3,7 +3,7 @@ resource "vercel_project" "dev" {
   framework = "nextjs"
 
   git_repository = {
-    repo              = github_repository.dev.full_name
+    repo              = github_repository.public["dev"].full_name
     type              = "github"
     production_branch = "main"
   }

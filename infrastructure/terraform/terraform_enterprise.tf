@@ -24,7 +24,7 @@ resource "tfe_workspace" "dev" {
   working_directory = "/infrastructure/terraform"
   queue_all_runs    = false
   vcs_repo {
-    identifier         = github_repository.dev.full_name
+    identifier         = github_repository.public["dev"].full_name
     oauth_token_id     = tfe_oauth_client.github.oauth_token_id
     ingress_submodules = false
   }
