@@ -1,11 +1,3 @@
----
-title: How can I use Terraform to manage my GitHub repositories?
-date: 2022-11-15
-description: A simple way to manage your personal GitHub repositories with IaaC
-author: Nikita Barskov
-tag: infrastructure as code, github, terraform
----
-
 # How can I use Terraform to manage my GitHub repositories
 
 This article is highly inspired and overlaps with
@@ -89,7 +81,7 @@ it later.
 Create `backend.tf` file in `infrastructure/terraform` folder with
 the following content:
 
-```hcl title="backend.tf"
+```hcl copy showLineNumbers filename="backend.tf"
 terraform {
   backend "local" {}
 }
@@ -97,7 +89,7 @@ terraform {
 
 To configure preferred Terraform version I created `versions.tf`
 
-```hcl title="versions.tf"
+```hcl copy showLineNumbers filename="versions.tf"
 terraform {
   required_version = ">= 1.0"
 }
@@ -113,7 +105,7 @@ Terraform provider.
 First, let's add the provider. To do this,
 change the content of `versions.tf` to:
 
-```hcl title="versions.tf"
+```hcl copy showLineNumbers filename="versions.tf" {4-9}
 terraform {
   required_version = ">= 1.0"
 
@@ -129,18 +121,17 @@ terraform {
 GitHub Integration Terraform provider also requires [authentication][integrations-github-terraform-provider-authentication].
 In this article, I am going to use token based authentication.
 
-Create a file `providers.tf` and put these lines of code there
+Create a file `providers.tf` and put these lines of code there:
 
-```hcl title="providers.tf"
+```hcl copy showLineNumbers filename="providers.tf"
 provider "github" {
   owner = "<change-me-name-of-github-profile>"
   token = var.github_oauth_token
 }
 ```
 
-Instead of `<change-me-name-of-github-profile>`
-put your GitHub profile user name. In my case
-it is `nikitabarskov`.
+Instead of `<change-me-name-of-github-profile>` put your GitHub
+profile user name. In my case it is `nikitabarskov`.
 
 [integrations-github-terraform-provider-authentication]: https://registry.terraform.io/providers/integrations/github/latest/docs#authentication
 
@@ -148,7 +139,7 @@ As you can see, I use [Terraform variables][terraform-variables]
 to cofigure provider. Before I used to configure
 them in a separate file `variables.tf`.
 
-```hcl title="variables.tf"
+```hcl copy showLineNumbers filename="variables.tf"
 variable "github_oauth_token" {
   type      = string
   sensitive = true
@@ -181,9 +172,16 @@ Enter a value:
 You need to submit a PAT for GitHub. You can follow
 the instruction ["Creating a personal access token"][github-docs-creating-personal-access-token]
 from GitHub. I will just list a set of permission
-I used, when I was creating one: `admin:gpg_key`,
-`admin:org`, `admin:public_key`, `admin:repo_hook`,
-`admin:ssh_signing_key`, `delete_repo`, `repo`, `user`.
+I used, when I was creating one:
+
+- `admin:gpg_key`,
+- `admin:org`,
+- `admin:public_key`,
+- `admin:repo_hook`,
+- `admin:ssh_signing_key`,
+- `delete_repo`,
+- `repo`,
+- `user`.
 
 [github-docs-creating-personal-access-token]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 
@@ -215,7 +213,7 @@ I make this list of actions:
 
 1. I put these lines in `github_repositories.tf`
 
-    ```hcl title="github_repositories.tf"
+    ```hcl copy showLineNumbers filename="github_repositories.tf"
     resource "github_repository" "dev" {
       name = "dev"
     }
@@ -282,7 +280,7 @@ I make this list of actions:
 
 4. I fix my Terraform code to aligh with the actual configuration
 
-    ```hcl title="github_repositories.tf"
+    ```hcl copy showLineNumbers filename="github_repositories.tf"
     resource "github_repository" "dev" {
       name = "dev"
 

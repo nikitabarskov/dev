@@ -1,11 +1,3 @@
----
-title: Use Terraform Cloud as a remote backend for managing your personal infrastructure
-date: 2022-12-04
-description: IaC approach to manage personal infrastructure with Terraform Cloud
-author: Nikita Barskov
-tag: infrastructure as code, github, terraform
----
-
 # Use Terraform Cloud as a remote backend for managing your infrastructure
 
 In the previous article I've been using a [`local`][terraform-local-backend] backend.
