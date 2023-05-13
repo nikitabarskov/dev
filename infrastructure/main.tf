@@ -12,7 +12,7 @@ resource "spacelift_stack" "dev" {
   branch            = "main"
   name              = "dev"
   github_enterprise {
-    name = "nikitabarskov"
+    namespace = "nikitabarskov"
   }
   project_root      = "/infrastructure/terraform"
   repository        = "dev"
