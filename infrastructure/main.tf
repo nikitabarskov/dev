@@ -34,7 +34,7 @@ resource "spacelift_stack" "spacelift_manager" {
   github_enterprise {
     namespace = "nikitabarskov"
   }
-  project_root      = "/infrastructure"
+  project_root      = "/infrastructure/spacelift"
   repository        = "dev"
   terraform_version = "1.3.6"
   enable_local_preview = true
