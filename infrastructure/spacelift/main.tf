@@ -1,31 +1,3 @@
-terraform {
-  required_providers {
-    spacelift = {
-      source  = "spacelift-io/spacelift"
-      version = "~> 1.0"
-    }
-  }
-}
-
-variable "github_oauth_token" {
-  type      = string
-  sensitive = true
-}
-
-variable "gitlab_oauth_token" {
-  type      = string
-  sensitive = true
-}
-
-variable "vercel_api_token" {
-  type      = string
-  sensitive = true
-}
-
-variable "tfe_token" {
-  type      = string
-  sensitive = true
-}
 
 resource "spacelift_stack" "spacelift_manager" {
   autodeploy        = false
