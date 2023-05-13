@@ -37,6 +37,7 @@ resource "spacelift_stack" "dev" {
   project_root      = "/infrastructure/terraform"
   repository        = "dev"
   terraform_version = "1.3.6"
+  enable_local_preview = true
 }
 
 resource "spacelift_environment_variable" "tf_var_github_oauth_token" {
