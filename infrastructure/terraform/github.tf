@@ -55,20 +55,12 @@ resource "github_repository" "public" {
 
   topics = each.value.topics
 
-  security_and_analysis {
-    advanced_security {
-      status = "enabled"
-    }
-    secret_scanning {
-      status = "enabled"
-    }
-    secret_scanning_push_protection {
-      status = "enabled"
-    }
+  lifecycle {
+    ignore_changes = [
+        security_and_analysis,
+        vulnerability_alerts,
+    ]
   }
-
-  vulnerability_alerts = true
-
 }
 
 resource "github_repository" "private" {
