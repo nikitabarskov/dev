@@ -18,5 +18,9 @@ terraform {
       source  = "hashicorp/tfe"
       version = "~> 0.39"
     }
+    spacelift = {
+      source  = "spacelift-io/spacelift"
+      version = "~> 1.1"
+    }
   }
 }

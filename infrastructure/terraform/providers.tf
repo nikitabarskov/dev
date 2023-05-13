@@ -11,3 +11,5 @@ provider "vercel" {
 provider "tfe" {
   token = var.tfe_token
 }
+provider "spacelift" {
+}
