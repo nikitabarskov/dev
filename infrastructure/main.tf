@@ -11,12 +11,17 @@ resource "spacelift_stack" "dev" {
   autodeploy        = false
   branch            = "main"
   name              = "dev"
+  github_enterprise {
+    name = "nikitabarskov"
+  }
   project_root      = "/infrastructure/terraform"
   repository        = "dev"
   terraform_version = "1.3.6"
-  github_enterprise {
-    namespace = "nikitabarskov"
-  }
+
+  # 8< --------------------------------------------------------------
+  # Delete the following line after the stack has been created
+  import_state_file = "/mnt/workspace/state-import/dev.tfstate"
+  # -------------------------------------------------------------- 8<
 }
 
 resource "spacelift_environment_variable" "tf_var_github_oauth_token" {
