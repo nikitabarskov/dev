@@ -22,24 +22,24 @@ resource "spacelift_stack" "dev" {
 resource "spacelift_environment_variable" "tf_var_github_oauth_token" {
   stack_id   = spacelift_stack.dev.id
   name       = "TF_VAR_github_oauth_token"
-  value      = ""
+  value      = var.TF_VAR_github_oauth_token
   write_only = true
 }
 resource "spacelift_environment_variable" "tf_var_vercel_api_token" {
   stack_id   = spacelift_stack.dev.id
   name       = "TF_VAR_vercel_api_token"
-  value      = ""
+  value      = var.TF_VAR_vercel_api_token
   write_only = true
 }
 resource "spacelift_environment_variable" "tf_var_gitlab_oauth_token" {
   stack_id   = spacelift_stack.dev.id
   name       = "TF_VAR_gitlab_oauth_token"
-  value      = ""
+  value      = var.TF_VAR_gitlab_oauth_token
   write_only = true
 }
 resource "spacelift_environment_variable" "tf_var_tfe_token" {
   stack_id   = spacelift_stack.dev.id
   name       = "TF_VAR_tfe_token"
-  value      = ""
+  value      = var.TF_VAR_tfe_token
   write_only = true
 }
