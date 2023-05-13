@@ -14,6 +14,9 @@ resource "spacelift_stack" "dev" {
   project_root      = "/infrastructure/terraform"
   repository        = "dev"
   terraform_version = "1.3.6"
+  github_enterprise {
+    namespace = "nikitabarskov"
+  }
 }
 
 resource "spacelift_environment_variable" "tf_var_github_oauth_token" {
