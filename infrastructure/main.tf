@@ -43,3 +43,23 @@ resource "spacelift_environment_variable" "tf_var_tfe_token" {
   value      = var.TF_VAR_tfe_token
   write_only = true
 }
+
+variable "github_oauth_token" {
+  type      = string
+  sensitive = true
+}
+
+variable "gitlab_oauth_token" {
+  type      = string
+  sensitive = true
+}
+
+variable "vercel_api_token" {
+  type      = string
+  sensitive = true
+}
+
+variable "tfe_token" {
+  type      = string
+  sensitive = true
+}
