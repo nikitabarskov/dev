@@ -17,11 +17,6 @@ resource "spacelift_stack" "dev" {
   project_root      = "/infrastructure/terraform"
   repository        = "dev"
   terraform_version = "1.3.6"
-
-  # 8< --------------------------------------------------------------
-  # Delete the following line after the stack has been created
-  import_state_file = "/mnt/workspace/state-import/dev.tfstate"
-  # -------------------------------------------------------------- 8<
 }
 
 resource "spacelift_environment_variable" "tf_var_github_oauth_token" {
