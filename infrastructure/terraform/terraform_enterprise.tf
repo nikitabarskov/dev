@@ -23,27 +23,10 @@ resource "tfe_workspace" "dev" {
   organization      = tfe_organization.main.name
   working_directory = "/infrastructure/terraform"
   queue_all_runs    = false
+  force_delete      = true
   vcs_repo {
     identifier         = github_repository.public["dev"].full_name
     oauth_token_id     = tfe_oauth_client.github.oauth_token_id
     ingress_submodules = false
   }
-}
-
-locals {
-  tfe_variables = {
-    github_oauth_token = var.github_oauth_token
-    gitlab_oauth_token = var.gitlab_oauth_token
-    vercel_api_token   = var.vercel_api_token
-    tfe_token          = var.tfe_token
-  }
-}
-
-resource "tfe_variable" "variables" {
-  for_each     = local.tfe_variables
-  key          = each.key
-  value        = each.value
-  category     = "terraform"
-  sensitive    = true
-  workspace_id = tfe_workspace.dev.id
 }
