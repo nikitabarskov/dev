@@ -10,7 +10,14 @@ updates:
   - package-ecosystem: "terraform"
     directory: "/infrastructure/terraform"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+    commit-message:
+      prefix: "terraform"
+
+  - package-ecosystem: "terraform"
+    directory: "/infrastructure/spacelift"
+    schedule:
+      interval: "weekly"
     commit-message:
       prefix: "terraform"
 
