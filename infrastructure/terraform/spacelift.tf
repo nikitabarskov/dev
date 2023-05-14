@@ -5,7 +5,7 @@ locals {
       administrative = true
       autodeploy     = true
       description    = "stack"
-      project_root   = "infrastructure/terraform"
+      project_root   = "/infrastructure/terraform"
     }
   }
 }
