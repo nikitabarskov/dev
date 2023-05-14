@@ -1,5 +1,6 @@
 
 resource "spacelift_stack" "spacelift_manager" {
+  administrative    = true
   autodeploy        = false
   branch            = "main"
   name              = "Spacelift Manager"
@@ -13,6 +14,7 @@ resource "spacelift_stack" "spacelift_manager" {
 }
 
 resource "spacelift_stack" "dev" {
+  administrative    = true
   autodeploy        = false
   branch            = "main"
   name              = "dev"
