@@ -57,8 +57,8 @@ resource "github_repository" "public" {
 
   lifecycle {
     ignore_changes = [
-        security_and_analysis,
-        vulnerability_alerts,
+      security_and_analysis,
+      vulnerability_alerts,
     ]
   }
 }
