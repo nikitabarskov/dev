@@ -4,7 +4,7 @@ locals {
       repository     = "dev"
       administrative = true
       autodeploy     = true
-      description    = "stack"
+      description    = "Stack to manage my personal infrastructure"
       project_root   = "/infrastructure/terraform"
     }
   }
@@ -20,6 +20,7 @@ resource "spacelift_stack" "stacks" {
   administrative       = each.value.administrative
   autodeploy           = each.value.autodeploy
   enable_local_preview = true
+  description = each.value.description
   github_enterprise {
     namespace = "nikitabarskov"
   }
