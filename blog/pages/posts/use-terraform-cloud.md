@@ -50,7 +50,7 @@ a Terraform Cloud account.
 Then [create a PAT][terraform-cloud-create-a-pat] and store it in
 `terraform.tfvars` file as `tfe_token` along with others secrets:
 
-```hcl
+```hcl copy showLineNumbers filename="terraform.tfvars"
 github_oauth_token = "change-me-github-oauth-token"
 tfe_token          = "change-me-tfe-token"
 ```
@@ -61,20 +61,20 @@ I need to add [Terraform Cloud Provider][terraform-cloud-provider] to
 `providers.tf` and `versions.tf`. Also, I should not forget about `tfe_token`
 variable in `variables.tf`.
 
-```hcl
+```hcl copy showLineNumbers filename="providers.tf"
 provider "tfe" {
   token = var.tfe_token
 }
 ```
 
-```hcl
+```hcl copy showLineNumbers filename="versions.tf"
 tfe = {
   source  = "hashicorp/tfe"
   version = "~> 0.39"
 }
 ```
 
-```hcl
+```hcl copy showLineNumbers filename="variables.tf"
 variable "tfe_token" {
   type      = string
   sensitive = true
@@ -100,7 +100,7 @@ Check [Terraform Cloud documentation][terraform-cloud-docs-organisation] for mor
 
 I need to create one with [`tfe_organization`][tfe-organisation-resource] resource:
 
-```hcl
+```hcl copy showLineNumbers filename="terraform_cloud.tf"
 resource "tfe_organization" "main" {
   name  = "<change-me-name>"
   email = "<change-me-email>"
@@ -112,14 +112,14 @@ resource "tfe_organization" "main" {
 And then `terraform apply -auto-approve`. Once Terraform successfully applies
 the changes you should be able to access the page
 
-```text
+```text copy
 https://app.terraform.io/app/<change-me-name>/workspaces
 ```
 
 Then connect your GitHub account to Terraform Cloud. It is super easy to do with
 `tfe_oauth_client`.
 
-```hcl
+```hcl copy showLineNumbers filename="terraform_cloud.tf"
 resource "tfe_oauth_client" "github" {
   name             = "github"
   organization     = "<change-me-organisation-name>"
@@ -132,7 +132,7 @@ resource "tfe_oauth_client" "github" {
 
 And then `terraform apply -auto-approve` again, wait for the apply and then check
 
-```text
+```text copy
 https://app.terraform.io/app/<change-me-organisation-name>/settings/version-control
 ```
 
@@ -146,7 +146,7 @@ We can use [`tfe_workspace`][tfe-workspace-resource] resource
 
 [tfe-workspace-resource]: https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/workspace
 
-```hcl
+```hcl copy showLineNumbers filename="terraform_cloud.tf"
 resource "tfe_workspace" "dev" {
   name              = "dev"
   organization      = tfe_organization.main.name
@@ -164,7 +164,7 @@ And configure secrets with [`tfe_variable`][tfe-variable].
 
 [tfe-variable]: https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable
 
-```hcl
+```hcl copy showLineNumbers filename="terraform_cloud.tf"
 locals {
   tfe_variables = {
     github_oauth_token = var.github_oauth_token
@@ -185,7 +185,7 @@ resource "tfe_variable" "variables" {
 Again, `terraform apply -auto-approve`, wait, and then
 you should be able to access
 
-```text
+```text copy
 https://app.terraform.io/app/<change-me-organisation-name>/workspaces/dev
 ```
 
@@ -193,7 +193,7 @@ https://app.terraform.io/app/<change-me-organisation-name>/workspaces/dev
 
 Change the content of `backend.tf` to
 
-```hcl
+```hcl copy showLineNumbers filename="backend.tf"
 terraform {
   backend "remote" {
     organization = "<change-me-organisation-name>"
@@ -205,7 +205,11 @@ terraform {
 }
 ```
 
-and then run `terraform init -migrate-state`.
+and then run
+
+``` copy
+terraform init -migrate-state
+```
 
 And that's it!
 
@@ -218,6 +222,6 @@ or you can use Google Cloud Storage as a remote backend too.
 
 ## Links
 
-The changes you can find in my PR: [nikitbarskov/dev#240][nikita-barskov-dev-240`].
+The changes you can find in my PR: [nikitbarskov/dev#240][nikita-barskov-dev-240].
 
 [nikita-barskov-dev-240]: https://github.com/nikitabarskov/dev/pull/240
