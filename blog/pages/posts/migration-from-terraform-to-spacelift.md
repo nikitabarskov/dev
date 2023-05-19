@@ -152,3 +152,7 @@ gives you exact the same experience as you have with Terraform Cloud.
 I've successfully migrated my Terraform state from Terraform Cloud to Spacelift.
 In general Spacelift is a great tool and I'm looking forward to using it
 further.
+
+See the current state of my infrastructure as code [github.com/dev/infrastructure/terraform][infrastructure-terraform]
+
+[infrastructure-terraform]: https://github.com/nikitabarskov/dev/tree/main/infrastructure/terraform

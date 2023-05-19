@@ -89,7 +89,7 @@ it later.
 Create `backend.tf` file in `infrastructure/terraform` folder with
 the following content:
 
-```hcl title="backend.tf"
+```hcl copy showLineNumbers filename="backend.tf"
 terraform {
   backend "local" {}
 }
@@ -97,7 +97,7 @@ terraform {
 
 To configure preferred Terraform version I created `versions.tf`
 
-```hcl title="versions.tf"
+```hcl copy showLineNumbers filename="versions.tf"
 terraform {
   required_version = ">= 1.0"
 }
@@ -113,7 +113,7 @@ Terraform provider.
 First, let's add the provider. To do this,
 change the content of `versions.tf` to:
 
-```hcl title="versions.tf"
+```hcl copy showLineNumbers filename="versions.tf"
 terraform {
   required_version = ">= 1.0"
 
@@ -131,7 +131,7 @@ In this article, I am going to use token based authentication.
 
 Create a file `providers.tf` and put these lines of code there
 
-```hcl title="providers.tf"
+```hcl copy showLineNumbers filename="providers.tf"
 provider "github" {
   owner = "<change-me-name-of-github-profile>"
   token = var.github_oauth_token
@@ -148,7 +148,7 @@ As you can see, I use [Terraform variables][terraform-variables]
 to cofigure provider. Before I used to configure
 them in a separate file `variables.tf`.
 
-```hcl title="variables.tf"
+```hcl copy showLineNumbers filename="variables.tf"
 variable "github_oauth_token" {
   type      = string
   sensitive = true
@@ -215,7 +215,7 @@ I make this list of actions:
 
 1. I put these lines in `github_repositories.tf`
 
-    ```hcl title="github_repositories.tf"
+    ```hcl copy showLineNumbers filename="github_repositories.tf"
     resource "github_repository" "dev" {
       name = "dev"
     }
@@ -282,7 +282,7 @@ I make this list of actions:
 
 4. I fix my Terraform code to aligh with the actual configuration
 
-    ```hcl title="github_repositories.tf"
+    ```hcl copy showLineNumbers filename="github_repositories.tf"
     resource "github_repository" "dev" {
       name = "dev"
 
