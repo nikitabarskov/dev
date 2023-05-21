@@ -30,6 +30,4 @@ resource "vercel_project" "main" {
     type              = "github"
     production_branch = "main"
   }
-
-  root_directory = "/"
 }
