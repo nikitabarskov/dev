@@ -22,6 +22,15 @@ locals {
         "terraform",
       ]
     }
+    "experience" = {
+      topics = [
+        "knowledge",
+        "learning",
+        "notes",
+        "wiki",
+        "nextra",
+      ]
+    }
   }
   private_github_repositories = {
     "data-engineer-challenge" = {
