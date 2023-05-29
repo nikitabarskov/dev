@@ -8,7 +8,7 @@ terraform {
     }
     gitlab = {
       source  = "gitlabhq/gitlab"
-      version = "~> 15.8"
+      version = "~> 16.0"
     }
     vercel = {
       source  = "vercel/vercel"
