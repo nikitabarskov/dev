@@ -10,7 +10,7 @@
     "@vercel/analytics": "^1.0.1",
     "canvas-confetti": "^1.5.1",
     "gray-matter": "^4.0.2",
-    "next": "^13.4.3",
+    "next": "^13.4.4",
     "nextra": "^2.5.2",
     "nextra-theme-blog": "^2.5.2",
     "react": "^18.1.0",
