@@ -31,6 +31,13 @@ locals {
         "nextra",
       ]
     }
+    "dbt-meetup-2023-05-31" = {
+      topics = [
+        "dbt",
+        "automation",
+      ]
+      description = "Presentation and code for Oslo DBT meet-up on 2023-05-31"
+    }
   }
   private_github_repositories = {
     "data-engineer-challenge" = {
