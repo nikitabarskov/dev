@@ -79,6 +79,17 @@ resource "github_repository" "public" {
   }
 }
 
+resource "github_branch_protection" "public" {
+  for_each = {
+    for name, config in local.public_github_repositories : name => merge(local.github_repository_default, config)
+  }
+
+  repository_id = github_repository.public[each.key].node_id
+
+  pattern = "main"
+  require_signed_commits = true
+}
+
 resource "github_repository" "private" {
   for_each = local.private_github_repositories
   name     = each.key
