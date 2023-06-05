@@ -68,16 +68,16 @@ provider "registry.terraform.io/integrations/github" {
 }
 
 provider "registry.terraform.io/spacelift-io/spacelift" {
-  version     = "1.1.5"
+  version     = "1.1.6"
   constraints = "~> 1.1"
   hashes = [
-    "h1:VzBfc9HTHVsuvd1LExmb6jyt3YPelYhNQgqDVQZoMAk=",
-    "zh:21a61005af2fd16dacb56b17bfcfdf4cc0af6ff17d800a95ebf29b2c30a5a7c5",
-    "zh:9d2c0b690ca9b40bb9a3f848da9846bef7d873be31afd620e1a49e0aff21148a",
-    "zh:b22c6b2a23827ba596fc9c9169b9eefd494f1c3599c7dc5804ca0ec70f1e296a",
-    "zh:b955041b79d120307851bc4fb1615369ffe434fcfb40ba3abc5eb7989ffef6db",
-    "zh:dc875b5736ef5dba4e1ea88208e77173519e9c0b7c54436129bd217ba49d4f46",
-    "zh:eff5b8a87efd7055b0bb1fb709065be5ea737c97c52cdd7b4e099869079b6dda",
+    "h1:jAqbfI4Ge6AxLmnfzRzxYa9Dr5gnP6drn0Vul0AIZlc=",
+    "zh:52e36d8f6269278af57be64eac1e794eacddcf0402a53197f5cb141a66535f99",
+    "zh:601d7f4a6a494863d12cf562fc05809a94269cc13e13e268b89df08c4dab62db",
+    "zh:78b3fd7db23fd2d91c7f2f465a91232faa7c04796dc3d5119251cf5d3e19ccc3",
+    "zh:8f1cc224634f93adbc712dd817b4ce7021355e08bf0933932083cc4042c24585",
+    "zh:90ba8b231292c35430e46312dcebc97063e1b9953c8645a293676e02e33fb7b6",
+    "zh:dea3ef8667b0d202f6d27803abb7c376f940d1e0bbb94d5e69d1178bb27df5f5",
   ]
 }
 
