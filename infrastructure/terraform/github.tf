@@ -39,11 +39,21 @@ locals {
       description = "Presentation and code for Oslo DBT meet-up on 2023-05-31"
     }
     "dbt-model-versions-demo" = {
+      description = "Code and presentation for dbt model versions demo"
       topics = [
         "dbt",
         "automation",
       ]
-      description = "Code and presentation for dbt model versions demo" 
+    }
+    "dotfiles" = {
+      description = "My dev machine configuration via ansible."
+      topics = [
+        "dotfiles",
+        "ansible",
+        "automation",
+        "dotfiles-macos",
+        "dotfiles-ubuntu",
+      ]
     }
   }
   private_github_repositories = {
@@ -93,7 +103,7 @@ resource "github_branch_protection" "public" {
 
   repository_id = github_repository.public[each.key].node_id
 
-  pattern = "main"
+  pattern                = "main"
   require_signed_commits = true
 }
 
