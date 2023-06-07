@@ -5,7 +5,6 @@ export default {
         <footer>
             <small>
                 <time>{YEAR}</time> © Nikita Barskov.
-                <a href="/feed.xml">RSS</a>
             </small>
             <style jsx>{`
                 footer {
@@ -16,5 +15,7 @@ export default {
                 }
             `}</style>
         </footer>
-    ),
-};
+        ),
+    darkMode: true,
+    navs: []
+}
