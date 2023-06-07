@@ -12,6 +12,7 @@ locals {
     allow_auto_merge       = true
     delete_branch_on_merge = true
     topics                 = []
+    required_status_checks = []
   }
   public_github_repositories = {
     "dev" = {
@@ -29,6 +30,9 @@ locals {
         "notes",
         "wiki",
         "nextra",
+      ]
+      required_status_checks = [
+        "Vercel",
       ]
     }
     "dbt-meetup-2023-05-31" = {
@@ -105,6 +109,11 @@ resource "github_branch_protection" "public" {
 
   pattern                = "main"
   require_signed_commits = true
+
+  required_status_checks {
+    strict   = false
+    contexts = each.value.required_status_checks
+  }
 }
 
 resource "github_repository" "private" {
