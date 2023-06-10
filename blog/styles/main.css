@@ -1,3 +1,7 @@
+code {
+    font-family: "Iosevka", monospace;
+}
+
 body {
     font-family: system-ui, -apple-system, sans-serif, "Helvetica Neue", "Inter";
     -webkit-font-smoothing: subpixel-antialiased;
