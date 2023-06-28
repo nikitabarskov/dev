@@ -20,9 +20,10 @@ resource "spacelift_stack" "stacks" {
   administrative       = each.value.administrative
   autodeploy           = each.value.autodeploy
   enable_local_preview = true
-  description = each.value.description
+  description          = each.value.description
   github_enterprise {
     namespace = "nikitabarskov"
   }
-  project_root = each.value.project_root
+  project_root      = each.value.project_root
+  terraform_version = ">=1.3.0 <2.0.0"
 }
