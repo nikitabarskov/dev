@@ -21,8 +21,9 @@ locals {
 }
 
 resource "gitlab_project" "projects" {
-  for_each = local.projects
-  name     = each.value
+  for_each       = local.projects
+  name           = each.value
+  default_branch = "main"
 }
 
 resource "gitlab_branch_protection" "main" {
