@@ -1,4 +1,4 @@
-FROM docker.io/aquasec/trivy:0.43.1@sha256:944a044451791617cc0ed2ee4d1942a4f66b790d527fcd0575a6b399ccbc05a1 as trivy
+FROM docker.io/aquasec/trivy:0.44.0@sha256:a302712ce9c6fdc703e01da58a60ff007f1c2ff12d2946e18d7b5e96529bbfcf as trivy
 FROM docker.io/safewaters/docker-lock:0.8.10-alpine@sha256:e4563cc6ecb6b6f290d9ebfe3745a49b300d2d3edd495b61a85bc7e079175e4e as docker-lock
 FROM docker.io/anchore/grype:v0.64.1@sha256:817cd94d43652f9a76d96ce0bc4e37303b1331a8c9dc29886b68aa35714336d8 as grype
 FROM docker.io/anchore/syft:v0.86.1@sha256:f2794d19ace079ec97defa96c4b75bdb7544ac96bf146497a7620aafa48603c6 as syft
