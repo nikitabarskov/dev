@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     commit-message:
       prefix: "github-actions"
 
@@ -17,27 +17,27 @@ updates:
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     commit-message:
       prefix: "docker"
 
   - package-ecosystem: "docker"
     directory: "/terraform"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     commit-message:
       prefix: "docker"
 
   - package-ecosystem: "npm"
     directory: "/blog"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     commit-message:
       prefix: "npm"
 
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     commit-message:
       prefix: "npm"
