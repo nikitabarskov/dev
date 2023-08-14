@@ -5,6 +5,7 @@ provider "registry.terraform.io/gitlabhq/gitlab" {
   version     = "16.2.0"
   constraints = "~> 16.0"
   hashes = [
+    "h1:+T7OzHIGEByXfC1bDZ06p5AF5cWlg9SxfGblbuv29yI=",
     "h1:hBc9+jpWmqh1YM4Kq8bqKA2qwkm3p8TiqyxTUrC6qqs=",
     "h1:tGYV2AqF8SZ4jOz9PNL61SPqBJQ8YGTgf6rsqiuf9T4=",
     "zh:183d68d3adaa9b592ec6e0cd66a8cd8f10aada4c6136d02788325b099f2f8f86",
@@ -30,6 +31,7 @@ provider "registry.terraform.io/hashicorp/tfe" {
   constraints = "~> 0.39"
   hashes = [
     "h1:51N4Ca18O5+Xa7kDpL8qAToxu3xeusvCGebX3fYtBYY=",
+    "h1:QtR4uEIuYLjtejLB2hR4Zi+gTp1/xl36c9mcuSM2yLk=",
     "zh:08bb6b119dc9b39de5bc83159ebd7ac279ac4ef494c96d1d589603d6b8a135e6",
     "zh:4a426722660428a85df52bffdfac0a0ae2fddf27164b6516fb266b823fc4d3a5",
     "zh:5aef22351e47b42eeee34d98eb90a8a628320e8a9ed6ec4ea9a1c80114928d91",
@@ -50,6 +52,7 @@ provider "registry.terraform.io/integrations/github" {
   constraints = "~> 5.9"
   hashes = [
     "h1:igCF0XbR3EVR6H7pQg2bjRlNwK+KyW+z8i1DoTi7y7c=",
+    "h1:oyUMDKIIoOl+3EoxworAm9z6dqAAzPIXWyMPCBniPNk=",
     "zh:06a406a6563d0fc73789196316b01f40c2a65fdb3f92d2797c0bd9f9a3ac0b6b",
     "zh:0981f5ee76d5a8dd8f72c759a7f62e25a5746a7da444df267bd744fa06af96c7",
     "zh:09eacf97e95990f2ce8b1d8f8372a6e0d234783d8f162a65b83154fd951a35c7",
@@ -72,6 +75,7 @@ provider "registry.terraform.io/spacelift-io/spacelift" {
   constraints = "~> 1.1"
   hashes = [
     "h1:M1oOA9zTtsgkmy6B9DrUrCVGy/FMhgcf0dUdRtBCkyo=",
+    "h1:RigwHFxXnhliQXJTIErB5hJiJaOWIB6+Ls6GsNBwLn8=",
     "zh:212e2f45cc99e615982c877d9bb61445ef8df282169796846b4464c2baf986b6",
     "zh:4040f882572c998f4d02295d8b329b96aed52b6005fbec8fbd6642027ae896c1",
     "zh:c72ec4d0b7d58bceaf53dcf9f74eec2a9388838fc6c0185f9d93c5a7268d4b87",
@@ -86,6 +90,7 @@ provider "registry.terraform.io/vercel/vercel" {
   constraints = "~> 0.11"
   hashes = [
     "h1:U5g/XGf997iW0fl13xi3y8Ooxq4V1AbKGAhN2n7xgfQ=",
+    "h1:d2r27E320AJGm+FJ/j1exoMuREI+4eVzKc7sGvGz3PU=",
     "zh:0485112496b989b0396f16ec0faf73664e5f922fe33761df4eadf27fab3b575b",
     "zh:171bdda3290a6fd7377e444299d7ffe4b58abb69e96e67bab45f04ee4a03c515",
     "zh:321d8039ed334a74ac288d8a1ea42f22957ce4027c76e9cfc2c0c84c426dac92",
