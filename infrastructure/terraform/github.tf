@@ -1,5 +1,6 @@
 locals {
   github_repository_default = {
+    archived               = false
     description            = ""
     homepage_url           = ""
     has_issues             = false
@@ -24,6 +25,7 @@ locals {
       ]
     }
     "experience" = {
+      homepage_url = "https://experience-smoky.vercel.app"
       topics = [
         "knowledge",
         "learning",
@@ -67,6 +69,7 @@ locals {
     "data-engineer-assignment-kaggle-january-2023" = {
       archived = true
     }
+    "sandbox-volur" = {}
   }
 }
 
@@ -117,8 +120,11 @@ resource "github_branch_protection" "public" {
 }
 
 resource "github_repository" "private" {
-  for_each = local.private_github_repositories
-  name     = each.key
+  for_each = {
+    for name, config in local.private_github_repositories : name => merge(local.github_repository_default, config)
+  }
+
+  name = each.key
 
   visibility = "private"
 
