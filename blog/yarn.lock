@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@braintree/sanitize-url/-/sanitize-url-6.0.2.tgz#6110f918d273fe2af8ea1c4398a88774bb9fc12f"
   integrity sha512-Tbsj02wXCbqGmzdnXNk0SOF19ChhRU70BsroIi4Pm6Ehp56in6vch94mfbdQ17DozxkL3BAVjbZ4Qc1a0HFRAg==
 
-"@fontsource/iosevka@^5.0.5":
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/@fontsource/iosevka/-/iosevka-5.0.5.tgz#7d97952b171dbfb7c3d1fdfd24b3603a5509dcb1"
-  integrity sha512-oay+fO7HR4NqL+HdV/h7dFuqScJ/URZJJyob9FHdnb6268nm/rajSxZ5hdortLAeeN00KijLQxfhPcv+mwPgaA==
+"@fontsource/iosevka@^5.0.7":
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/@fontsource/iosevka/-/iosevka-5.0.7.tgz#3eb8fd1fd89bec61cb70808887ffffa2da21f79c"
+  integrity sha512-X8s5hob/XEMPgY6JsgIwVRYsBMOxeSWlSXAWqZWeFcSF/ZyUsq/ut2fqgOlhUweBqS/ttiPBwJLXl7EPJsWqEg==
 
 "@mdx-js/mdx@^2.2.1", "@mdx-js/mdx@^2.3.0":
   version "2.3.0"
