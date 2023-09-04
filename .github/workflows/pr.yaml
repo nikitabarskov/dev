@@ -20,7 +20,7 @@ jobs:
       docker: ${{ steps.changes.outputs.docker }}
       prettier: ${{ steps.changes.outputs.prettier }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v2
         id: changes
         with:
@@ -52,7 +52,7 @@ jobs:
       run:
         shell: bash
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: actions/cache@v3
@@ -82,7 +82,7 @@ jobs:
       run:
         shell: bash
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: arduino/setup-task@v1
@@ -97,7 +97,7 @@ jobs:
       - changes
     if: ${{ !always() }} # ${{ needs.changes.outputs.prettier == 'true' }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: actions/cache@v3
