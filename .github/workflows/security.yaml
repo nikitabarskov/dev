@@ -28,11 +28,11 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
           task validate-security
-      - uses: github/codeql-action/upload-sarif@v2
+      - uses: github/codeql-action/upload-sarif@v3
         with:
           category: grype-vulnerabilities
           sarif_file: "vulnerabilities.grype.sarif"
-      - uses: github/codeql-action/upload-sarif@v2
+      - uses: github/codeql-action/upload-sarif@v3
         with:
           category: trivy-misconfiguration-and-vulnerabilities
           sarif_file: "misconfiguration-and-vulnerabilities.trivy.sarif"
