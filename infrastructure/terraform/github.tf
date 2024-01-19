@@ -14,6 +14,7 @@ locals {
     delete_branch_on_merge = true
     topics                 = []
     required_status_checks = []
+    visibility             = "public"
   }
   public_github_repositories = {
     "dev" = {
@@ -47,6 +48,10 @@ locals {
         "dotfiles-ubuntu",
       ]
     }
+    "undercover-talent-frontend" = {
+      description = "Frontend for Undercover Talent."
+      visibility  = "private"
+    }
   }
   private_github_repositories = {
     "sandbox-volur" = {}
@@ -61,6 +66,8 @@ resource "github_repository" "public" {
   name         = each.key
   description  = each.value.description
   homepage_url = each.value.homepage_url
+
+  auto_init = true
 
   has_issues   = each.value.has_issues
   has_projects = each.value.has_projects
