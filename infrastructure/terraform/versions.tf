@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.0"
+  required_version = ">= 1.0, < 1.6.0"
 
   required_providers {
     github = {
@@ -13,10 +13,6 @@ terraform {
     vercel = {
       source  = "vercel/vercel"
       version = "~> 1.0"
-    }
-    tfe = {
-      source  = "hashicorp/tfe"
-      version = "~> 0.39"
     }
     spacelift = {
       source  = "spacelift-io/spacelift"

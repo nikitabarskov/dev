@@ -25,5 +25,5 @@ resource "spacelift_stack" "stacks" {
     namespace = "nikitabarskov"
   }
   project_root      = each.value.project_root
-  terraform_version = ">=1.3.0 <2.0.0"
+  terraform_version = ">=1.3.0 <1.6.0"
 }
