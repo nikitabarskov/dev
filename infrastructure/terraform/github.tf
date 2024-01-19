@@ -67,6 +67,8 @@ resource "github_repository" "public" {
   description  = each.value.description
   homepage_url = each.value.homepage_url
 
+  visibility = each.value.visibility
+
   auto_init = true
 
   has_issues   = each.value.has_issues
