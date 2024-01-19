@@ -37,20 +37,6 @@ locals {
         "Vercel",
       ]
     }
-    "dbt-meetup-2023-05-31" = {
-      topics = [
-        "dbt",
-        "automation",
-      ]
-      description = "Presentation and code for Oslo DBT meet-up on 2023-05-31"
-    }
-    "dbt-model-versions-demo" = {
-      description = "Code and presentation for dbt model versions demo"
-      topics = [
-        "dbt",
-        "automation",
-      ]
-    }
     "dotfiles" = {
       description = "My dev machine configuration via ansible."
       topics = [
@@ -63,12 +49,6 @@ locals {
     }
   }
   private_github_repositories = {
-    "data-engineer-challenge" = {
-      archived = true
-    },
-    "data-engineer-assignment-kaggle-january-2023" = {
-      archived = true
-    }
     "sandbox-volur" = {}
   }
 }

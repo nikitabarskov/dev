@@ -16,9 +16,6 @@ locals {
     "experience" = {
       github_repository_name = "experience"
     }
-    "dbt-meetup-2023-05-31" = {
-      github_repository_name = "dbt-meetup-2023-05-31"
-    }
   }
 }
 
