@@ -52,6 +52,10 @@ locals {
       description = "Frontend for Undercover Talent."
       visibility  = "private"
     }
+    "undercover-talent-backend-ml" = {
+      description = "Backend for Undercover Talent ML."
+      visibility  = "private"
+    }
   }
   private_github_repositories = {
     "sandbox-volur" = {}
