@@ -55,13 +55,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ${{ env.DOT_TERRAFORM }}
           key: ${{ runner.os }}-dot-terraform-${{ hashFiles('terraform/.terraform.lock.hcl') }}
           restore-keys: |
             ${{ runner.os }}-dot-terraform-
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ${{ env.TERRAFORM_VERSIONS }}
           key: ${{ runner.os }}-terraform-versions-${{ hashFiles('terraform/versions.tf') }}
@@ -100,7 +100,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ${{ env.NODE_MODULES }}
           key: ${{ runner.os }}-prettier-${{ hashFiles('yarn.lock') }}
