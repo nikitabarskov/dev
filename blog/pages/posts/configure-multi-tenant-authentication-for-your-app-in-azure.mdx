@@ -1,0 +1,201 @@
+---
+title: How can I configure multi-tenant authentication for my Container App in Azure?
+date: 2024-01-19
+description: An approach to make it work in a declarative way
+author: Nikita Barskov
+tag: authentication, multi-tenant, azure, container apps
+---
+
+# How can I configure multi-tenant authentication for my Container App in Azure?
+
+Sometimes, one might want to configure multi-tenant authentication for their
+application. I wrote this article to share my experience and approach to make
+it work.
+
+## Prerequisites
+
+This article does not really depend on any specific programming language or
+Cloud Provider. However, to show a real world example, I will use Azure as
+a Cloud Provider and Azure AD as an Identity Provider. To deploy resources in
+Azure I am going to use Terraform and Azure CLI.
+
+## The problem
+
+Let us say you have a web application that you want to protect. You want it to
+be accessible by known-set of users only. What are the options you have?
+Frankly, there are many. You can implement your own authentication mechanism,
+or you can use a third-party service like Azure AD or Auth0. One thing that we
+are sure about is that we need some sort of authorization and authentication
+mechanism. How to implement this mechanism then?
+
+### Option 1: implement authorisation in your application logic
+
+Given that you have a web application, it is not a big deal to implement your
+authentication and authorization logic inside of the web application code.
+Well-known IdPs provide libraries and SDKs to make it easier for you. Yet, you
+can face some difficulties:
+
+- the code of your application becomes more complex and coupled with the
+  authentication logic,
+- unauthenticated traffic still reaches your application (if you don't use any
+  other mechanisms to protect it),
+- you implement this logic and maintain it.
+
+### Option 2: use a reverse proxy
+
+Another option is to delegate authentication and authorization logic to
+a reverse proxy and configure the traffic so only authorized traffic reaches
+your application.
+
+I personally find this approach more convenient and flexible. Compare to the
+previous option, instead of impretively implementing the logic, you
+declaratively describe the behaviour you want to achieve.
+
+As a reverse proxy, I used Envoy, but any reverse proxy with authentication
+and authorization capabilities should work.
+
+## The solution
+
+Let's draw the list of components we need to make work together:
+
+- your application (could be any application),
+- a reverse proxy (Envoy) and its configuration,
+- an Identity Provider (Azure AD) and its configuration.
+
+### Step 1: register your application in Azure AD
+
+1. Lets create [Azure AD Application Registration][azure-ad-application-registration]
+   for our application. We can do it with Azure AD provider for Terraform:
+
+   ```hcl
+   resource "azuread_application_registration" "main" {
+     description                            = "Application Registration for my Awesome service"
+     display_name                           = "My Awesome Service"
+     homepage_url                           = "https://my-awesome-service.my-awesome-company.com"
+     implicit_access_token_issuance_enabled = true
+     implicit_id_token_issuance_enabled     = true
+     logout_url                             = "https://my-awesome-service.my-awesome-company.com/logout"
+     requested_access_token_version         = 2
+     sign_in_audience                       = "AzureADMultipleOrgs"
+   }
+   ```
+
+   It is quite important to set `sign_in_audience` to `AzureADMultipleOrgs` to
+   allow users from any Azure AD tenant to sign in to your application. The
+   [version of access token][azure-ad-token-version] is also important. We need to set it to `2`.
+
+[azure-ad-application-registration]: https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app
+[azure-ad-token-version]: https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens#v10-and-v20-tokens
+
+  2. Then we are going to create a passoword for our application:
+
+     ```hcl
+     resource "azuread_application_password" "main" {
+       application_id = azuread_application_registration.main.id
+     }
+     ```
+
+  3. Let's configure our application to redirect users to Azure AD for
+     authentication. We need to provide a list of redirect URIs for our
+     application. We can do it with `azuread_application_redirect_uris` resource:
+
+     ```hcl
+     resource "azuread_application_redirect_uris" "main" {
+       application_id = azuread_application_registration.main.id
+       type           = "Web"
+       redirect_uris = [
+         "https://my-awesome-service.my-awesome-company.com/callback",
+       ]
+     }
+     ```
+
+  4. Let's configure identifier URI
+
+     ```hcl
+     resource "azuread_application_identifier_uri" "main" {
+       application_id = azuread_application_registration.main.id
+       identifier_uri = "api://${azuread_application_registration.main.client_id}"
+     }
+     ```
+
+  5. Finally, we need to configure API permissions for our application. We
+     are going to fetch information about a user from Microsoft Graph API, so
+     we need to configure permissions for it:
+
+     ```hcl
+     data "azuread_application_published_app_ids" "well_known" {}
+
+     data "azuread_service_principal" "msgraph" {
+       client_id =    data.azuread_application_published_app_ids.well_known.result["MicrosoftGraph"]
+     }
+
+     resource "azuread_application_api_access" "main" {
+       api_client_id  = data.azuread_application_published_app_ids.well_known.result["MicrosoftGraph"]
+       application_id = azuread_application_registration.main.id
+       scope_ids = [
+         data.azuread_service_principal.msgraph.oauth2_permission_scope_ids["User.Read"],
+       ]
+     }
+     ```
+
+Great! Now we have registered our application in Azure AD. Let's move on to
+the next step and configure Envoy.
+
+### Step 2: configure Envoy
+
+1. Let's create a Dockerfile for Envoy:
+
+   ```dockerfile
+   FROM envoyproxy/envoy:v1.18.3
+
+   COPY envoy.yaml /etc/envoy/envoy.yaml
+   ```
+
+   This simple Dockerfile configures Envoy to use a custom configuration file.
+   Yet, the most important part is the configuration file itself.
+
+2. Let's configure envoy to do authentication. To do so, we need to add `OAuth2`
+   filter to the `http_filters` list of Envoy configuration.
+
+    ```yaml
+    - name: envoy.filters.http.oauth2
+      typed_config:
+        "@type": type.googleapis.com/envoy.extensions.filters.http.oauth2.v3.OAuth2
+        config:
+          token_endpoint:
+            cluster: azure_oauth2
+            uri: https://login.microsoftonline.com/organizations/oauth2/token
+            timeout: 3s
+          authorization_endpoint: https://login.microsoftonline.com/organizations/oauth2/authorize
+          redirect_uri: "%REQ(x-forwarded-proto)%://%REQ(:authority)%/callback"
+          redirect_path_matcher:
+            path:
+              suffix: /callback
+          signout_path:
+            path:
+              suffix: /signout
+          credentials:
+            client_id: <your-azure-ad-application-client-id>
+            token_secret:
+              name: token
+            hmac_secret:
+              name: hmac
+          forward_bearer_token: true
+          auth_scopes:
+            - api://<your-azure-ad-application-client-id>/.default
+          resources:
+            - <your-azure-ad-application-client-id>
+      ```
+
+
+import { Steps } from 'nextra/components'
+
+<Steps>
+### Step 1
+
+Contents for step 1.
+
+### Step 2
+
+Contents for step 2.
+</Steps>
