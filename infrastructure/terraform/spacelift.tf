@@ -24,6 +24,7 @@ resource "spacelift_stack" "stacks" {
   github_enterprise {
     namespace = "nikitabarskov"
   }
-  project_root      = each.value.project_root
-  terraform_version = ">=1.3.0 <1.6.0"
+  project_root            = each.value.project_root
+  terraform_workflow_tool = "OPEN_TOFU"
+  terraform_version       = ">=1.6.0 <2.0.0"
 }
