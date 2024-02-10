@@ -56,6 +56,10 @@ locals {
       description = "Backend for Undercover Talent ML."
       visibility  = "private"
     }
+    "undercover-talent-apis" = {
+      description = "IDLs for Undercover Talent"
+      visibility  = "private"
+    }
   }
   private_github_repositories = {
     "sandbox-volur" = {}
