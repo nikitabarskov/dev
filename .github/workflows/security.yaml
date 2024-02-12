@@ -23,7 +23,7 @@ jobs:
           key: ${{ runner.os }}-security-${{ hashFiles('docker-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-security-
-      - uses: arduino/setup-task@v1
+      - uses: arduino/setup-task@v2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
