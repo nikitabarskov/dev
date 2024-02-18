@@ -26,11 +26,11 @@ we start using it at work.
 
 Before you start, you need:
 
-- Spacelift account,
-- Terraform Cloud workspace(s),
-- GitHub repository with your Terraform code,
-- Terraform CLI,
-- Spacelift CLI.
+-   Spacelift account,
+-   Terraform Cloud workspace(s),
+-   GitHub repository with your Terraform code,
+-   Terraform CLI,
+-   Spacelift CLI.
 
 ## Migration
 
@@ -62,8 +62,8 @@ Make sure you cloned it before you start.
 
 I've successfully managed to:
 
-- export Terraform Cloud resources,
-- generate Spacelift configuration.
+-   export Terraform Cloud resources,
+-   generate Spacelift configuration.
 
 But later on, I've experienced some issues with creating the stacks.
 

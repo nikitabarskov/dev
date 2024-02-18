@@ -3,7 +3,12 @@ code {
 }
 
 body {
-    font-family: system-ui, -apple-system, sans-serif, "Helvetica Neue", "Inter";
+    font-family:
+        system-ui,
+        -apple-system,
+        sans-serif,
+        "Helvetica Neue",
+        "Inter";
     -webkit-font-smoothing: subpixel-antialiased;
     font-variant: common-ligatures contextual;
 }

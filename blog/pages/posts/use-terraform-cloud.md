@@ -207,7 +207,7 @@ terraform {
 
 and then run
 
-``` copy
+```copy
 terraform init -migrate-state
 ```
 
