@@ -20,11 +20,11 @@ GitHub Apps more efficient for managing GitHub resources within organizations.
 
 Ensure the following are in place before proceeding:
 
-- GitHub organization
-- Repository for OpenTofu code within the organization
-- Spacelift account
-- Stack connected to the repository within the organization
-- OpenTofu installed on your machine
+-   GitHub organization
+-   Repository for OpenTofu code within the organization
+-   Spacelift account
+-   Stack connected to the repository within the organization
+-   OpenTofu installed on your machine
 
 ## Implementation
 
@@ -38,10 +38,11 @@ for detailed instructions.
 [gh-docs-install-gh-app]: https://docs.github.com/en/apps/using-github-apps/installing-your-own-github-app
 
 Provide the following information:
-- Name: **opentofu-gh-provider-app**
-- Homepage URL: **https://github.com/skov-bar**
-- Disable WebHooks
-- Adjust permissions based on your requirements
+
+-   Name: **opentofu-gh-provider-app**
+-   Homepage URL: **https://github.com/skov-bar**
+-   Disable WebHooks
+-   Adjust permissions based on your requirements
 
 #### Configuring permissions for GitHub App
 
