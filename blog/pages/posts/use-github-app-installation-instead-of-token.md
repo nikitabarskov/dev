@@ -38,7 +38,7 @@ for detailed instructions.
 [gh-docs-install-gh-app]: https://docs.github.com/en/apps/using-github-apps/installing-your-own-github-app
 
 Provide the following information:
-- Name: **OpenTofu GitHub Provider App Skov Bar**
+- Name: **opentofu-gh-provider-app**
 - Homepage URL: **https://github.com/skov-bar**
 - Disable WebHooks
 - Adjust permissions based on your requirements
