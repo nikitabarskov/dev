@@ -60,6 +60,9 @@ locals {
       description = "IDLs for Undercover Talent"
       visibility  = "private"
     }
+    "uv-demo" = {
+      description = "A simple demo repository for UV"
+    }
   }
   private_github_repositories = {
     "sandbox-volur" = {}
