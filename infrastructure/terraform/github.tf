@@ -63,6 +63,13 @@ locals {
     "uv-demo" = {
       description = "A simple demo repository for UV"
     }
+    "python-grpc-testing-demo" = {
+      description = "A simple demo for `grpc-testing` package"
+      topics = [
+        "grpc",
+        "python",
+      ]
+    }
   }
   private_github_repositories = {
     "sandbox-volur" = {}
