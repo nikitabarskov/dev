@@ -70,6 +70,14 @@ locals {
         "python",
       ]
     }
+    "dbt-data-contracts-presentation" = {
+      description = "Presentation for DBT Data Contracts for dbt MeetUp Oslo 2024-03-21"
+      topics = [
+        "dbt",
+        "data-contracts",
+        "dbt-meetup",
+      ]
+    }
   }
   private_github_repositories = {
     "sandbox-volur" = {}
