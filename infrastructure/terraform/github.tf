@@ -78,6 +78,14 @@ locals {
         "dbt-meetup",
       ]
     }
+    "supply-chain-security-demo" = {
+      description = "A simple demo for supply chain"
+      topics = [
+        "supply-chain",
+        "demo",
+        "security",
+      ]
+    }
   }
   private_github_repositories = {
     "sandbox-volur" = {}
