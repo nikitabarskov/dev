@@ -4,40 +4,30 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    commit-message:
-      prefix: "github-actions"
 
   - package-ecosystem: "terraform"
     directory: "/infrastructure/terraform"
     schedule:
       interval: "weekly"
-    commit-message:
-      prefix: "terraform"
 
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
       interval: "weekly"
-    commit-message:
-      prefix: "docker"
-
-  - package-ecosystem: "docker"
-    directory: "/terraform"
-    schedule:
-      interval: "weekly"
-    commit-message:
-      prefix: "docker"
 
   - package-ecosystem: "npm"
     directory: "/blog"
     schedule:
       interval: "weekly"
-    commit-message:
-      prefix: "npm"
+    groups:
+      production-dependencies:
+        applies-to: version-updates
+        dependency-type: "production"
+      dev-dependencies:
+        applies-to: version-updates
+        dependency-type: "development"
 
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
-    commit-message:
-      prefix: "npm"
