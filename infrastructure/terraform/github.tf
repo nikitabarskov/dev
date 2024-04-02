@@ -48,10 +48,6 @@ locals {
         "dotfiles-ubuntu",
       ]
     }
-    "undercover-talent-frontend" = {
-      description = "Frontend for Undercover Talent."
-      visibility  = "private"
-    }
     "undercover-talent-backend-ml" = {
       description = "Backend for Undercover Talent ML."
       visibility  = "private"
