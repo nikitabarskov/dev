@@ -1,6 +1,0 @@
-# https://github.com/anchore/grype#configuration
-check-for-app-update: false
-fail-on-severity: "medium"
-output: "sarif"
-quiet: false
-file: "vulnerabilities.grype.sarif"

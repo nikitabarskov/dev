@@ -1,7 +1,0 @@
-# https://github.com/anchore/syft#configuration
-output:
-  - "json=dependencies.syft.json"
-check-for-app-update: false
-exclude:
-  - "./.git"
-  - "**/.terraform"
