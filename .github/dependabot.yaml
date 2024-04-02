@@ -4,17 +4,14 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-
   - package-ecosystem: "terraform"
     directory: "/infrastructure/terraform"
     schedule:
       interval: "weekly"
-
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
       interval: "weekly"
-
   - package-ecosystem: "npm"
     directory: "/blog"
     schedule:
@@ -26,7 +23,6 @@ updates:
       dev-dependencies:
         applies-to: version-updates
         dependency-type: "development"
-
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
