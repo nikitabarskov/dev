@@ -4,9 +4,15 @@ default:
 configure:
     tofu init -backend=false
 
+upgrade:
+    tofu init -backend=false -upgrade
+
 fix:
     tofu fmt -recursive .
 
 validate:
     tofu fmt -check -recursive .
     tofu validate .
+
+plan:
+    spacectl stack local-preview --id dev
