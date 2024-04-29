@@ -17,6 +17,14 @@ locals {
     visibility             = "public"
   }
   public_github_repositories = {
+    "cv" = {
+      description = "Sources for my resume"
+      topics = [
+        "cv",
+        "curriculum-vitae",
+        "resume",
+      ]
+    }
     "dev" = {
       homepage_url = "https://dev-tau-seven.vercel.app/"
       topics = [
@@ -48,10 +56,6 @@ locals {
         "dotfiles-ubuntu",
       ]
     }
-    "undercover-talent-backend-ml" = {
-      description = "Backend for Undercover Talent ML."
-      visibility  = "private"
-    }
     "uv-demo" = {
       description = "A simple demo repository for UV"
     }
@@ -82,6 +86,11 @@ locals {
   private_github_repositories = {
     "sandbox-volur" = {}
   }
+}
+
+import {
+  to = github_repository.public["cv"]
+  id = "cv"
 }
 
 resource "github_repository" "public" {
@@ -116,6 +125,94 @@ resource "github_repository" "public" {
       vulnerability_alerts,
     ]
   }
+
+  archive_on_destroy = true
+}
+
+import {
+  to = github_branch.main["dev"]
+  id = "dev:main"
+}
+
+import {
+  to = github_branch.main["experience"]
+  id = "experience:main"
+}
+
+import {
+  to = github_branch.main["dotfiles"]
+  id = "dotfiles:main"
+}
+
+import {
+  to = github_branch.main["uv-demo"]
+  id = "uv-demo:main"
+}
+
+import {
+  to = github_branch.main["python-grpc-testing-demo"]
+  id = "python-grpc-testing-demo:main"
+}
+
+import {
+  to = github_branch.main["dbt-data-contracts-presentation"]
+  id = "dbt-data-contracts-presentation:main"
+}
+
+import {
+  to = github_branch.main["supply-chain-security-demo"]
+  id = "supply-chain-security-demo:main"
+}
+
+resource "github_branch" "main" {
+  for_each = {
+    for name, config in local.public_github_repositories : name => merge(local.github_repository_default, config)
+  }
+  repository = github_repository.public[each.key].name
+  branch     = "main"
+}
+
+import {
+  to = github_branch_default.main["dev"]
+  id = "dev"
+}
+
+import {
+  to = github_branch_default.main["experience"]
+  id = "experience"
+}
+
+import {
+  to = github_branch_default.main["dotfiles"]
+  id = "dotfiles"
+}
+
+import {
+  to = github_branch_default.main["uv-demo"]
+  id = "uv-demo"
+}
+
+import {
+  to = github_branch_default.main["python-grpc-testing-demo"]
+  id = "python-grpc-testing-demo"
+}
+
+import {
+  to = github_branch_default.main["dbt-data-contracts-presentation"]
+  id = "dbt-data-contracts-presentation"
+}
+
+import {
+  to = github_branch_default.main["supply-chain-security-demo"]
+  id = "supply-chain-security-demo"
+}
+
+resource "github_branch_default" "main" {
+  for_each = {
+    for name, config in local.public_github_repositories : name => merge(local.github_repository_default, config)
+  }
+  repository = github_repository.public[each.key].name
+  branch     = github_branch.main[each.key].branch
 }
 
 resource "github_branch_protection" "public" {
