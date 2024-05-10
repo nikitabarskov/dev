@@ -7,18 +7,19 @@
     "export": "next export"
   },
   "dependencies": {
-    "@fontsource/iosevka": "^5",
-    "@vercel/analytics": "^1",
-    "next": "^14",
-    "nextra": "^2",
-    "nextra-theme-blog": "^2",
-    "react": "^18",
-    "react-dom": "^18"
+    "@fontsource/iosevka": "^5.0.11",
+    "@vercel/analytics": "^1.2.2",
+    "next": "^14.2.3",
+    "nextra": "^2.13.4",
+    "nextra-theme-blog": "^2.13.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "typescript": "^5"
-  }
+    "@types/node": "^20.12.11",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.4.5"
+  },
+  "packageManager": "pnpm@9.1.0+sha512.67f5879916a9293e5cf059c23853d571beaf4f753c707f40cb22bed5fb1578c6aad3b6c4107ccb3ba0b35be003eb621a16471ac836c87beb53f9d54bb4612724"
 }

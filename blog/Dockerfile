@@ -1,16 +1,19 @@
-FROM node:lts-alpine@sha256:28bed508446db2ee028d08e76fb47b935defa26a84986ca050d2596ea67fd506 as base
+FROM docker.io/library/node:22-alpine3.19@sha256:487dc5d5122d578e13f2231aa4ac0f63068becd921099c4c677c850df93bede8 AS node
+RUN corepack enable pnpm
+
+FROM gcr.io/distroless/nodejs20-debian12:nonroot@sha256:61a4107f54a696ea04d6ac7b1a38d0093d21e155c47856e407f137437646b727 AS distroless
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
-FROM base as dependencies
+FROM node AS dependencies
 
 WORKDIR /srv/src
 
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
 
-FROM base as src
+FROM node AS src
 
 WORKDIR /srv/src
 
@@ -20,27 +23,22 @@ COPY . .
 FROM src as build
 
 WORKDIR /srv/src
-RUN yarn next build
+RUN pnpm next build
 
-FROM base as app
+FROM distroless AS app
 
 ENV NODE_ENV production
 
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
-
 WORKDIR /srv/app
 
-COPY --from=build /srv/src/next.config.js ./next.config.js
 COPY --from=build /srv/src/public ./public
+COPY --from=build /srv/src/.next/standalone ./
+COPY --from=build /srv/src/.next/static ./.next/static
 
-COPY --from=build --chown=nextjs:nodejs /srv/src/.next/standalone ./
-COPY --from=build --chown=nextjs:nodejs /srv/src/.next/static ./.next/static
-
-USER nextjs
+USER nonroot
 
 EXPOSE 3000
 
 ENV PORT 3000
 
-CMD ["node", "server.js"]
+CMD [ "server.js" ]

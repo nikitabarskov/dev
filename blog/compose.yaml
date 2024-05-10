@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   dev:
     build:
@@ -9,7 +7,7 @@ services:
       - .:/srv/src:z
       - .next:/srv/src/.next
       - node_modules:/srv/src/node_modules
-    command: "yarn next dev"
+    command: "pnpm next dev"
     ports:
       - "3000:3000"
   app:
