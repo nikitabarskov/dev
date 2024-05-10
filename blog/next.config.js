@@ -6,4 +6,6 @@ const withNextra = require("nextra")({
     readingTime: true,
 });
 
-module.exports = withNextra();
+module.exports = withNextra({
+  output: "standalone"
+});
