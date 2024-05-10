@@ -2,7 +2,7 @@ resource "vercel_project" "dev" {
   name      = "dev"
   framework = "nextjs"
 
-  install_command = "pnpn install --frozen-lockfile"
+  install_command = "pnpm install --frozen-lockfile"
   build_command   = "pnpm build"
 
   git_repository = {
@@ -28,7 +28,7 @@ resource "vercel_project" "main" {
   name      = each.key
   framework = "nextjs"
 
-  install_command = "pnpn install --frozen-lockfile"
+  install_command = "pnpm install --frozen-lockfile"
   build_command   = "pnpm build"
 
   git_repository = {
