@@ -82,6 +82,14 @@ locals {
         "security",
       ]
     }
+    "prompts" = {
+      description = "Prompts I am using with Zed AI assistant"
+      topics = [
+        "zed",
+        "prompt-engineering",
+        "llms",
+      ]
+    }
   }
   private_github_repositories = {
     "sandbox-volur" = {}
