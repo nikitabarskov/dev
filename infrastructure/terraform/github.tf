@@ -93,6 +93,7 @@ locals {
   }
   private_github_repositories = {
     "sandbox-volur" = {}
+    "barskov.dev"   = {}
   }
 }
 
