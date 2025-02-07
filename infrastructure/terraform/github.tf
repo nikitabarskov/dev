@@ -90,6 +90,13 @@ locals {
         "llms",
       ]
     }
+    "stars-keeper" = {
+      description = "I use it to keep track of my starred repositories and to categorize them"
+      topics = [
+        "stars",
+        "github",
+      ]
+    }
   }
   private_github_repositories = {
     "sandbox-volur" = {}
