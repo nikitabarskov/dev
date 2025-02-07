@@ -176,6 +176,15 @@ resource "github_repository" "private" {
 
   archived = each.value.archived
 
+  has_issues   = each.value.has_issues
+  has_projects = each.value.has_projects
+  has_wiki     = each.value.has_wiki
+
+  allow_auto_merge   = each.value.allow_auto_merge
+  allow_merge_commit = each.value.allow_merge_commit
+  allow_squash_merge = each.value.allow_squash_merge
+  allow_rebase_merge = each.value.allow_rebase_merge
+
   lifecycle {
     ignore_changes = [
       security_and_analysis,
