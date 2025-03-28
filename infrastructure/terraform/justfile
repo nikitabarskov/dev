@@ -1,5 +1,5 @@
 default:
-    just list
+    just --list
 
 configure:
     tofu init -backend=false
@@ -7,6 +7,7 @@ configure:
 upgrade:
     tofu init -backend=false -upgrade
 
+# fix auto-fixable issues
 fix:
     tofu fmt -recursive .
 
