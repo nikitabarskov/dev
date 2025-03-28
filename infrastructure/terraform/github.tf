@@ -14,11 +14,12 @@ locals {
     delete_branch_on_merge = true
     topics                 = []
     required_status_checks = []
-    visibility             = "public"
+    visibility             = "private"
   }
   public_github_repositories = {
     "cv" = {
       description = "Sources for my resume"
+      visibility  = "public"
       topics = [
         "cv",
         "curriculum-vitae",
@@ -27,6 +28,7 @@ locals {
     }
     "dev" = {
       homepage_url = "https://dev-tau-seven.vercel.app/"
+      visibility   = "public"
       topics = [
         "github",
         "infrastructure",
@@ -35,6 +37,7 @@ locals {
     }
     "experience" = {
       homepage_url = "https://experience-smoky.vercel.app"
+      visibility   = "public"
       topics = [
         "knowledge",
         "learning",
@@ -48,6 +51,7 @@ locals {
     }
     "dotfiles" = {
       description = "My dev machine configuration via ansible."
+      visibility  = "public"
       topics = [
         "dotfiles",
         "ansible",
@@ -58,9 +62,11 @@ locals {
     }
     "uv-demo" = {
       description = "A simple demo repository for UV"
+      visibility  = "public"
     }
     "python-grpc-testing-demo" = {
       description = "A simple demo for `grpc-testing` package"
+      visibility  = "public"
       topics = [
         "grpc",
         "python",
@@ -68,6 +74,7 @@ locals {
     }
     "dbt-data-contracts-presentation" = {
       description = "Presentation for DBT Data Contracts for dbt MeetUp Oslo 2024-03-21"
+      visibility  = "public"
       topics = [
         "dbt",
         "data-contracts",
@@ -76,6 +83,7 @@ locals {
     }
     "supply-chain-security-demo" = {
       description = "A simple demo for supply chain"
+      visibility  = "public"
       topics = [
         "supply-chain",
         "demo",
@@ -84,6 +92,7 @@ locals {
     }
     "prompts" = {
       description = "Prompts I am using with Zed AI assistant"
+      visibility  = "public"
       topics = [
         "zed",
         "prompt-engineering",
@@ -92,6 +101,7 @@ locals {
     }
     "stars-keeper" = {
       description = "I use it to keep track of my starred repositories and to categorize them"
+      visibility  = "public"
       topics = [
         "stars",
         "github",
