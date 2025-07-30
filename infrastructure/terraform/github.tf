@@ -107,6 +107,15 @@ locals {
         "github",
       ]
     }
+    "recipes" = {
+      description = "A collection of usefule recipes for Compose"
+      visibility  = "public"
+      topics = [
+        "docker",
+        "compose",
+        "recipes",
+      ]
+    }
   }
   private_github_repositories = {
     "sandbox-volur" = {}
