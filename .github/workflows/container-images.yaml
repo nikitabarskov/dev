@@ -25,5 +25,5 @@ jobs:
       - if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         run: |
           just \
-          docker_build_args="--cache-from type=gha --cache-to type=gha,mode=max" \
+          docker_build_args="--load --cache-from type=gha --cache-to type=gha,mode=max" \
           deploy infrastructure-ci
