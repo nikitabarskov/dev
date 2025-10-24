@@ -36,8 +36,6 @@ locals {
       ]
     }
     "experience" = {
-      homepage_url = "https://experience-smoky.vercel.app"
-      visibility   = "public"
       topics = [
         "knowledge",
         "learning",
@@ -60,34 +58,12 @@ locals {
         "dotfiles-ubuntu",
       ]
     }
-    "uv-demo" = {
-      description = "A simple demo repository for UV"
-      visibility  = "public"
-    }
     "python-grpc-testing-demo" = {
       description = "A simple demo for `grpc-testing` package"
       visibility  = "public"
       topics = [
         "grpc",
         "python",
-      ]
-    }
-    "dbt-data-contracts-presentation" = {
-      description = "Presentation for DBT Data Contracts for dbt MeetUp Oslo 2024-03-21"
-      visibility  = "public"
-      topics = [
-        "dbt",
-        "data-contracts",
-        "dbt-meetup",
-      ]
-    }
-    "supply-chain-security-demo" = {
-      description = "A simple demo for supply chain"
-      visibility  = "public"
-      topics = [
-        "supply-chain",
-        "demo",
-        "security",
       ]
     }
     "prompts" = {
