@@ -118,6 +118,7 @@ locals {
     }
     "sandbox-volur" = {}
     "barskov.dev"   = {}
+    "spr-ctl"       = {}
   }
 }
 
