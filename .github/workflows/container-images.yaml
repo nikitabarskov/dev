@@ -24,6 +24,7 @@ jobs:
           build infrastructure-ci
       - if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
           just \
           docker_build_args="--load --cache-from type=gha --cache-to type=gha,mode=max" \
           deploy infrastructure-ci
