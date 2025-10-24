@@ -1,0 +1,23 @@
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        description: "The working directory for the OpenTofu infrastructure"
+        required: true
+        type: string
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/nikitabarskov/infrastructure-ci:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@v5
+      - run: |
+          just ci

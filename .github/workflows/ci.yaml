@@ -2,13 +2,23 @@ on:
   push:
     branches:
       - main
+    paths:
+      - .github/workflows/ci.yaml
+      - container-images/**.Dockerfile
   pull_request:
     paths:
       - .github/workflows/ci.yaml
       - container-images/**.Dockerfile
 
 jobs:
-  main:
+  infrastructure-opentofu:
+    uses: ./.github/workflows/infrastructure-opentofu.yaml
+    permissions:
+      contents: read
+      packages: read
+    with:
+      working-directory: ${{ inputs.working-directory }}
+  container-images:
     uses: ./.github/workflows/container-images.yaml
     permissions:
       contents: read

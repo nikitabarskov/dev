@@ -15,5 +15,7 @@ validate:
     tofu fmt -check -recursive .
     tofu validate .
 
+ci: configure validate
+
 plan:
     spacectl stack local-preview --id dev
