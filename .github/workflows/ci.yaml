@@ -17,7 +17,7 @@ jobs:
       contents: read
       packages: read
     with:
-      working-directory: ${{ inputs.working-directory }}
+      working-directory: infrastructure/opentofu
   container-images:
     uses: ./.github/workflows/container-images.yaml
     permissions:
