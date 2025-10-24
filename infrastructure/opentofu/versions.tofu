@@ -8,11 +8,7 @@ terraform {
     }
     gitlab = {
       source  = "gitlabhq/gitlab"
-      version = "~> 16.0"
-    }
-    vercel = {
-      source  = "vercel/vercel"
-      version = "~> 1.0"
+      version = "~> 18.0"
     }
     spacelift = {
       source  = "spacelift-io/spacelift"
