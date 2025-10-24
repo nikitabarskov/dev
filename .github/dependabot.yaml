@@ -4,3 +4,9 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+  - package-ecosystem: terraform
+    directory: "/infrastructure/opentofu"
+    schedule:
+      interval: "weekly"
+    allow:
+      - dependency-type: "all"
