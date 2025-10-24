@@ -16,7 +16,7 @@ locals {
     required_status_checks = []
     visibility             = "private"
   }
-  public_github_repositories = {
+  github_repositories = {
     "cv" = {
       description = "Sources for my resume"
       visibility  = "public"
@@ -116,16 +116,93 @@ locals {
         "recipes",
       ]
     }
-  }
-  private_github_repositories = {
     "sandbox-volur" = {}
     "barskov.dev"   = {}
   }
 }
 
-resource "github_repository" "public" {
+moved {
+  from = github_repository.public["cv"]
+  to   = github_repository.main["cv"]
+}
+
+moved {
+  from = github_repository.public["dev"]
+  to   = github_repository.main["dev"]
+}
+
+moved {
+  from = github_repository.public["experience"]
+  to   = github_repository.main["experience"]
+}
+
+moved {
+  from = github_repository.public["dotfiles"]
+  to   = github_repository.main["dotfiles"]
+}
+
+moved {
+  from = github_repository.public["uv-demo"]
+  to   = github_repository.main["uv-demo"]
+}
+
+moved {
+  from = github_repository.public["python-grpc-testing-demo"]
+  to   = github_repository.main["python-grpc-testing-demo"]
+}
+
+moved {
+  from = github_repository.public["dbt-data-contracts-presentation"]
+  to   = github_repository.main["dbt-data-contracts-presentation"]
+}
+
+moved {
+  from = github_repository.public["supply-chain-security-demo"]
+  to   = github_repository.main["supply-chain-security-demo"]
+}
+
+moved {
+  from = github_repository.public["prompts"]
+  to   = github_repository.main["prompts"]
+}
+
+moved {
+  from = github_repository.public["stars-keeper"]
+  to   = github_repository.main["stars-keeper"]
+}
+
+moved {
+  from = github_repository.public["recipes"]
+  to   = github_repository.main["recipes"]
+}
+
+moved {
+  from = github_repository.private["sandbox-volur"]
+  to   = github_repository.main["sandbox-volur"]
+}
+
+moved {
+  from = github_repository.private["barskov.dev"]
+  to   = github_repository.main["barskov.dev"]
+}
+
+removed {
+  from = github_repository.public
+  lifecycle {
+    destroy = false
+  }
+}
+
+removed {
+  from = github_repository.private
+  lifecycle {
+    destroy = false
+  }
+}
+
+resource "github_repository" "main" {
   for_each = {
-    for name, config in local.public_github_repositories : name => merge(local.github_repository_default, config)
+    for name, config in local.github_repositories : name => merge(local.github_repository_default, config)
   }
 
   name         = each.key
@@ -159,28 +236,83 @@ resource "github_repository" "public" {
   archive_on_destroy = true
 }
 
-resource "github_branch" "main" {
-  for_each = {
-    for name, config in local.public_github_repositories : name => merge(local.github_repository_default, config)
+removed {
+  from = github_branch.main
+
+  lifecycle {
+    destroy = false
   }
-  repository = github_repository.public[each.key].name
-  branch     = "main"
 }
 
 resource "github_branch_default" "main" {
   for_each = {
-    for name, config in local.public_github_repositories : name => merge(local.github_repository_default, config)
+    for name, config in local.github_repositories : name => merge(local.github_repository_default, config)
   }
-  repository = github_repository.public[each.key].name
-  branch     = github_branch.main[each.key].branch
+  repository = github_repository.main[each.key].name
+  branch     = "main"
 }
 
-resource "github_branch_protection" "public" {
+moved {
+  from = github_branch_protection.public["cv"]
+  to   = github_branch_protection.main["cv"]
+}
+
+moved {
+  from = github_branch_protection.public["dev"]
+  to   = github_branch_protection.main["dev"]
+}
+
+moved {
+  from = github_branch_protection.public["experience"]
+  to   = github_branch_protection.main["experience"]
+}
+
+moved {
+  from = github_branch_protection.public["dotfiles"]
+  to   = github_branch_protection.main["dotfiles"]
+}
+
+moved {
+  from = github_branch_protection.public["uv-demo"]
+  to   = github_branch_protection.main["uv-demo"]
+}
+
+moved {
+  from = github_branch_protection.public["python-grpc-testing-demo"]
+  to   = github_branch_protection.main["python-grpc-testing-demo"]
+}
+
+moved {
+  from = github_branch_protection.public["dbt-data-contracts-presentation"]
+  to   = github_branch_protection.main["dbt-data-contracts-presentation"]
+}
+
+moved {
+  from = github_branch_protection.public["supply-chain-security-demo"]
+  to   = github_branch_protection.main["supply-chain-security-demo"]
+}
+
+moved {
+  from = github_branch_protection.public["prompts"]
+  to   = github_branch_protection.main["prompts"]
+}
+
+moved {
+  from = github_branch_protection.public["stars-keeper"]
+  to   = github_branch_protection.main["stars-keeper"]
+}
+
+moved {
+  from = github_branch_protection.public["recipes"]
+  to   = github_branch_protection.main["recipes"]
+}
+
+resource "github_branch_protection" "main" {
   for_each = {
-    for name, config in local.public_github_repositories : name => merge(local.github_repository_default, config)
+    for name, config in local.github_repositories : name => merge(local.github_repository_default, config)
   }
 
-  repository_id = github_repository.public[each.key].node_id
+  repository_id = github_repository.main[each.key].node_id
 
   pattern                = "main"
   require_signed_commits = true
@@ -188,33 +320,5 @@ resource "github_branch_protection" "public" {
   required_status_checks {
     strict   = false
     contexts = each.value.required_status_checks
-  }
-}
-
-resource "github_repository" "private" {
-  for_each = {
-    for name, config in local.private_github_repositories : name => merge(local.github_repository_default, config)
-  }
-
-  name = each.key
-
-  visibility = "private"
-
-  archived = each.value.archived
-
-  has_issues   = each.value.has_issues
-  has_projects = each.value.has_projects
-  has_wiki     = each.value.has_wiki
-
-  allow_auto_merge   = each.value.allow_auto_merge
-  allow_merge_commit = each.value.allow_merge_commit
-  allow_squash_merge = each.value.allow_squash_merge
-  allow_rebase_merge = each.value.allow_rebase_merge
-
-  lifecycle {
-    ignore_changes = [
-      security_and_analysis,
-      vulnerability_alerts,
-    ]
   }
 }
