@@ -1,0 +1,19 @@
+image_tag := `git rev-parse --short HEAD`
+docker_build_args := ""
+
+build target:
+    docker buildx build \
+        --file {{ target }}.Dockerfile \
+        --platform linux/amd64 \
+        --target main \
+        --tag ghcr.io/nikitabarskov/{{ target }}:latest \
+        --tag ghcr.io/nikitabarskov/{{ target }}:{{ image_tag }} \
+        {{ docker_build_args }} \
+        .
+
+push target:
+    docker push ghcr.io/nikitabarskov/{{ target }}:latest
+    docker push ghcr.io/nikitabarskov/{{ target }}:{{ image_tag }}
+
+ci target: (build target)
+deploy target: (build target) (push target)
