@@ -121,85 +121,6 @@ locals {
   }
 }
 
-moved {
-  from = github_repository.public["cv"]
-  to   = github_repository.main["cv"]
-}
-
-moved {
-  from = github_repository.public["dev"]
-  to   = github_repository.main["dev"]
-}
-
-moved {
-  from = github_repository.public["experience"]
-  to   = github_repository.main["experience"]
-}
-
-moved {
-  from = github_repository.public["dotfiles"]
-  to   = github_repository.main["dotfiles"]
-}
-
-moved {
-  from = github_repository.public["uv-demo"]
-  to   = github_repository.main["uv-demo"]
-}
-
-moved {
-  from = github_repository.public["python-grpc-testing-demo"]
-  to   = github_repository.main["python-grpc-testing-demo"]
-}
-
-moved {
-  from = github_repository.public["dbt-data-contracts-presentation"]
-  to   = github_repository.main["dbt-data-contracts-presentation"]
-}
-
-moved {
-  from = github_repository.public["supply-chain-security-demo"]
-  to   = github_repository.main["supply-chain-security-demo"]
-}
-
-moved {
-  from = github_repository.public["prompts"]
-  to   = github_repository.main["prompts"]
-}
-
-moved {
-  from = github_repository.public["stars-keeper"]
-  to   = github_repository.main["stars-keeper"]
-}
-
-moved {
-  from = github_repository.public["recipes"]
-  to   = github_repository.main["recipes"]
-}
-
-moved {
-  from = github_repository.private["sandbox-volur"]
-  to   = github_repository.main["sandbox-volur"]
-}
-
-moved {
-  from = github_repository.private["barskov.dev"]
-  to   = github_repository.main["barskov.dev"]
-}
-
-removed {
-  from = github_repository.public
-  lifecycle {
-    destroy = false
-  }
-}
-
-removed {
-  from = github_repository.private
-  lifecycle {
-    destroy = false
-  }
-}
-
 resource "github_repository" "main" {
   for_each = {
     for name, config in local.github_repositories : name => merge(local.github_repository_default, config)
@@ -236,75 +157,12 @@ resource "github_repository" "main" {
   archive_on_destroy = true
 }
 
-removed {
-  from = github_branch.main
-
-  lifecycle {
-    destroy = false
-  }
-}
-
 resource "github_branch_default" "main" {
   for_each = {
     for name, config in local.github_repositories : name => merge(local.github_repository_default, config)
   }
   repository = github_repository.main[each.key].name
   branch     = "main"
-}
-
-moved {
-  from = github_branch_protection.public["cv"]
-  to   = github_branch_protection.main["cv"]
-}
-
-moved {
-  from = github_branch_protection.public["dev"]
-  to   = github_branch_protection.main["dev"]
-}
-
-moved {
-  from = github_branch_protection.public["experience"]
-  to   = github_branch_protection.main["experience"]
-}
-
-moved {
-  from = github_branch_protection.public["dotfiles"]
-  to   = github_branch_protection.main["dotfiles"]
-}
-
-moved {
-  from = github_branch_protection.public["uv-demo"]
-  to   = github_branch_protection.main["uv-demo"]
-}
-
-moved {
-  from = github_branch_protection.public["python-grpc-testing-demo"]
-  to   = github_branch_protection.main["python-grpc-testing-demo"]
-}
-
-moved {
-  from = github_branch_protection.public["dbt-data-contracts-presentation"]
-  to   = github_branch_protection.main["dbt-data-contracts-presentation"]
-}
-
-moved {
-  from = github_branch_protection.public["supply-chain-security-demo"]
-  to   = github_branch_protection.main["supply-chain-security-demo"]
-}
-
-moved {
-  from = github_branch_protection.public["prompts"]
-  to   = github_branch_protection.main["prompts"]
-}
-
-moved {
-  from = github_branch_protection.public["stars-keeper"]
-  to   = github_branch_protection.main["stars-keeper"]
-}
-
-moved {
-  from = github_branch_protection.public["recipes"]
-  to   = github_branch_protection.main["recipes"]
 }
 
 resource "github_branch_protection" "main" {
