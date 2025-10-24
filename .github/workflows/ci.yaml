@@ -10,5 +10,8 @@ on:
 jobs:
   main:
     uses: ./.github/workflows/container-images.yaml
+    permissions:
+      contents: read
+      packages: write
     with:
       working-directory: container-images
