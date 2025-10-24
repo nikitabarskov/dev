@@ -1,0 +1,14 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    paths:
+      - .github/workflows/ci.yaml
+      - container-images/**.Dockerfile
+
+jobs:
+  main:
+    uses: ./.github/workflows/container-images.yaml
+    with:
+      working-directory: container-images

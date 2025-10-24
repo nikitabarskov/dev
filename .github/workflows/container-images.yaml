@@ -1,0 +1,29 @@
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        description: "Working directory"
+        required: true
+        type: string
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: extractions/setup-just@v3
+      - uses: crazy-max/ghaction-github-runtime@v3
+      - uses: docker/setup-buildx-action@v3
+      - if: ${{ github.event_name != 'push' && github.ref != 'refs/heads/main' }}
+        run: |
+          just \
+          docker_build_args="--cache-from type=gha --cache-to type=gha,mode=max" \
+          build infrastructure-ci
+      - if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: |
+          just \
+          docker_build_args="--cache-from type=gha --cache-to type=gha,mode=max" \
+          deploy infrastructure-ci
