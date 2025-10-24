@@ -5,7 +5,7 @@ locals {
       administrative = true
       autodeploy     = true
       description    = "Stack to manage my personal infrastructure"
-      project_root   = "/infrastructure/opentofu"
+      project_root   = "/infrastructure/terraform"
     }
   }
 }
