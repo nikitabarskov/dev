@@ -173,6 +173,7 @@ resource "github_branch_protection" "main" {
 resource "github_repository_collaborators" "main" {
   for_each = {
     for name, config in local.github_repositories : name => merge(local.github_repository_default, config)
+    if length(lookup(merge(local.github_repository_default, config), "collaborators", [])) > 0
   }
 
   repository = github_repository.main[each.key].name
