@@ -15,7 +15,7 @@ locals {
     topics                 = []
     required_status_checks = []
     visibility             = "private"
-    external_contributors  = []
+    collaborators          = []
   }
   github_repositories = {
     "cv" = {
@@ -96,8 +96,11 @@ locals {
     "sandbox-volur" = {}
     "barskov.dev"   = {}
     "spr-ctl" = {
-      external_contributors = [
-        "artemnorin",
+      collaborators = [
+        {
+          username   = "artemnorin"
+          permission = "push"
+        },
       ]
     }
   }
@@ -163,12 +166,19 @@ resource "github_branch_protection" "main" {
   }
 }
 
-resource "github_external_collaborators" "main" {
+resource "github_repository_collaborators" "main" {
   for_each = {
     for name, config in local.github_repositories : name => merge(local.github_repository_default, config)
+    if length(config.collaborators) > 0
   }
 
   repository = github_repository.main[each.key].name
 
-  external_collaborators = each.value.external_contributors
+  dynamic "user" {
+    for_each = each.value.collaborators
+    content {
+      username   = user.value.username
+      permission = user.value.permission
+    }
+  }
 }
