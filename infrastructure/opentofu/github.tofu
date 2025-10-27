@@ -101,6 +101,10 @@ locals {
           username   = "artemnorin"
           permission = "push"
         },
+        {
+          username   = "art4noir"
+          permission = "push"
+        },
       ]
     }
   }
