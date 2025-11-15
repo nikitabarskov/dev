@@ -9,8 +9,8 @@ locals {
     }
   }
   stacks = {
-    "dev" = {
-      repository   = "dev"
+    "barskov.dev" = {
+      repository   = "barskov.dev"
       autodeploy   = true
       description  = "Stack to manage my personal infrastructure"
       project_root = "/infrastructure/opentofu"
