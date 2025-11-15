@@ -20,5 +20,5 @@ validate:
 
 ci: configure validate
 
-plan:
+plan: validate
     spacectl stack local-preview --id dev
