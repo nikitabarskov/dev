@@ -43,12 +43,8 @@ resource "cloudflare_account_token" "spacelift" {
   account_id = local.cloudflare_account_id
   name       = "spacelift"
   policies = [{
-    effect = "allow"
-    permission_groups = [
-      { id = local.cloudflare_api_token_permissions.account["Account API Tokens Read"].id },
-      { id = local.cloudflare_api_token_permissions.account["Account API Tokens Write"].id },
-      { id = local.cloudflare_api_token_permissions.account["Account Settings Read"].id },
-    ]
+    effect            = "allow"
+    permission_groups = []
     resources = {
       "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
     }
