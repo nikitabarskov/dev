@@ -8,12 +8,7 @@ variable "gitlab_oauth_token" {
   sensitive = true
 }
 
-variable "vercel_api_token" {
-  type      = string
-  sensitive = true
-}
-
-variable "tfe_token" {
+variable "cloudflare_api_token" {
   type      = string
   sensitive = true
 }
