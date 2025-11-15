@@ -12,6 +12,7 @@ CLOUDFLARE_API_TOKEN="op://<change-me-reference>"
 
 - https://search.opentofu.org/
 - https://search.opentofu.org/provider/cloudflare/cloudflare/v4.52.5
+- https://github.com/cloudflare/terraform-provider-cloudflare/issues/6403
 
 ## Useful commands
 
