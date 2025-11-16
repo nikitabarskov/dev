@@ -24,3 +24,8 @@ CLOUDFLARE_API_TOKEN="op://<change-me-reference>"
 ```bash
 op run --no-masking -- sh -c 'curl --silent "https://api.cloudflare.com/client/v4/accounts/a71133601c96b473ef65e3c9ea99d689/iam/permission_groups" --header "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}"'
 ```
+
+
+```bash
+op run --no-masking -- sh -c 'curl "https://api.cloudflare.com/client/v4/user/tokens/verify" --header "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}"'
+```
