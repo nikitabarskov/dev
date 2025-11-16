@@ -16,7 +16,7 @@ locals {
       project_root = "/infrastructure/opentofu"
       environment_variables = {
         "CLOUDFLARE_API_TOKEN" = {
-          value = cloudflare_account_token.barskov_dev.value
+          value = cloudflare_api_token.barskov_dev.value
         }
       }
     }
