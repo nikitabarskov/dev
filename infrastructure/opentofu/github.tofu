@@ -95,7 +95,7 @@ locals {
       ]
     }
     "sandbox-volur" = {}
-    "barskov.dev" = {}
+    "barskov.dev"   = {}
     "spr-ctl" = {
       collaborators = [
         {
