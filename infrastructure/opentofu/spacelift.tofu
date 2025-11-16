@@ -8,12 +8,17 @@ locals {
       project_root   = "/infrastructure/opentofu"
     }
   }
-  stacks = {
-    "barskov.dev" = {
+  spacelift_stacks = {
+    "barskov-dev" = {
       repository   = "barskov.dev"
       autodeploy   = true
-      description  = "Stack to manage my personal infrastructure"
+      description  = "Stack to manage infrastructure of my personal website"
       project_root = "/infrastructure/opentofu"
+      environment_variables = {
+        "CLOUDFLARE_API_TOKEN" = {
+          value = cloudflare_account_token.barskov_dev.value
+        }
+      }
     }
   }
 }
@@ -42,8 +47,13 @@ resource "spacelift_stack" "legacy_stacks" {
   terraform_version       = ">=1.6.0 <2.0.0"
 }
 
+moved {
+  from = spacelift_stack.main["barskov.dev"]
+  to   = spacelift_stack.main["barskov-dev"]
+}
+
 resource "spacelift_stack" "main" {
-  for_each = local.stacks
+  for_each = local.spacelift_stacks
 
   branch     = "main"
   name       = each.key
@@ -58,4 +68,24 @@ resource "spacelift_stack" "main" {
   project_root            = each.value.project_root
   terraform_workflow_tool = "OPEN_TOFU"
   terraform_version       = ">=1.6.0 <2.0.0"
+}
+
+resource "spacelift_environment_variable" "main" {
+  for_each = {
+    for item in flatten([
+      for stack_name, stack_config in local.spacelift_stacks : [
+        for name, config in stack_config.environment_variables : [{
+          stack_name = stack_name
+          name       = name
+          value      = try(config.value, "")
+          write_only = try(config.write_only, true)
+        }]
+      ]
+    ]) : "${item.stack_name}###${item.name}" => item
+  }
+
+  stack_id   = spacelift_stack.main[each.value.stack_name].name
+  name       = each.value.name
+  value      = each.value.value
+  write_only = each.value.write_only
 }

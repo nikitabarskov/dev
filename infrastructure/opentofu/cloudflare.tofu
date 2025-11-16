@@ -38,14 +38,19 @@ locals {
   }
 }
 
-/* Example fo account token */
-resource "cloudflare_account_token" "spacelift" {
+moved {
+  from = cloudflare_account_token.spacelift
+  to   = cloudflare_account_token.barskov_dev
+}
+
+resource "cloudflare_account_token" "barskov_dev" {
   account_id = local.cloudflare_account_id
-  name       = "spacelift"
+  name       = "spacelift-barskov-dev"
   policies = [{
     effect = "allow"
     permission_groups = [
       { id = local.cloudflare_api_token_permission_groups.account["Account Settings Read"].id },
+      { id = local.cloudflare_api_token_permission_groups.account["Workers R2 Storage Write"].id },
     ]
     resources = {
       "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
