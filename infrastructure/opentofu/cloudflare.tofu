@@ -49,9 +49,21 @@ resource "cloudflare_api_token" "barskov_dev" {
     effect = "allow"
     permission_groups = [
       { id = local.cloudflare_api_token_permission_groups.account["Account Settings Read"].id },
-      { id = local.cloudflare_api_token_permission_groups.account["Account API Tokens Read"].id },
-      { id = local.cloudflare_api_token_permission_groups.account["Account API Tokens Write"].id },
       { id = local.cloudflare_api_token_permission_groups.account["Workers R2 Storage Write"].id },
+    ]
+    resources = {
+      "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
+    }
+  }]
+}
+
+resource "cloudflare_account_token" "github_actions_barskov_dev" {
+  account_id = local.cloudflare_account_id
+  name       = "github-actions-barskov-dev"
+  policies = [{
+    effect = "allow"
+    permission_groups = [
+      { id = local.cloudflare_account_permission_groups["Cloudflare R2 Admin"].id },
     ]
     resources = {
       "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"

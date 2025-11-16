@@ -16,6 +16,7 @@ locals {
     required_status_checks = []
     visibility             = "private"
     collaborators          = []
+    actions_secrets        = {}
   }
   github_repositories = {
     "cv" = {
@@ -94,7 +95,11 @@ locals {
       ]
     }
     "sandbox-volur" = {}
-    "barskov.dev"   = {}
+    "barskov.dev" = {
+      actions_secrets = {
+        "CLOUDFLARE_API_TOKEN" = cloudflare_account_token.github_actions_barskov_dev.value
+      }
+    }
     "spr-ctl" = {
       collaborators = [
         {
@@ -185,4 +190,21 @@ resource "github_repository_collaborators" "main" {
       permission = user.value.permission
     }
   }
+}
+
+resource "github_actions_secret" "main" {
+  for_each = {
+    for item in flatten([
+      for repository, repository_config in local.github_repositories : [
+        for secret_name, value in try(repository_config.actions_secrets, {}) : [{
+          repository      = repository
+          secret_name     = secret_name
+          encrypted_value = base64(value)
+        }]
+      ]
+    ]) : "${item.repository}###${item.secret_name}" => item
+  }
+  repository      = each.value.repository
+  secret_name     = each.value.secret_name
+  encrypted_value = each.value.encrypted_value
 }
