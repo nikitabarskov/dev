@@ -11,8 +11,11 @@ CLOUDFLARE_API_TOKEN="op://<change-me-reference>"
 ## Links
 
 - https://search.opentofu.org/
-- https://search.opentofu.org/provider/cloudflare/cloudflare/v4.52.5
+
+- https://search.opentofu.org/provider/cloudflare/cloudflare/latest
 - https://github.com/cloudflare/terraform-provider-cloudflare/issues/6403
+
+- https://search.opentofu.org/provider/spacelift-io/spacelift/latest
 
 ## Useful commands
 
