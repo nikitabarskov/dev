@@ -6,11 +6,6 @@ locals {
       autodeploy     = true
       description    = "Stack to manage my personal infrastructure"
       project_root   = "/infrastructure/opentofu"
-      environment_variables = {
-        "CLOUDFLARE_API_TOKEN" = {
-          value = cloudflare_api_token.spacelift.value
-        }
-      }
     }
   }
   spacelift_stacks = {
@@ -75,31 +70,9 @@ resource "spacelift_stack" "main" {
   terraform_version       = ">=1.6.0 <2.0.0"
 }
 
-import {
-  to = spacelift_environment_variable.legacy["${spacelift_stack.legacy_stacks["dev"].id}###CLOUDFLARE_API_TOKEN"]
-  id = "stack/${spacelift_stack.legacy_stacks["dev"].id}/CLOUDFLARE_API_TOKEN"
+removed {
+  from = spacelift_environment_variable.legacy
 }
-
-resource "spacelift_environment_variable" "legacy" {
-  for_each = {
-    for item in flatten([
-      for stack_name, stack_config in merge(local.legacy_stacks) : [
-        for name, config in stack_config.environment_variables : [{
-          stack_name = stack_name
-          name       = name
-          value      = try(config.value, "")
-          write_only = try(config.write_only, true)
-        }]
-      ]
-    ]) : "${item.stack_name}###${item.name}" => item
-  }
-
-  stack_id   = spacelift_stack.legacy_stacks[each.value.stack_name].name
-  name       = each.value.name
-  value      = each.value.value
-  write_only = each.value.write_only
-}
-
 
 resource "spacelift_environment_variable" "main" {
   for_each = {

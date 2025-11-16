@@ -199,7 +199,7 @@ resource "github_actions_secret" "main" {
         for secret_name, value in try(repository_config.actions_secrets, {}) : [{
           repository      = repository
           secret_name     = secret_name
-          encrypted_value = base64(value)
+          encrypted_value = base64encode(value)
         }]
       ]
     ]) : "${item.repository}###${item.secret_name}" => item
