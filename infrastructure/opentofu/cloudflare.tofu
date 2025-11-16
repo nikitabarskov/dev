@@ -43,9 +43,8 @@ moved {
   to   = cloudflare_account_token.barskov_dev
 }
 
-resource "cloudflare_account_token" "barskov_dev" {
-  account_id = local.cloudflare_account_id
-  name       = "spacelift-barskov-dev"
+resource "cloudflare_api_token" "barskov_dev" {
+  name = "spacelift-barskov-dev"
   policies = [{
     effect = "allow"
     permission_groups = [
