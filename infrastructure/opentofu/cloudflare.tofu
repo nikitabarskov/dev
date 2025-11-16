@@ -50,6 +50,8 @@ resource "cloudflare_account_token" "barskov_dev" {
     effect = "allow"
     permission_groups = [
       { id = local.cloudflare_api_token_permission_groups.account["Account Settings Read"].id },
+      { id = local.cloudflare_api_token_permission_groups.account["Account API Tokens Read"].id },
+      { id = local.cloudflare_api_token_permission_groups.account["Account API Tokens Write"].id },
       { id = local.cloudflare_api_token_permission_groups.account["Workers R2 Storage Write"].id },
     ]
     resources = {
