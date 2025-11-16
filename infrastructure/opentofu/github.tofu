@@ -95,11 +95,7 @@ locals {
       ]
     }
     "sandbox-volur" = {}
-    "barskov.dev" = {
-      actions_secrets = {
-        "CLOUDFLARE_API_TOKEN" = cloudflare_account_token.github_actions_barskov_dev.value
-      }
-    }
+    "barskov.dev" = {}
     "spr-ctl" = {
       collaborators = [
         {
