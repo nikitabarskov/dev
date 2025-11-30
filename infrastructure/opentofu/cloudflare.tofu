@@ -43,9 +43,9 @@ resource "cloudflare_api_token" "barskov_dev" {
       { id = local.cloudflare_api_token_permission_groups.account["Account Settings Read"].id },
       { id = local.cloudflare_api_token_permission_groups.account["Workers R2 Storage Write"].id },
     ]
-    resources = {
+    resources = jsonencode({
       "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
-    }
+    })
   }]
 }
 
@@ -56,9 +56,9 @@ resource "cloudflare_api_token" "github_actions_barskov_dev" {
     permission_groups = [
       { id = local.cloudflare_api_token_permission_groups.account["Workers R2 Storage Write"].id },
     ]
-    resources = {
+    resources = jsonencode({
       "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
-    }
+    })
   }]
 }
 
@@ -84,9 +84,9 @@ resource "cloudflare_api_token" "spacelift" {
         { id = local.cloudflare_api_token_permission_groups.account["Account API Tokens Write"].id },
         { id = local.cloudflare_api_token_permission_groups.account["Account Settings Read"].id },
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
-      }
+      })
     }
   ]
   status = "active"
