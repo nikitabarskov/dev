@@ -30,11 +30,6 @@ locals {
   }
 }
 
-moved {
-  from = cloudflare_account_token.spacelift
-  to   = cloudflare_account_token.barskov_dev
-}
-
 resource "cloudflare_api_token" "barskov_dev" {
   name = "spacelift-barskov-dev"
   policies = [{
@@ -62,7 +57,6 @@ resource "cloudflare_api_token" "github_actions_barskov_dev" {
   }]
 }
 
-/* API Token used in this Stack */
 resource "cloudflare_api_token" "spacelift" {
   name = "spacelift-nikitabarskov"
   policies = [
@@ -73,9 +67,9 @@ resource "cloudflare_api_token" "spacelift" {
         { id = local.cloudflare_api_token_permission_groups.user["API Tokens Write"].id },
         { id = local.cloudflare_api_token_permission_groups.user["User Details Read"].id },
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.user.${data.cloudflare_user.me.id}" = "*"
-      }
+      })
     },
     {
       effect = "allow"
