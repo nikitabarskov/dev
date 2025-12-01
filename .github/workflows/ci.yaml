@@ -19,9 +19,16 @@ jobs:
     with:
       working-directory: infrastructure/opentofu
   container-images:
+    strategy:
+      fail-fast: true
+      matrix:
+        target:
+          - infrastructure-ci
+          - spacelift-runner
     uses: ./.github/workflows/container-images.yaml
     permissions:
       contents: read
       packages: write
     with:
       working-directory: container-images
+      target: ${{ matrix.target }}
