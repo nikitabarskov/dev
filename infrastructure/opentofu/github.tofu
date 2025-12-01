@@ -112,7 +112,8 @@ locals {
         },
       ]
     }
-    "notes" = {}
+    "notes"                     = {}
+    "pytest-table-driven-tests" = {}
   }
 }
 
