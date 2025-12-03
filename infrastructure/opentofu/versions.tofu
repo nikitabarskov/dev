@@ -22,5 +22,9 @@ terraform {
       source  = "spacelift-io/spacelift"
       version = ">=1.0.0,<2"
     }
+    onepassword = {
+      source  = "1password/onepassword"
+      version = ">=2,<3"
+    }
   }
 }

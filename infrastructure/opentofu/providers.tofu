@@ -8,3 +8,4 @@ provider "gitlab" {
 }
 provider "spacelift" {}
 provider "random" {}
+provider "onepassword" {}
