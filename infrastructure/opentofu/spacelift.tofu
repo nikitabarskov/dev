@@ -70,10 +70,6 @@ resource "spacelift_stack" "main" {
   terraform_version       = ">=1.6.0 <2.0.0"
 }
 
-removed {
-  from = spacelift_environment_variable.legacy
-}
-
 resource "spacelift_environment_variable" "main" {
   for_each = {
     for item in flatten([

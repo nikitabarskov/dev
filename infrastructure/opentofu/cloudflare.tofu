@@ -52,15 +52,30 @@ locals {
 
 resource "cloudflare_api_token" "barskov_dev" {
   name = "spacelift-barskov-dev"
-  policies = [{
-    effect = "allow"
-    permission_groups = [
-      { id = local.cloudflare_account_api_token_permission_groups.r2["Workers R2 Storage Bucket Item Read"].id },
-      { id = local.cloudflare_account_api_token_permission_groups.r2["Workers R2 Storage Bucket Item Write"].id },
-    ]
-    resources = jsonencode({
-      "com.cloudflare.edge.r2.bucket.*" = "*"
-    }) }
+  policies = [
+    {
+      effect = "allow"
+      permission_groups = [
+        { id = local.cloudflare_api_token_permission_groups.zone["Zone Write"].id },
+        { id = local.cloudflare_api_token_permission_groups.zone["Zone Settings Read"].id },
+        { id = local.cloudflare_api_token_permission_groups.zone["Zone Settings Write"].id },
+        { id = local.cloudflare_api_token_permission_groups.zone["DNS Read"].id },
+        { id = local.cloudflare_api_token_permission_groups.zone["DNS Write"].id },
+      ]
+      resources = jsonencode({
+        "com.cloudflare.api.account.zone.*" = "*"
+      })
+    },
+    {
+      effect = "allow"
+      permission_groups = [
+        { id = local.cloudflare_api_token_permission_groups.account["Workers R2 Storage Read"].id },
+        { id = local.cloudflare_api_token_permission_groups.account["Workers R2 Storage Write"].id },
+      ]
+      resources = jsonencode({
+        "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
+      })
+    }
   ]
 }
 
@@ -69,10 +84,11 @@ resource "cloudflare_api_token" "github_actions_barskov_dev" {
   policies = [{
     effect = "allow"
     permission_groups = [
-      { id = local.cloudflare_api_token_permission_groups.account["Workers R2 Storage Write"].id },
+      { id = local.cloudflare_account_api_token_permission_groups.r2["Workers R2 Storage Bucket Item Read"].id },
+      { id = local.cloudflare_account_api_token_permission_groups.r2["Workers R2 Storage Bucket Item Write"].id },
     ]
     resources = jsonencode({
-      "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
+      "com.cloudflare.edge.r2.bucket.*" = "*"
     })
   }]
 }
