@@ -10,11 +10,15 @@ locals {
   }
   spacelift_stacks = {
     "barskov-dev" = {
-      repository            = "barskov.dev"
-      autodeploy            = true
-      description           = "Stack to manage infrastructure of my personal website"
-      project_root          = "/infrastructure/opentofu"
-      environment_variables = {}
+      repository   = "barskov.dev"
+      autodeploy   = true
+      description  = "Stack to manage infrastructure of my personal website"
+      project_root = "/infrastructure/opentofu"
+      environment_variables = {
+        "CLOUDFLARE_API_TOKEN" = {
+          value = cloudflare_api_token.barskov_dev.value
+        }
+      }
     }
   }
 }
