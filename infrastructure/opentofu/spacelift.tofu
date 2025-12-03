@@ -45,6 +45,7 @@ resource "spacelift_stack" "legacy_stacks" {
   project_root            = each.value.project_root
   terraform_workflow_tool = "OPEN_TOFU"
   terraform_version       = ">=1.6.0 <2.0.0"
+  runner_image            = "ghcr.io/nikitabarskov/spacelift-runner:latest"
 }
 
 moved {
