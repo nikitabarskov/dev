@@ -12,6 +12,16 @@ data "cloudflare_api_token_permission_groups_list" "zone" {
   scope = urlencode("com.cloudflare.api.account.zone")
 }
 
+data "cloudflare_account_api_token_permission_groups_list" "account" {
+  account_id = local.cloudflare_account_id
+  scope      = urlencode("com.cloudflare.api.account")
+}
+
+data "cloudflare_account_api_token_permission_groups_list" "r2" {
+  account_id = local.cloudflare_account_id
+  scope      = urlencode("com.cloudflare.edge.r2.bucket")
+}
+
 locals {
   cloudflare_account_id = "a71133601c96b473ef65e3c9ea99d689"
   cloudflare_api_token_permission_groups = {
@@ -28,6 +38,16 @@ locals {
       permission_group.name => permission_group
     }
   }
+  cloudflare_account_api_token_permission_groups = {
+    account = {
+      for permission_group in data.cloudflare_account_api_token_permission_groups_list.account.result :
+      permission_group.name => permission_group
+    }
+    r2 = {
+      for permission_group in data.cloudflare_account_api_token_permission_groups_list.r2.result :
+      permission_group.name => permission_group
+    }
+  }
 }
 
 resource "cloudflare_api_token" "barskov_dev" {
@@ -35,13 +55,13 @@ resource "cloudflare_api_token" "barskov_dev" {
   policies = [{
     effect = "allow"
     permission_groups = [
-      { id = local.cloudflare_api_token_permission_groups.account["Account Settings Read"].id },
-      { id = local.cloudflare_api_token_permission_groups.account["Workers R2 Storage Write"].id },
+      { id = local.cloudflare_account_api_token_permission_groups.r2["Workers R2 Storage Bucket Item Read"].id },
+      { id = local.cloudflare_account_api_token_permission_groups.r2["Workers R2 Storage Bucket Item Write"].id },
     ]
     resources = jsonencode({
-      "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
-    })
-  }]
+      "com.cloudflare.edge.r2.bucket.*" = "*"
+    }) }
+  ]
 }
 
 resource "cloudflare_api_token" "github_actions_barskov_dev" {
