@@ -112,8 +112,10 @@ locals {
         },
       ]
     }
-    "notes"                     = {}
-    "pytest-table-driven-tests" = {}
+    "notes" = {}
+    "pytest-table-driven-tests" = {
+      visibility = "public"
+    }
   }
 }
 
