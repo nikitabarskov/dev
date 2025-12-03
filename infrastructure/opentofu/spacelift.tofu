@@ -10,15 +10,11 @@ locals {
   }
   spacelift_stacks = {
     "barskov-dev" = {
-      repository   = "barskov.dev"
-      autodeploy   = true
-      description  = "Stack to manage infrastructure of my personal website"
-      project_root = "/infrastructure/opentofu"
-      environment_variables = {
-        "CLOUDFLARE_API_TOKEN" = {
-          value = cloudflare_api_token.barskov_dev.value
-        }
-      }
+      repository            = "barskov.dev"
+      autodeploy            = true
+      description           = "Stack to manage infrastructure of my personal website"
+      project_root          = "/infrastructure/opentofu"
+      environment_variables = {}
     }
   }
 }
@@ -68,10 +64,6 @@ resource "spacelift_stack" "main" {
   project_root            = each.value.project_root
   terraform_workflow_tool = "OPEN_TOFU"
   terraform_version       = ">=1.6.0 <2.0.0"
-}
-
-removed {
-  from = spacelift_environment_variable.legacy
 }
 
 resource "spacelift_environment_variable" "main" {
