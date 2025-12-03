@@ -2,9 +2,9 @@ locals {
   onepassword_vault_id = "vziyx5bhfpu4o7xtla6zsaer6q"
 }
 
-resource "onepassword_item" "formbricks_r2_bucket" {
+resource "onepassword_item" "r2" {
   vault    = local.onepassword_vault_id
-  title    = "formbricks-r2-credentials"
+  title    = "r2-credentials"
   category = "login"
   section {
     label = "Credentials"
