@@ -14,6 +14,11 @@ locals {
       autodeploy   = true
       description  = "Stack to manage infrastructure of my personal website"
       project_root = "/infrastructure/opentofu"
+      environment_variables = {
+        "CLOUDFLARE_API_TOKEN" = {
+          value = cloudflare_api_token.barskov_dev.value
+        }
+      }
     }
   }
 }
@@ -69,7 +74,7 @@ resource "spacelift_environment_variable" "main" {
   for_each = {
     for item in flatten([
       for stack_name, stack_config in merge(local.spacelift_stacks) : [
-        for name, config in stack_config.environment_variables : [{
+        for name, config in try(stack_config.environment_variables, {}) : [{
           stack_name = stack_name
           name       = name
           value      = try(config.value, "")
