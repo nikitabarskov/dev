@@ -10,3 +10,9 @@ updates:
       interval: "weekly"
     allow:
       - dependency-type: "all"
+  - package-ecosystem: docker
+    directory: "/container-images"
+    schedule:
+      interval: "weekly"
+    allow:
+      - dependency-type: "all"

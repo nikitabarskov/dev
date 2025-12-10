@@ -11,12 +11,13 @@ RUN --mount=type=cache,target=/var/cache/dnf,sharing=locked \
     just \
     git \
     tar \
-    hugo \
-    rclone
+    hugo
 
 FROM build AS main
 
 WORKDIR /workspace
+
+COPY --from=rclone --link /usr/local/bin/rclone /usr/local/bin/rclone
 
 RUN hugo version && \
     rclone version
