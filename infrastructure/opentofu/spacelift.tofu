@@ -57,7 +57,7 @@ resource "spacelift_stack" "main" {
 }
 
 resource "spacelift_environment_variable" "dev_cloudflare_token" {
-  stack_id   = spacelift_stack.main["dev"].name
+  stack_id   = spacelift_stack.legacy_stacks["dev"].name
   name       = "CLOUDFLARE_TOKEN"
   value      = cloudflare_api_token.barskov_dev.value
   write_only = true
