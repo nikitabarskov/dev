@@ -1,5 +1,5 @@
 FROM docker.io/library/fedora:42@sha256:aa7befe5cfd1f0e062728c16453cd1c479d4134c7b85eac00172f3025ab0d522 AS fedora
-FROM index.docker.io/rclone/rclone@sha256:02b53fd7695153844b18fc5afa270fceb3c29a88e85b5c9be6b130ec5c698b2a AS rclone
+FROM index.docker.io/rclone/rclone@sha256:0eb18825ac9732c21c11d654007170572bbd495352bb6dbb624f18e4f462c496 AS rclone
 
 FROM fedora AS build
 
