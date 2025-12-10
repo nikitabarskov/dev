@@ -11,7 +11,8 @@ RUN --mount=type=cache,target=/var/cache/dnf,sharing=locked \
     just \
     git \
     tar \
-    hugo
+    hugo \
+    go
 
 FROM build AS main
 
