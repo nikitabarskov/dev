@@ -192,19 +192,14 @@ resource "github_repository_collaborators" "main" {
   }
 }
 
-resource "github_actions_secret" "main" {
-  for_each = {
-    for item in flatten([
-      for repository, repository_config in local.github_repositories : [
-        for secret_name, value in try(repository_config.actions_secrets, {}) : [{
-          repository      = repository
-          secret_name     = secret_name
-          encrypted_value = base64encode(value)
-        }]
-      ]
-    ]) : "${item.repository}###${item.secret_name}" => item
-  }
-  repository      = each.value.repository
-  secret_name     = each.value.secret_name
-  encrypted_value = each.value.encrypted_value
+resource "github_actions_secret" "barskov_dev_s3_access_key_id" {
+  repository      = github_repository.main["barskov.dev"].name
+  secret_name     = "RCLONE_S3_ACCESS_KEY_ID"
+  encrypted_value = sha256(cloudflare_api_token.github_actions_barskov_dev.id)
+}
+
+resource "github_actions_secret" "barskov_dev_s3_secret_access_key" {
+  repository      = github_repository.main["barskov.dev"].name
+  secret_name     = "RCLONE_S3_SECRET_ACCESS_KEY"
+  encrypted_value = cloudflare_api_token.github_actions_barskov_dev.value
 }

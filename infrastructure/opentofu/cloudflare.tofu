@@ -69,9 +69,6 @@ resource "cloudflare_api_token" "barskov_dev" {
     {
       effect = "allow"
       permission_groups = [
-        { id = local.cloudflare_api_token_permission_groups.user["API Tokens Read"].id },
-        { id = local.cloudflare_api_token_permission_groups.user["API Tokens Write"].id },
-        { id = local.cloudflare_api_token_permission_groups.user["User Details Read"].id },
         { id = local.cloudflare_api_token_permission_groups.account["Workers R2 Storage Read"].id },
         { id = local.cloudflare_api_token_permission_groups.account["Workers R2 Storage Write"].id },
       ]
