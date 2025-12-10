@@ -77,6 +77,7 @@ resource "cloudflare_api_token" "barskov_dev" {
       })
     }
   ]
+  status = "active"
 }
 
 resource "cloudflare_api_token" "github_actions_barskov_dev" {
@@ -91,6 +92,7 @@ resource "cloudflare_api_token" "github_actions_barskov_dev" {
       "com.cloudflare.edge.r2.bucket.*" = "*"
     })
   }]
+  status = "active"
 }
 
 resource "cloudflare_api_token" "spacelift" {
