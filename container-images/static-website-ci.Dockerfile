@@ -11,7 +11,6 @@ RUN --mount=type=cache,target=/var/cache/dnf,sharing=locked \
     just \
     git \
     tar \
-    hugo \
     golang \
     nodejs
 
@@ -19,7 +18,10 @@ FROM build AS main
 
 WORKDIR /workspace
 
+RUN curl -L https://github.com/gohugoio/hugo/releases/download/v0.152.2/hugo_0.152.2_linux-amd64.tar.gz | tar -xz -C /usr/local/bin hugo
 COPY --from=rclone --link /usr/local/bin/rclone /usr/local/bin/rclone
+
+RUN ls -la .
 
 RUN hugo version && \
     rclone version && \
