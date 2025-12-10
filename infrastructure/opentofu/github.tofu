@@ -195,11 +195,11 @@ resource "github_repository_collaborators" "main" {
 resource "github_actions_secret" "barskov_dev_s3_access_key_id" {
   repository      = github_repository.main["barskov.dev"].name
   secret_name     = "RCLONE_S3_ACCESS_KEY_ID"
-  plaintext_value = sha256(cloudflare_api_token.github_actions_barskov_dev.id)
+  plaintext_value = cloudflare_api_token.github_actions_barskov_dev.id
 }
 
 resource "github_actions_secret" "barskov_dev_s3_secret_access_key" {
   repository      = github_repository.main["barskov.dev"].name
   secret_name     = "RCLONE_S3_SECRET_ACCESS_KEY"
-  plaintext_value = cloudflare_api_token.github_actions_barskov_dev.value
+  plaintext_value = sha256(cloudflare_api_token.github_actions_barskov_dev.value)
 }
