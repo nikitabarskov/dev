@@ -1,4 +1,4 @@
-image_tag := `git rev-parse --short HEAD`
+image_tag := `git rev-parse HEAD`
 docker_build_args := ""
 
 build target:
