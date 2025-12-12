@@ -7,7 +7,6 @@ RUN --mount=type=cache,target=/var/cache/dnf,sharing=locked \
     dnf install -y \
     --setopt=install_weak_deps=False \
     --nodocs \
-    just \
     git \
     tar \
     mise

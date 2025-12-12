@@ -26,7 +26,6 @@ jobs:
           - base-ci
           - infrastructure-ci
           - spacelift-runner
-          - static-website-ci
     uses: ./.github/workflows/container-images.yaml
     permissions:
       contents: read
