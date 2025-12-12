@@ -23,6 +23,7 @@ jobs:
       fail-fast: true
       matrix:
         target:
+          - base-ci
           - infrastructure-ci
           - spacelift-runner
           - static-website-ci
