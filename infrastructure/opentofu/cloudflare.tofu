@@ -38,6 +38,49 @@ locals {
   }
 }
 
+resource "cloudflare_account_token" "spacelift" {
+  account_id = data.cloudflare_account.this.id
+  name       = "spacelift-dev"
+  policies = [
+    {
+      effect = "allow"
+      permission_groups = [
+        { id = local.cloudflare_account_token_permission_groups.account["Account API Tokens Read"].id },
+        { id = local.cloudflare_account_token_permission_groups.account["Account API Tokens Write"].id },
+        { id = local.cloudflare_account_token_permission_groups.account["Account Settings Read"].id },
+      ]
+      resources = jsonencode({
+        "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
+      })
+    },
+    {
+      effect = "allow"
+      permission_groups = [
+        { id = local.cloudflare_account_token_permission_groups.account["Account API Tokens Read"].id },
+        { id = local.cloudflare_account_token_permission_groups.account["Account API Tokens Write"].id },
+        { id = local.cloudflare_account_token_permission_groups.account["Account Settings Read"].id },
+      ]
+      resources = jsonencode({
+        "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
+      })
+    },
+    {
+      effect = "allow"
+      permission_groups = [
+        { id = local.cloudflare_account_token_permission_groups.zone["Zone Write"].id },
+        { id = local.cloudflare_account_token_permission_groups.zone["Zone Settings Read"].id },
+        { id = local.cloudflare_account_token_permission_groups.zone["Zone Settings Write"].id },
+        { id = local.cloudflare_account_token_permission_groups.zone["DNS Read"].id },
+        { id = local.cloudflare_account_token_permission_groups.zone["DNS Write"].id },
+      ]
+      resources = jsonencode({
+        "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
+      })
+    },
+  ]
+  status = "active"
+}
+
 resource "cloudflare_account_token" "barskov_dev" {
   account_id = data.cloudflare_account.this.id
   name       = "spacelift-barskov-dev"
@@ -79,56 +122,8 @@ resource "cloudflare_account_token" "github_actions_barskov_dev" {
       { id = local.cloudflare_account_token_permission_groups.r2["Workers R2 Storage Bucket Item Write"].id },
     ]
     resources = jsonencode({
-      "com.cloudflare.edge.r2.bucket.*" = "*"
+      "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
     })
   }]
-  status = "active"
-}
-
-import {
-  to = cloudflare_account_token.spacelift
-  id = "a71133601c96b473ef65e3c9ea99d689/01f654a28d3a3507fd98ee795abc4a73"
-}
-
-resource "cloudflare_account_token" "spacelift" {
-  account_id = data.cloudflare_account.this.id
-  name       = "spacelift-dev"
-  policies = [
-    {
-      effect = "allow"
-      permission_groups = [
-        { id = local.cloudflare_account_token_permission_groups.account["Account API Tokens Read"].id },
-        { id = local.cloudflare_account_token_permission_groups.account["Account API Tokens Write"].id },
-        { id = local.cloudflare_account_token_permission_groups.account["Account Settings Read"].id },
-      ]
-      resources = jsonencode({
-        "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
-      })
-    },
-    {
-      effect = "allow"
-      permission_groups = [
-        { id = local.cloudflare_account_token_permission_groups.account["Account API Tokens Read"].id },
-        { id = local.cloudflare_account_token_permission_groups.account["Account API Tokens Write"].id },
-        { id = local.cloudflare_account_token_permission_groups.account["Account Settings Read"].id },
-      ]
-      resources = jsonencode({
-        "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
-      })
-    },
-    {
-      effect = "allow"
-      permission_groups = [
-        { id = local.cloudflare_account_token_permission_groups.zone["Zone Write"].id },
-        { id = local.cloudflare_account_token_permission_groups.zone["Zone Settings Read"].id },
-        { id = local.cloudflare_account_token_permission_groups.zone["Zone Settings Write"].id },
-        { id = local.cloudflare_account_token_permission_groups.zone["DNS Read"].id },
-        { id = local.cloudflare_account_token_permission_groups.zone["DNS Write"].id },
-      ]
-      resources = jsonencode({
-        "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
-      })
-    },
-  ]
   status = "active"
 }

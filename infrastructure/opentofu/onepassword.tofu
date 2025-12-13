@@ -2,8 +2,26 @@ locals {
   onepassword_vault_id = "vziyx5bhfpu4o7xtla6zsaer6q"
 }
 
+data "onepassword_vault" "dev" {
+  name = "dev"
+}
+
+resource "onepassword_item" "spacelift" {
+  vault    = data.onepassword_vault.dev.id
+  title    = "spacelift-dev"
+  category = "login"
+  section {
+    label = "Environment Variables"
+    field {
+      label = "CLOUDFLARE_API_TOKEN"
+      value = cloudflare_account_token.spacelift.value
+      type  = "CONCEALED"
+    }
+  }
+}
+
 resource "onepassword_item" "r2" {
-  vault    = local.onepassword_vault_id
+  vault    = data.onepassword_vault.dev.id
   title    = "r2-credentials"
   category = "login"
   section {
