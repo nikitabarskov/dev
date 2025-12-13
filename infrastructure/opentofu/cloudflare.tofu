@@ -80,8 +80,7 @@ resource "cloudflare_api_token" "barskov_dev" {
   status = "active"
 }
 
-resource "cloudflare_account_token" "github_actions_barskov_dev" {
-  account_id = local.cloudflare_account_id
+resource "cloudflare_api_token" "github_actions_barskov_dev" {
   name       = "github-actions-barskov-dev"
   policies = [{
     effect = "allow"
