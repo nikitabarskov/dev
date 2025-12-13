@@ -52,7 +52,7 @@ resource "cloudflare_account_token" "barskov_dev" {
         { id = local.cloudflare_account_token_permission_groups.zone["DNS Write"].id },
       ]
       resources = jsonencode({
-        "com.cloudflare.api.account.${local.cloudflare_account_id}.zone" = "*"
+        "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
       })
     },
     {
