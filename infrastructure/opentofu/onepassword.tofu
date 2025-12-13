@@ -7,7 +7,7 @@ data "onepassword_vault" "dev" {
 }
 
 resource "onepassword_item" "spacelift" {
-  vault    = data.onepassword_vault.dev.id
+  vault    = data.onepassword_vault.dev.uuid
   title    = "spacelift-dev"
   category = "login"
   section {
@@ -21,7 +21,7 @@ resource "onepassword_item" "spacelift" {
 }
 
 resource "onepassword_item" "r2" {
-  vault    = data.onepassword_vault.dev.id
+  vault    = data.onepassword_vault.dev.uuid
   title    = "r2-credentials"
   category = "login"
   section {
