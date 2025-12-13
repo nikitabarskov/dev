@@ -52,7 +52,7 @@ resource "cloudflare_account_token" "barskov_dev" {
         { id = local.cloudflare_account_token_permission_groups.zone["DNS Write"].id },
       ]
       resources = jsonencode({
-        "com.cloudflare.api.account.zone.0d2cfee8b3a53a24e996c74624263bff" = "*",
+        "com.cloudflare.api.account.${local.cloudflare_account_id}.zone" = "*"
       })
     },
     {
@@ -126,7 +126,7 @@ resource "cloudflare_account_token" "spacelift" {
         { id = local.cloudflare_account_token_permission_groups.zone["DNS Write"].id },
       ]
       resources = jsonencode({
-        "com.cloudflare.api.account.zone.*" = "*"
+        "com.cloudflare.api.account.${local.cloudflare_account_id}" = "*"
       })
     },
   ]
