@@ -38,8 +38,13 @@ locals {
   }
 }
 
+import {
+  to = cloudflare_account_token.spacelift
+  id = "${data.cloudflare_account.this.account_id}/e97d68a6bf0566acf1e47999287d1cc9"
+}
+
 resource "cloudflare_account_token" "spacelift" {
-  account_id = data.cloudflare_account.this.id
+  account_id = data.cloudflare_account.this.account_id
   name       = "spacelift-dev"
   policies = [
     {
@@ -82,7 +87,7 @@ resource "cloudflare_account_token" "spacelift" {
 }
 
 resource "cloudflare_account_token" "barskov_dev" {
-  account_id = data.cloudflare_account.this.id
+  account_id = data.cloudflare_account.this.account_id
   name       = "spacelift-barskov-dev"
   policies = [
     {
@@ -113,7 +118,7 @@ resource "cloudflare_account_token" "barskov_dev" {
 }
 
 resource "cloudflare_account_token" "github_actions_barskov_dev" {
-  account_id = data.cloudflare_account.this.id
+  account_id = data.cloudflare_account.this.account_id
   name       = "github-actions-barskov-dev"
   policies = [{
     effect = "allow"
