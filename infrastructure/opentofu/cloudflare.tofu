@@ -124,6 +124,7 @@ resource "cloudflare_api_token" "spacelift" {
     {
       effect = "allow"
       permission_groups = [
+        { id = local.cloudflare_api_token_permission_groups.zone["Zone Read"].id },
         { id = local.cloudflare_api_token_permission_groups.zone["Zone Write"].id },
         { id = local.cloudflare_api_token_permission_groups.zone["Zone Settings Read"].id },
         { id = local.cloudflare_api_token_permission_groups.zone["Zone Settings Write"].id },
