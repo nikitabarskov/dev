@@ -56,11 +56,8 @@ resource "spacelift_stack" "main" {
   terraform_version       = ">=1.6.0 <2.0.0"
 }
 
-resource "spacelift_environment_variable" "dev_cloudflare_token" {
-  stack_id   = spacelift_stack.legacy_stacks["dev"].name
-  name       = "CLOUDFLARE_API_TOKEN"
-  value      = cloudflare_api_token.spacelift.value
-  write_only = true
+removed {
+  from = spacelift_environment_variable.dev_cloudflare_token
 }
 
 resource "spacelift_environment_variable" "barskov_dev_cloudflare_token" {

@@ -7,14 +7,6 @@ resource "onepassword_item" "spacelift" {
   title    = "spacelift"
   category = "login"
   section {
-    label = "dev"
-    field {
-      label = "CLOUDFLARE_API_TOKEN"
-      value = cloudflare_api_token.spacelift.value
-      type  = "CONCEALED"
-    }
-  }
-  section {
     label = "barskov.dev"
     field {
       label = "CLOUDFLARE_API_TOKEN"

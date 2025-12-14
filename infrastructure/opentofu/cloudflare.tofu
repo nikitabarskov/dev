@@ -83,11 +83,6 @@ resource "cloudflare_api_token" "github_actions_barskov_dev" {
   status = "active"
 }
 
-import {
-  to = cloudflare_api_token.spacelift
-  id = "b379e8c88fe4cee13e0727dfafd4031b"
-}
-
 resource "cloudflare_api_token" "spacelift" {
   name = "spacelift-nikitabarskov-dev"
   policies = [
@@ -132,6 +127,8 @@ resource "cloudflare_api_token" "spacelift" {
         { id = local.cloudflare_api_token_permission_groups.zone["Zone Settings Write"].id },
         { id = local.cloudflare_api_token_permission_groups.zone["DNS Read"].id },
         { id = local.cloudflare_api_token_permission_groups.zone["DNS Write"].id },
+        { id = local.cloudflare_api_token_permission_groups.zone["Zone Transform Rules Read"].id },
+        { id = local.cloudflare_api_token_permission_groups.zone["Zone Transform Rules Write"].id },
       ]
       resources = jsonencode({
         "com.cloudflare.api.account.zone.*" = "*"
