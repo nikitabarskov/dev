@@ -49,6 +49,8 @@ resource "cloudflare_api_token" "barskov_dev" {
         { id = local.cloudflare_api_token_permission_groups.zone["Zone Settings Write"].id },
         { id = local.cloudflare_api_token_permission_groups.zone["DNS Read"].id },
         { id = local.cloudflare_api_token_permission_groups.zone["DNS Write"].id },
+        { id = local.cloudflare_api_token_permission_groups.zone["Zone Transform Rules Read"].id },
+        { id = local.cloudflare_api_token_permission_groups.zone["Zone Transform Rules Write"].id },
       ]
       resources = jsonencode({
         "com.cloudflare.api.account.zone.*" = "*"
@@ -130,8 +132,6 @@ resource "cloudflare_api_token" "spacelift" {
         { id = local.cloudflare_api_token_permission_groups.zone["Zone Settings Write"].id },
         { id = local.cloudflare_api_token_permission_groups.zone["DNS Read"].id },
         { id = local.cloudflare_api_token_permission_groups.zone["DNS Write"].id },
-        { id = local.cloudflare_api_token_permission_groups.zone["Zone Transform Rules Read"].id },
-        { id = local.cloudflare_api_token_permission_groups.zone["Zone Transform Rules Write"].id },
       ]
       resources = jsonencode({
         "com.cloudflare.api.account.zone.*" = "*"
