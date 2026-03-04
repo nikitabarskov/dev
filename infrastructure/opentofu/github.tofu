@@ -112,6 +112,9 @@ locals {
     "pytest-table-driven-tests" = {
       visibility = "public"
     }
+    "keycloak-terraform-demo" = {
+      visibility = "public"
+    }
   }
 }
 
