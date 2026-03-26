@@ -115,6 +115,9 @@ locals {
     "keycloak-terraform-demo" = {
       visibility = "public"
     }
+    "meetup-2026-03-27" = {
+      visibility = "public"
+    }
   }
 }
 
