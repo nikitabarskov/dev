@@ -10,7 +10,7 @@ jobs:
   main:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/nikitabarskov/infrastructure-ci:latest
+      image: ghcr.io/nikitabarskov/base-ci:latest
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}

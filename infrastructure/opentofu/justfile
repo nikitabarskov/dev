@@ -5,6 +5,7 @@ default:
     just --list
 
 configure:
+    mise install
     tofu init -backend=false
 
 upgrade:
