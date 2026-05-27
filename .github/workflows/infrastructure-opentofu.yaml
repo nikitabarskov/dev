@@ -14,10 +14,18 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    defaults:
-      run:
-        working-directory: ${{ inputs.working-directory }}
+    env:
+      MISE_DATA_DIR: ~/.local/share/mise
     steps:
       - uses: actions/checkout@v6
-      - run: |
+      - uses: actions/cache@v5
+        with:
+          path: |
+            ${{ env.MISE_DATA_DIR }}
+          key: ${{ runner.os }}-mise-${{ hashFiles('mise.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-mise-
+      - name: CI
+        working-directory: ${{ inputs.working-directory }}
+        run: |
           just ci

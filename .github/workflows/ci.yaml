@@ -3,12 +3,18 @@ on:
     branches:
       - main
     paths:
-      - .github/workflows/ci.yaml
-      - container-images/**.Dockerfile
+      - .github/workflows/**
+      - container-images/**
+      - justfile
+      - mise.toml
+      - mise.lock
   pull_request:
     paths:
-      - .github/workflows/ci.yaml
-      - container-images/**.Dockerfile
+      - .github/workflows/**
+      - container-images/**
+      - justfile
+      - mise.toml
+      - mise.lock
 
 jobs:
   infrastructure-opentofu:
@@ -18,14 +24,49 @@ jobs:
       packages: read
     with:
       working-directory: infrastructure/opentofu
+  container-images-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.build-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            shared:
+              - .github/workflows/ci.yaml
+              - .github/workflows/container-images.yaml
+              - justfile
+              - mise.toml
+              - mise.lock
+            base-ci:
+              - container-images/base-ci.Dockerfile
+            spacelift-runner:
+              - container-images/spacelift-runner.Dockerfile
+      - id: build-matrix
+        run: |
+          targets=()
+          shared="${{ steps.filter.outputs.shared }}"
+          for target in base-ci infrastructure-ci spacelift-runner; do
+            changed=$(echo '${{ toJSON(steps.filter.outputs) }}' | jq -r --arg t "$target" '.[$t]')
+            if [[ "$shared" == "true" || "$changed" == "true" ]]; then
+              targets+=("\"$target\"")
+            fi
+          done
+          if [[ ${#targets[@]} -eq 0 ]]; then
+            matrix='{"target":[]}'
+          else
+            joined=$(IFS=,; echo "${targets[*]}")
+            matrix="{\"target\":[$joined]}"
+          fi
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
   container-images:
+    needs: container-images-matrix
+    if: ${{ needs.container-images-matrix.outputs.matrix != '{"target":[]}' }}
     strategy:
       fail-fast: true
-      matrix:
-        target:
-          - base-ci
-          - infrastructure-ci
-          - spacelift-runner
+      matrix: ${{ fromJSON(needs.container-images-matrix.outputs.matrix) }}
     uses: ./.github/workflows/container-images.yaml
     permissions:
       contents: read
