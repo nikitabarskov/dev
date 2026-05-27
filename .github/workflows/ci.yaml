@@ -34,8 +34,10 @@ jobs:
       matrix: ${{ steps.build-matrix.outputs.matrix }}
       infrastructure-opentofu: ${{ steps.build-matrix.outputs.infrastructure-opentofu }}
     steps:
-      - uses: actions/checkout@v6
-      - uses: dorny/paths-filter@v3
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          persist-credentials: false
+      - uses: dorny/paths-filter@d1c1ffe0248fe513906c8e24db8ea791d46f8590 # v3
         id: filter
         with:
           filters: |
@@ -55,7 +57,7 @@ jobs:
       - id: build-matrix
         run: |
           targets=()
-          shared="${{ steps.filter.outputs.shared }}"
+          shared="${STEPS_FILTER_OUTPUTS_SHARED}"
           for target in base-ci spacelift-runner; do
             changed=$(echo '${{ toJSON(steps.filter.outputs) }}' | jq -r --arg t "$target" '.[$t]')
             if [[ "$shared" == "true" || "$changed" == "true" ]]; then
@@ -69,12 +71,15 @@ jobs:
             matrix="{\"target\":[$joined]}"
           fi
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
-          infra="${{ steps.filter.outputs.infrastructure-opentofu }}"
+          infra="${STEPS_FILTER_OUTPUTS_INFRASTRUCTURE_OPENTOFU}"
           if [[ "$shared" == "true" || "$infra" == "true" ]]; then
             echo "infrastructure-opentofu=true" >> "$GITHUB_OUTPUT"
           else
             echo "infrastructure-opentofu=false" >> "$GITHUB_OUTPUT"
           fi
+        env:
+          STEPS_FILTER_OUTPUTS_SHARED: ${{ steps.filter.outputs.shared }}
+          STEPS_FILTER_OUTPUTS_INFRASTRUCTURE_OPENTOFU: ${{ steps.filter.outputs.infrastructure-opentofu }}
   container-images:
     needs: setup
     if: ${{ needs.setup.outputs.matrix != '{"target":[]}' }}
