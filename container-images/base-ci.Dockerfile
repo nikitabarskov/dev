@@ -14,7 +14,4 @@ RUN --mount=type=cache,target=/var/cache/dnf,sharing=locked \
     tar \
     mise && \
     dnf clean all && \
-    useradd --create-home --shell /bin/bash main && \
     mise --version
-
-USER main
