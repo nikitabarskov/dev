@@ -5,6 +5,7 @@ on:
     paths:
       - .github/workflows/**
       - container-images/**
+      - infrastructure/**
       - justfile
       - mise.toml
       - mise.lock
@@ -12,22 +13,26 @@ on:
     paths:
       - .github/workflows/**
       - container-images/**
+      - infrastructure/**
       - justfile
       - mise.toml
       - mise.lock
 
 jobs:
   infrastructure-opentofu:
+    needs: setup
+    if: ${{ needs.setup.outputs.infrastructure-opentofu == 'true' }}
     uses: ./.github/workflows/infrastructure-opentofu.yaml
     permissions:
       contents: read
       packages: read
     with:
       working-directory: infrastructure/opentofu
-  container-images-matrix:
+  setup:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.build-matrix.outputs.matrix }}
+      infrastructure-opentofu: ${{ steps.build-matrix.outputs.infrastructure-opentofu }}
     steps:
       - uses: actions/checkout@v6
       - uses: dorny/paths-filter@v3
@@ -44,11 +49,14 @@ jobs:
               - container-images/base-ci.Dockerfile
             spacelift-runner:
               - container-images/spacelift-runner.Dockerfile
+            infrastructure-opentofu:
+              - .github/workflows/infrastructure-opentofu.yaml
+              - infrastructure/**
       - id: build-matrix
         run: |
           targets=()
           shared="${{ steps.filter.outputs.shared }}"
-          for target in base-ci infrastructure-ci spacelift-runner; do
+          for target in base-ci spacelift-runner; do
             changed=$(echo '${{ toJSON(steps.filter.outputs) }}' | jq -r --arg t "$target" '.[$t]')
             if [[ "$shared" == "true" || "$changed" == "true" ]]; then
               targets+=("\"$target\"")
@@ -61,12 +69,18 @@ jobs:
             matrix="{\"target\":[$joined]}"
           fi
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+          infra="${{ steps.filter.outputs.infrastructure-opentofu }}"
+          if [[ "$shared" == "true" || "$infra" == "true" ]]; then
+            echo "infrastructure-opentofu=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "infrastructure-opentofu=false" >> "$GITHUB_OUTPUT"
+          fi
   container-images:
-    needs: container-images-matrix
-    if: ${{ needs.container-images-matrix.outputs.matrix != '{"target":[]}' }}
+    needs: setup
+    if: ${{ needs.setup.outputs.matrix != '{"target":[]}' }}
     strategy:
       fail-fast: true
-      matrix: ${{ fromJSON(needs.container-images-matrix.outputs.matrix) }}
+      matrix: ${{ fromJSON(needs.setup.outputs.matrix) }}
     uses: ./.github/workflows/container-images.yaml
     permissions:
       contents: read
