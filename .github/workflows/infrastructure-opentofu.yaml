@@ -28,5 +28,5 @@ jobs:
       - name: CI
         working-directory: ${{ inputs.working-directory }}
         run: |
-          mist install
+          mise install
           just ci
