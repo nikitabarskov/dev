@@ -16,7 +16,9 @@ configure:
 fix:
     mise fmt
     just --fmt
+    zizmor --fix=all .github/workflows
 
 validate:
     mise fmt --check
     just --fmt --check
+    zizmor .github/workflows

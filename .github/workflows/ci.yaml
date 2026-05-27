@@ -1,3 +1,5 @@
+permissions: {}
+
 on:
   push:
     branches:
@@ -30,6 +32,8 @@ jobs:
       working-directory: infrastructure/opentofu
   setup:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       matrix: ${{ steps.build-matrix.outputs.matrix }}
       infrastructure-opentofu: ${{ steps.build-matrix.outputs.infrastructure-opentofu }}
@@ -59,7 +63,7 @@ jobs:
           targets=()
           shared="${STEPS_FILTER_OUTPUTS_SHARED}"
           for target in base-ci spacelift-runner; do
-            changed=$(echo '${{ toJSON(steps.filter.outputs) }}' | jq -r --arg t "$target" '.[$t]')
+            changed=$(echo "$STEPS_FILTER_OUTPUTS_JSON" | jq -r --arg t "$target" '.[$t]')
             if [[ "$shared" == "true" || "$changed" == "true" ]]; then
               targets+=("\"$target\"")
             fi
@@ -78,6 +82,7 @@ jobs:
             echo "infrastructure-opentofu=false" >> "$GITHUB_OUTPUT"
           fi
         env:
+          STEPS_FILTER_OUTPUTS_JSON: ${{ toJSON(steps.filter.outputs) }}
           STEPS_FILTER_OUTPUTS_SHARED: ${{ steps.filter.outputs.shared }}
           STEPS_FILTER_OUTPUTS_INFRASTRUCTURE_OPENTOFU: ${{ steps.filter.outputs.infrastructure-opentofu }}
   container-images:
