@@ -1,6 +1,9 @@
-FROM docker.io/library/fedora:42@sha256:aa7befe5cfd1f0e062728c16453cd1c479d4134c7b85eac00172f3025ab0d522 AS fedora
+FROM docker.io/library/fedora:44@sha256:498c452f32a739b61f0ef215bce9924ebc4866cbe44710f58157d77723b7a6d2 AS main
 
-FROM fedora AS main
+LABEL org.opencontainers.image.title="base-ci" \
+      org.opencontainers.image.description="Base CI image with mise on Fedora" \
+      org.opencontainers.image.maintainer="Nikita Barskov <nbarskov@gmail.com>" \
+      org.opencontainers.image.source="https://github.com/nikitabarskov/container-images"
 
 RUN --mount=type=cache,target=/var/cache/dnf,sharing=locked \
     dnf copr enable -y jdxcode/mise && \
@@ -9,4 +12,9 @@ RUN --mount=type=cache,target=/var/cache/dnf,sharing=locked \
     --nodocs \
     git \
     tar \
-    mise
+    mise && \
+    dnf clean all && \
+    useradd --create-home --shell /bin/bash main && \
+    mise --version
+
+USER main

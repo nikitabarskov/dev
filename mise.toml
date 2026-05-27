@@ -1,0 +1,5 @@
+[tools]
+crane = "latest"
+hadolint = "latest"
+just = "latest"
+opentofu = "latest"

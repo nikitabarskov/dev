@@ -1,3 +1,6 @@
+validate target:
+    hadolint {{ target }}.Dockerfile
+
 image_tag := `git rev-parse HEAD`
 docker_build_args := ""
 
