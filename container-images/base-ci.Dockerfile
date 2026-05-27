@@ -12,6 +12,7 @@ RUN --mount=type=cache,target=/var/cache/dnf,sharing=locked \
     --nodocs \
     git \
     tar \
-    mise && \
+    mise \
+    libatomic && \
     dnf clean all && \
     mise --version
