@@ -76,6 +76,7 @@ locals {
         "prompt-engineering",
         "llms",
       ]
+      archived = true
     }
     "stars-keeper" = {
       description = "I use it to keep track of my starred repositories and to categorize them"
