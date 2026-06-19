@@ -30,7 +30,10 @@ jobs:
       - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
           path: ${{ inputs.working-directory }}/.terraform
-          key: ${{ runner.os }}-terraform-${{ hashFiles(format('{0}/.terraform.lock.hcl', inputs.working-directory)) }}
+          key:
+            ${{ runner.os }}-terraform-${{
+            hashFiles(format('{0}/.terraform.lock.hcl',
+            inputs.working-directory)) }}
           restore-keys: |
             ${{ runner.os }}-terraform-
       - run: |
