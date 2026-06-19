@@ -155,6 +155,7 @@ resource "github_repository" "main" {
     ]
   }
 
+  archived           = each.value.archived
   archive_on_destroy = true
 }
 
