@@ -10,6 +10,9 @@ mise-upgrade target="":
 mise-lock:
     mise lock --platform linux-x64 --platform macos-arm64
 
+mise-use target:
+    mise use {{ target }}
+
 configure:
     mise install
 

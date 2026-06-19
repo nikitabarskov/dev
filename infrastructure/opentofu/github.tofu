@@ -48,6 +48,7 @@ locals {
       required_status_checks = [
         "Vercel",
       ]
+      archive = true
     }
     "dotfiles" = {
       description = "My dev machine configuration via ansible."
@@ -67,6 +68,7 @@ locals {
         "grpc",
         "python",
       ]
+      archive = true
     }
     "prompts" = {
       description = "Prompts I am using with Zed AI assistant"
@@ -95,8 +97,10 @@ locals {
         "recipes",
       ]
     }
-    "sandbox-volur" = {}
-    "barskov.dev"   = {}
+    "sandbox-volur" = {
+      archive = true
+    }
+    "barskov.dev" = {}
     "spr-ctl" = {
       collaborators = [
         {
@@ -115,9 +119,11 @@ locals {
     }
     "keycloak-terraform-demo" = {
       visibility = "public"
+      archive    = true
     }
     "meetup-2026-03-27" = {
       visibility = "public"
+      archive    = true
     }
   }
 }
