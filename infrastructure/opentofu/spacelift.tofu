@@ -1,11 +1,10 @@
 locals {
   legacy_stacks = {
     "dev" = {
-      repository     = "dev"
-      administrative = true
-      autodeploy     = true
-      description    = "Stack to manage my personal infrastructure"
-      project_root   = "/infrastructure/opentofu"
+      repository   = "dev"
+      autodeploy   = true
+      description  = "Stack to manage my personal infrastructure"
+      project_root = "/infrastructure/opentofu"
     }
   }
   spacelift_stacks = {
@@ -25,7 +24,6 @@ resource "spacelift_stack" "legacy_stacks" {
   name       = each.key
   repository = each.value.repository
 
-  administrative       = each.value.administrative
   autodeploy           = each.value.autodeploy
   enable_local_preview = true
   description          = each.value.description
@@ -36,6 +34,16 @@ resource "spacelift_stack" "legacy_stacks" {
   terraform_workflow_tool = "OPEN_TOFU"
   terraform_version       = ">=1.6.0 <2.0.0"
   runner_image            = "ghcr.io/nikitabarskov/spacelift-runner:latest"
+}
+
+data "spacelift_role" "space_admin" {
+  slug = "space-admin"
+}
+
+resource "spacelift_role_attachment" "dev_space_admin" {
+  stack_id = spacelift_stack.legacy_stacks["dev"].id
+  space_id = spacelift_stack.legacy_stacks["dev"].space_id
+  role_id  = data.spacelift_role.space_admin.id
 }
 
 resource "spacelift_stack" "main" {
