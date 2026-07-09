@@ -36,8 +36,7 @@ jobs:
       contents: read
     outputs:
       matrix: ${{ steps.build-matrix.outputs.matrix }}
-      infrastructure-opentofu:
-        ${{ steps.build-matrix.outputs.infrastructure-opentofu }}
+      infrastructure-opentofu: ${{ steps.build-matrix.outputs.infrastructure-opentofu }}
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
@@ -85,8 +84,7 @@ jobs:
         env:
           STEPS_FILTER_OUTPUTS_JSON: ${{ toJSON(steps.filter.outputs) }}
           STEPS_FILTER_OUTPUTS_SHARED: ${{ steps.filter.outputs.shared }}
-          STEPS_FILTER_OUTPUTS_INFRASTRUCTURE_OPENTOFU:
-            ${{ steps.filter.outputs.infrastructure-opentofu }}
+          STEPS_FILTER_OUTPUTS_INFRASTRUCTURE_OPENTOFU: ${{ steps.filter.outputs.infrastructure-opentofu }}
   container-images:
     needs: setup
     if: ${{ needs.setup.outputs.matrix != '{"target":[]}' }}
