@@ -197,6 +197,11 @@ resource "github_repository" "main" {
     ]
   }
 
+  template {
+    owner      = "nikitabarskov"
+    repository = github_repository.template.name
+  }
+
   archived           = each.value.archived
   archive_on_destroy = true
 }
