@@ -128,6 +128,7 @@ locals {
   }
 }
 
+#trivy:ignore:GIT-0001
 resource "github_repository" "main" {
   for_each = {
     for name, config in local.github_repositories : name => merge(local.github_repository_default, config)
@@ -154,10 +155,11 @@ resource "github_repository" "main" {
 
   topics = each.value.topics
 
+  vulnerability_alerts = true
+
   lifecycle {
     ignore_changes = [
       security_and_analysis,
-      vulnerability_alerts,
     ]
   }
 

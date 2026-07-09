@@ -15,4 +15,7 @@ RUN --mount=type=cache,target=/var/cache/dnf,sharing=locked \
     mise \
     libatomic && \
     dnf clean all && \
+    useradd --create-home --shell /bin/bash ci && \
     mise --version
+
+USER ci

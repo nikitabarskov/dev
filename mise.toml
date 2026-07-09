@@ -2,6 +2,7 @@
 crane = "latest"
 hadolint = "latest"
 just = "latest"
+node = "latest"
 opentofu = "latest"
 oxfmt = "latest"
 tflint = "latest"

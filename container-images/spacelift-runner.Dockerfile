@@ -1,5 +1,5 @@
-FROM public.ecr.aws/spacelift/runner-terraform:latest@sha256:eb9d8a0127d22c88ba82353d6aa0ffa12ee1c4d7e7b6a2dba42611dde244a81e AS spacelift
-FROM docker.io/1password/op:2@sha256:2aafc9794ab8d4062d0ac46c18760dc18c9c1dfe2e888ee61c3fa1ad340b5c28 AS op
+FROM public.ecr.aws/spacelift/runner-terraform:latest@sha256:a80bdc58574496b4c7dc4ea2ce8546c95bdccbf3e925053a0ae0f533c8347961 AS spacelift
+FROM docker.io/1password/op:2@sha256:08503f72b054f2673537d42b5f016e377c351a0f07336f7d7519ba5234c697c3 AS op
 
 FROM spacelift AS main
 
