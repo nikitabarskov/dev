@@ -1,3 +1,37 @@
+resource "github_repository" "template" {
+  name        = "template"
+  description = "A base template repository for all my repositories"
+
+  visibility = "public"
+
+  auto_init   = true
+  is_template = true
+
+  has_issues   = false
+  has_projects = false
+  has_wiki     = false
+
+  allow_auto_merge   = true
+  allow_merge_commit = false
+  allow_squash_merge = false
+  allow_rebase_merge = true
+
+  delete_branch_on_merge = true
+
+  topics = ["template"]
+
+  vulnerability_alerts = true
+
+  lifecycle {
+    ignore_changes = [
+      security_and_analysis,
+    ]
+  }
+
+  archived           = false
+  archive_on_destroy = true
+}
+
 locals {
   github_repository_default = {
     archived               = false
@@ -119,11 +153,11 @@ locals {
     }
     "keycloak-terraform-demo" = {
       visibility = "public"
-      archived = true
+      archived   = true
     }
     "meetup-2026-03-27" = {
       visibility = "public"
-      archived = true
+      archived   = true
     }
   }
 }
