@@ -198,7 +198,7 @@ resource "github_repository" "main" {
   }
 
   template {
-    owner      = "nikitabarskov"
+    owner      = github_repository.template.owner
     repository = github_repository.template.name
   }
 
